@@ -11,7 +11,7 @@ public class HW_09_methods {
 		number = 123456;
 		printReverseNumber(number);
 
-		number = 12340;
+		number = 1234;
 		System.out.println("revers !0 = " + reverseNumber(number));
 
 		number = 1234001234;
