@@ -37,8 +37,10 @@ public class HW_09_methods {
 	}
 
 //2
-	public static int factorial(int number) { // (5!-> 1*2*3*4*5-> 120);
-		if (number <= 0) {
+	public static int factorial(int number) {
+		if (number == 0) {
+			return 1;
+		} else if (number < 0) {
 			System.out.print("factorial error / ");
 			return -1;
 		}
