@@ -7,20 +7,20 @@ public class CW_10_ForInr {
 			System.out.print(a + " ");
 		}
 		System.out.println();
-//=============================
+		//=============================
 		a = 0;
 		for (; a < 5; a++) {
 			System.out.print(a + " ");
 		}
 		System.out.println();
-//=============================
+		//=============================
 		a = 0;
 		for (; a < 5;) {
 			System.out.print(a + " ");
 			a++;
 		}
 		System.out.println();
-//=============================
+		//=============================
 		a = 0;
 		for (;;) {
 			System.out.print(a + " ");
@@ -29,7 +29,7 @@ public class CW_10_ForInr {
 				break;
 		}
 		System.out.println();
-//=============================
+		//=============================
 		for (int c = 1, b = 0; c <= 10 && b <= 100; c++, b += 10) {
 			System.out.println("c = " + c + ", b = " + b);
 		}
