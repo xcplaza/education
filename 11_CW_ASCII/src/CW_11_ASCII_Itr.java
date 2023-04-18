@@ -20,7 +20,7 @@ public class CW_11_ASCII_Itr {
 		printASCIIRange(start, finish, col);
 	}
 
-	private static void printASCIIRange(char start, char finish, int col) {
+	public static void printASCIIRange(char start, char finish, int col) {
 		if (start < 32 || finish > 126 || finish < start || col < 1) {
 			System.out.println("Wrong args");
 			return;
