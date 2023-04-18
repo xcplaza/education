@@ -19,7 +19,13 @@ public class HW_11_InnerLoops {
 		square(size);
 
 		System.out.println();
+		traingleEmpty3(size);
+
+		System.out.println();
 		traingleEmpty(size);
+
+		System.out.println();
+		traingleEmpty2(size);
 
 	}
 
@@ -87,8 +93,34 @@ public class HW_11_InnerLoops {
 			System.out.println();
 		}
 	}
-
+	
 	public static void traingleEmpty(int size) {
+		for (int i = 1; i <= size; i++) {
+			for (int j = 1; j <= size; j++) {
+				if (j == 1 || i == size || i == j) {
+					System.out.print("* ");
+				} else
+					System.out.print("  ");
+
+			}
+			System.out.println();
+		}
+	}
+
+	public static void traingleEmpty2(int size) {
+		for (int i = 1; i <= size; i++) {
+			for (int j = 1; j <= size; j++) {
+				if (i == 1 || j == size || i == j) {
+					System.out.print("* ");
+				} else
+					System.out.print("  ");
+
+			}
+			System.out.println();
+		}
+	}
+
+	public static void traingleEmpty3(int size) {
 		for (int i = 1; i <= size; i++) {
 			for (int j = 1; j <= size - i; j++) {
 				System.out.print(" ");
@@ -100,5 +132,16 @@ public class HW_11_InnerLoops {
 		}
 	}
 
+	public static void traingleEmpty4(int size) {
+		for (int j = 1; j <= size; j++) {
+			for (int i = 1; i <= size + j; j++) {
+				System.out.print(" ");
+			}
+			for (int i = 1; i <= i * 2 + 1; i++) {
+				System.out.print("*");
+			}
+			System.out.println();
+		}
+	}
 
 }
