@@ -5,7 +5,7 @@ public class CalcEnergy {
         double febDiscount = 0.068; // скидка на оплату в феврале 6.8%
         double cost = 66.55; // стоимость 1 кВт в 2022 году
 
-        int prevKwatt = 15794; // предыдущее значение kWt
+        int prevKwatt = 16209; // предыдущее значение kWt
         System.out.println("Введите текущее значение kWt: ");
         Scanner scanner = new Scanner(System.in);
         int currentKwatt = scanner.nextInt();
