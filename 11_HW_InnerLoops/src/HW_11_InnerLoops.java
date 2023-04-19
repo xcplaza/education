@@ -8,11 +8,11 @@ public class HW_11_InnerLoops {
 		print_abc_reverse(from, to);
 		System.out.println();
 
-		int number = 8;
-		char letter = 'h';
+		int number = 2;
+		char letter = 'a';
 		chessBoard(number, letter);
 
-		int size = 10;
+		int size = 11;
 //		squareEmpty(size);
 
 		System.out.println();
@@ -62,38 +62,54 @@ public class HW_11_InnerLoops {
 
 //	3
 	public static void square(int size) {
-	    sandglassUp(size);
-	    System.out.println();
-	    
-	    sandglassDown(size);
-	    System.out.println();
+		sandglassUp(size);
+		System.out.println();
 
+		sandglassDown(size);
+		System.out.println();
+
+	}
+
+	public static void sandglassUp(int size) {
+		for (int i = 1; i <= size; i++) {
+			for (int j = 1; j <= size; j++) {
+				if (i == 1 || i == size || j == 1 || j == size || i == j || i + j == size + 1
+						|| (j > i && i + j < size + 1))
+					System.out.print("* ");
+				else
+					System.out.print("  ");
+
+			}
+			System.out.println();
+		}
 	}
 
 	public static void sandglassDown(int size) {
 		for (int i = 1; i <= size; i++) {
 			for (int j = 1; j <= size; j++) {
-				if (i == 1 || i == size || j == 1 || j == size || i == j|| i + j == size + 1|| i > j && i > size - j)
+				if (i == 1 || i == size || j == 1 || j == size || i == j || i + j == size + 1
+						|| (j < i && i + j > size + 1))
 					System.out.print("* ");
 				else
 					System.out.print("  ");
+
 			}
 			System.out.println();
 		}
 	}
-	
-	public static void sandglassUp(int size) {
-		for (int i = 1; i <= size; i++) {
-			for (int j = 1; j <= size; j++) {
-				if (i == 1 || i == size || j == 1 || j == size || i == j|| i + j == size + 1|| j > i && j <= size - i)
-					System.out.print("* ");
-				else
-					System.out.print("  ");
-			}
-			System.out.println();
-		}
-	}
-	
+
+//	public static void sandglassUp(int size) {
+//		for (int i = 1; i <= size; i++) {
+//			for (int j = 1; j <= size; j++) {
+//				if (i == 1 || i == size || j == 1 || j == size || i == j|| i + j == size + 1|| j > i && j <= size - i)
+//					System.out.print("* ");
+//				else
+//					System.out.print("  ");
+//			}
+//			System.out.println();
+//		}
+//	}
+
 	public static void traingleEmpty(int size) {
 		for (int i = 1; i <= size; i++) {
 			for (int j = 1; j <= size; j++) {
