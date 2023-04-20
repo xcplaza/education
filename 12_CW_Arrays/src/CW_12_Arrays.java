@@ -1,5 +1,5 @@
 
-public class CW_11_Arrays {
+public class CW_12_Arrays {
 
 	public static void main(String[] args) {
 //		option 1
