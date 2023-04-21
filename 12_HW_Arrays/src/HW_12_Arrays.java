@@ -63,7 +63,7 @@ public class HW_12_Arrays {
 //	4 Метод принимает массив и все четные элементы в нем меняет на 0, а нечетные на 1.  
 	public static void changeElements(int[] ar) {
 		if (ar == null) {
-			System.out.println("");
+			System.out.println("Array is null");
 			return;
 		}
 		for (int i = 0; i < ar.length; i++) {
@@ -92,15 +92,11 @@ public class HW_12_Arrays {
 			ar3[i] = ar1[i];
 			count++;
 		}
-
 		for (int j = 0; j < ar2.length; j++) {
 			ar3[count++] = ar2[j];
 		}
-		
 		for (int x = 0; x < ar3.length; x++) {
 			System.out.print(ar3[x] + " ");
 		}
-		
 	}
-
 }
