@@ -1,3 +1,4 @@
+import java.util.Arrays;
 
 public class HW_12_Arrays {
 
@@ -13,6 +14,7 @@ public class HW_12_Arrays {
 		System.out.println();
 
 		changeElements(ar);
+		System.out.println(Arrays.toString(ar));
 		System.out.println();
 
 		int[] ar1 = { 1, 2, 3 };
@@ -36,28 +38,44 @@ public class HW_12_Arrays {
 	public static int sumEvenIndexElements(int[] ar) {
 		if (ar == null) {
 			System.out.println("Array is null");
-			return -1;
+			return 0;
 		}
-		int sum = 0;
-		for (int i = 0; i < ar.length; i++) {
-			if (ar[i] % 2 == 0)
-				sum += ar[i];
+
+		int res = 0;
+		for (int i = 0; i < ar.length; i += 2) {
+			res += ar[i];
+
 		}
-		return sum;
+		return res;
+//		int sum = 0;
+//		for (int i = 0; i < ar.length; i++) {
+//			if (ar[i] % 2 == 0)
+//				sum += ar[i];
+//		}
+//		return sum;
 	}
 
 //	3  	Метод возвращает сумму четных элементов. 
-	public static void sumEvenElements(int[] ar) {
+	public static int sumEvenElements(int[] ar) {
 		if (ar == null) {
 			System.out.println("Array is null");
-			return;
+			return -1;
 		}
-		int count = 0;
+
+		int res = 0;
 		for (int i = 0; i < ar.length; i++) {
-			if (ar[i] % 2 == 0)
-				count++;
+			if (ar[i] % 2 == 0) {
+				res += ar[i];
+			}
 		}
-		System.out.println(count);
+		return res;
+
+//		int count = 0;
+//		for (int i = 0; i < ar.length; i++) {
+//			if (ar[i] % 2 == 0)
+//				count++;
+//		}
+//		System.out.println(count);
 	}
 
 //	4 Метод принимает массив и все четные элементы в нем меняет на 0, а нечетные на 1.  
@@ -72,9 +90,9 @@ public class HW_12_Arrays {
 			} else {
 				ar[i] = 1;
 			}
-			System.out.print(ar[i] + " ");
+//			System.out.print(ar[i] + " ");
 		}
-		System.out.println();
+//		System.out.println();
 	}
 
 	/*
@@ -86,17 +104,28 @@ public class HW_12_Arrays {
 			System.out.println("Arrays is null");
 			return;
 		}
-		int count = 0;
+//		int count = 0;
 		int[] ar3 = new int[ar1.length + ar2.length];
-		for (int i = 0; i < ar1.length; i++) {
-			ar3[i] = ar1[i];
-			count++;
+
+		for (int i = 0; i < ar3.length; i++) {
+			if (i < ar1.length)
+				ar3[i] = ar1[i];
+			else
+				ar3[i] = ar2[i - ar1.length];
+
+			System.out.print(ar3[i] + " ");
 		}
-		for (int j = 0; j < ar2.length; j++) {
-			ar3[count++] = ar2[j];
-		}
-		for (int x = 0; x < ar3.length; x++) {
-			System.out.print(ar3[x] + " ");
-		}
+		System.out.println();
+
+//		for (int i = 0; i < ar1.length; i++) {
+//			ar3[i] = ar1[i];
+//			count++;
+//		}
+//		for (int j = 0; j < ar2.length; j++) {
+//			ar3[count++] = ar2[j];
+//		}
+//		for (int x = 0; x < ar3.length; x++) {
+//			System.out.print(ar3[x] + " ");
+//		}
 	}
 }
