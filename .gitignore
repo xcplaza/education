@@ -22,3 +22,27 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 replay_pid*
+*.xml
+03_CW_Variables/.DS_Store
+03_CW_Variables/.DS_Store
+*.iml
+04.Methods/.DS_Store
+04.Methods/.idea/.name
+04_HW_methods/.DS_Store
+06_CW_Opers/.DS_Store
+07_CW_If/.DS_Store
+07_HW_drive/.DS_Store
+07_HW_if/.DS_Store
+08_CW_WhileInt/.DS_Store
+08_HW_While/.DS_Store
+09_CW_IntDecrSrc/.DS_Store
+09_HW_methods/.DS_Store
+10_CW_for/.DS_Store
+10_HW_for/.DS_Store
+11_CW_ASCII/.DS_Store
+11_CW_ASCII/.DS_Store
+HomeEducation/.DS_Store
+CalcEnergy/.DS_Store
+13_CW_String/.DS_Store
+12_HW_Arrays/.DS_Store
+12_CW_Arrays/.DS_Store
