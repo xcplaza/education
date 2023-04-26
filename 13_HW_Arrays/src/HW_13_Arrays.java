@@ -80,19 +80,19 @@ public class HW_13_Arrays {
 
 // 4
 	public static void firstLastPosSum(int[] ar) {
-		int firstPositiveIndex = -1;
-		int lastPositiveIndex = -1;
+		int firstIndex = -1;
+		int lastIndex = -1;
 		for (int i = 0; i < ar.length; i++) {
 			if (ar[i] > 0) {
-				if (firstPositiveIndex == -1) {
-					firstPositiveIndex = i;
+				if (firstIndex == -1) {
+					firstIndex = i;
 				} else {
-					lastPositiveIndex = i;
+					lastIndex = i;
 				}
 			}
 		}
-		if (firstPositiveIndex != -1 && lastPositiveIndex != -1) {
-			int sum = ar[firstPositiveIndex] + ar[lastPositiveIndex];
+		if (firstIndex != -1 && lastIndex != -1) {
+			int sum = ar[firstIndex] + ar[lastIndex];
 			System.out.println("4. SumArrays: " + sum);
 		} else {
 			System.out.println("4. Arrays is not positive.");
