@@ -13,10 +13,14 @@ public class HW_13_Arrays {
 
 		int[] arAVG = new int[10];
 		int minAVG = 0, maxAVG = 5;
-		randomArrays(arAVG, minAVG, maxAVG);
+		if (minAVG < 0) {
+		    System.out.println("Wrong parameters: minAVG!\n");
+		} else {
+		    randomArrays(arAVG, minAVG, maxAVG);
+		}
 		System.out.println("RandomArraysAVG = " + Arrays.toString(arAVG));
 		System.out.println("2. AVG = " + avg(arAVG));
-		System.err.println();
+		System.out.println();
 
 		reverseArray(arr);
 		System.out.print("3. ReversArrays = " + Arrays.toString(arr));
