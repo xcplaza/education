@@ -13,6 +13,7 @@ public class CW_14_ArraysSort {
 
 	}
 
+//	bubbleSort
 	public static void bubbleSort(int[] ar) {
 		for (int i = 0; i < ar.length - 1; i++) {
 			for (int j = 0; j < ar.length - 1 - i; j++) {
