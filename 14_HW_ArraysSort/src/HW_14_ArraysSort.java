@@ -109,12 +109,11 @@ public class HW_14_ArraysSort {
 	}
 
 //	change elements
-//	
 //	1 2 3 4		temp = 1
 	private static void swap(int[] ar, int i, int j) {
-		int temp = ar[i]; // temp = 1
-		ar[i] = ar[j];    // 4 -> 1
-		ar[j] = temp;     // temp -> 1
+		int temp = ar[i]; 	// temp = 1
+		ar[i] = ar[j]; 		// 4 -> 1
+		ar[j] = temp; 		// temp -> 1
 	}
 
 //	random arrays
