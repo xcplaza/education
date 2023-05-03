@@ -50,7 +50,7 @@ public class HW_14_ArraysSort {
 	 * finish индексы). Остальная часть массива остается без изменений.
 	 */
 	static public void sortInRange(int[] ar, int start, int finish) {
-		if (ar == null || start < 0 || start >= ar.length || finish < 0 || finish >= ar.length || start > finish) {
+		if (ar == null || start < 0 || start >= ar.length-1 || finish < 0 || finish >= ar.length || start > finish) {
 			System.out.println("Wrong input!");
 			return;
 		}
