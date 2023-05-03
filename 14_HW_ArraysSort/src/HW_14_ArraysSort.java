@@ -13,7 +13,7 @@ public class HW_14_ArraysSort {
 		printArray(ar);
 		System.out.println();
 
-		int start = 0, finish = 3;
+		int start = 2, finish = 5;
 		sortInRange(ar, start, finish);
 		System.out.println("// number 2");
 		printArray(ar);
@@ -34,8 +34,10 @@ public class HW_14_ArraysSort {
 	 * 1 метод принимает массив и сортирует в порядке убывания.
 	 */
 	public static void sortReverse(int[] ar) {
-		if (ar == null)
+		if (ar == null || ar.length == 0) {
+			System.out.println("Wrong arrays!");
 			return;
+		}
 		boolean flag;
 		for (int i = 0; i < ar.length - 1; i++) {
 			flag = true;
@@ -56,22 +58,35 @@ public class HW_14_ArraysSort {
 	 * finish индексы). Остальная часть массива остается без изменений.
 	 */
 	static public void sortInRange(int[] ar, int start, int finish) {
-		if (ar == null || start < 0 || start >= ar.length - 1 || finish < 0 || finish >= ar.length || start > finish) {
-			System.out.println("Wrong input!");
+		if (ar == null || ar.length == 0 || start < 0 || finish >= ar.length || start > finish) {
+			System.out.println("Wrong Arrays!");
 			return;
 		}
-		for (int i = start; i <= finish; i++) {
-			int min = ar[i];
-			int min_i = i;
-			for (int j = i + 1; j <= finish; j++) {
-				if (ar[j] < min) {
-					min = ar[j];
-					min_i = j;
+		boolean flag;
+		for (int i = start; i < finish; i++) {
+			flag = true;
+			for (int j = start; j < finish - (i - start); j++) {
+				if (ar[j] > ar[j + 1]) {
+					swap(ar, j, j + 1);
+					flag = false;
 				}
 			}
-			if (i != min_i)
-				swap(ar, min_i, i);
+			if (flag) // если он true - заходим в 2й цикл, если нет - не заходим в цикл
+				return;
 		}
+
+//		for (int i = start; i <= finish; i++) {
+//			int min = ar[i];
+//			int min_i = i;
+//			for (int j = i + 1; j <= finish; j++) {
+//				if (ar[j] < min) {
+//					min = ar[j];
+//					min_i = j;
+//				}
+//			}
+//			if (i != min_i)
+//				swap(ar, min_i, i);
+//		}
 	}
 
 	/*
@@ -79,13 +94,19 @@ public class HW_14_ArraysSort {
 	 * значения.
 	 */
 	public static void evenFirst(int[] ar) {
-		if (ar == null)
+		if (ar == null || ar.length == 0)
 			return;
+		boolean flag;
 		for (int i = 0; i < ar.length - 1; i++) {
+			flag = true;
 			for (int j = 0; j < ar.length - 1 - i; j++) {
-				if (ar[j] % 2 != 0 && ar[j + 1] % 2 == 0)
+				if (ar[j] % 2 != 0 && ar[j + 1] % 2 == 0) {
 					swap(ar, j, j + 1);
+					flag = false;
+				}
 			}
+			if (flag) // если он true - заходим в 2й цикл, если нет - не заходим в цикл
+				return;
 		}
 	}
 
@@ -96,24 +117,28 @@ public class HW_14_ArraysSort {
 	public static void evenFirstAdv(int[] ar) {
 		if (ar == null)
 			return;
+		boolean flag;
 		for (int i = 0; i < ar.length - 1; i++) {
+			flag = true;
 			for (int j = 0; j < ar.length - 1 - i; j++) {
-				if (ar[j] % 2 == 0 && ar[j + 1] % 2 == 0 && ar[j] > ar[j + 1])
+				if ((ar[j] % 2 == 0 && ar[j + 1] % 2 == 0 && ar[j] > ar[j + 1])
+					|| (ar[j] % 2 != 0 && ar[j + 1] % 2 != 0 && ar[j] < ar[j + 1])
+					|| (ar[j] % 2 != 0 && ar[j + 1] % 2 == 0)) {
 					swap(ar, j, j + 1);
-				else if (ar[j] % 2 != 0 && ar[j + 1] % 2 != 0 && ar[j] < ar[j + 1])
-					swap(ar, j, j + 1);
-				else if (ar[j] % 2 != 0 && ar[j + 1] % 2 == 0)
-					swap(ar, j, j + 1);
+					flag = false;
+				}
 			}
+			if (flag) // если он true - заходим в 2й цикл, если нет - не заходим в цикл
+				return;
 		}
 	}
 
 //	change elements
 //	1 2 3 4		temp = 1
 	private static void swap(int[] ar, int i, int j) {
-		int temp = ar[i]; 	// temp = 1
-		ar[i] = ar[j]; 		// 4 -> 1
-		ar[j] = temp; 		// temp -> 1
+		int temp = ar[i]; // temp = 1
+		ar[i] = ar[j]; // 4 -> 1
+		ar[j] = temp; // temp -> 1
 	}
 
 //	random arrays
