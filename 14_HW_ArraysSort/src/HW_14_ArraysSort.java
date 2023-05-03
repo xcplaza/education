@@ -36,11 +36,17 @@ public class HW_14_ArraysSort {
 	public static void sortReverse(int[] ar) {
 		if (ar == null)
 			return;
+		boolean flag;
 		for (int i = 0; i < ar.length - 1; i++) {
+			flag = true;
 			for (int j = 0; j < ar.length - 1 - i; j++) {
-				if (ar[j] < ar[j + 1])
+				if (ar[j] < ar[j + 1]) {
 					swap(ar, j, j + 1);
+					flag = false;
+				}
 			}
+			if (flag) // если он true - заходим в 2й цикл, если нет - не заходим в цикл
+				return;
 		}
 	}
 
@@ -50,7 +56,7 @@ public class HW_14_ArraysSort {
 	 * finish индексы). Остальная часть массива остается без изменений.
 	 */
 	static public void sortInRange(int[] ar, int start, int finish) {
-		if (ar == null || start < 0 || start >= ar.length-1 || finish < 0 || finish >= ar.length || start > finish) {
+		if (ar == null || start < 0 || start >= ar.length - 1 || finish < 0 || finish >= ar.length || start > finish) {
 			System.out.println("Wrong input!");
 			return;
 		}
@@ -103,10 +109,12 @@ public class HW_14_ArraysSort {
 	}
 
 //	change elements
+//	
+//	1 2 3 4		temp = 1
 	private static void swap(int[] ar, int i, int j) {
-		int temp = ar[i];
-		ar[i] = ar[j];
-		ar[j] = temp;
+		int temp = ar[i]; // temp = 1
+		ar[i] = ar[j];    // 4 -> 1
+		ar[j] = temp;     // temp -> 1
 	}
 
 //	random arrays
