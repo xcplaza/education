@@ -39,6 +39,19 @@ public class CW_14_ArraysSort {
 		}
 	}
 
+//	сначала на четные по возрастанию, затем на нечетные по убыванию
+	public static void evenFirstAdv2(int[] ar) {
+
+		for (int i = 0; i < ar.length - 1; i++) {
+			for (int j = 0; j < ar.length - 1 - i; j++) {
+				if (ar[j] > ar[j + 1])
+					swap(ar, j, j + 1);
+				if (ar[j] % 2 != 0)
+					swap(ar, j, j + 1);
+			}
+		}
+	}
+
 //	change elements
 	private static void swap(int[] ar, int i, int j) {
 		int temp = ar[i];
