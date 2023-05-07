@@ -21,7 +21,7 @@ public class HW_15_BinarySearch {
 		System.out.println("// 2 number\n" + isSorted(ar));
 		System.out.println();
 
-		bubbleSort(ar); // сортировка для проверки
+//		bubbleSort(ar); // сортировка для проверки
 		printArray(ar);
 		System.out.println("// 3 number\n" + searchAdv(ar, number));
 		System.out.println();
