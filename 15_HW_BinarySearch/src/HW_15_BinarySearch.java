@@ -60,7 +60,7 @@ public class HW_15_BinarySearch {
 			System.out.println("Wrong arrays!");
 			return false;
 		}
-		for (int i = 0; i < ar.length - 1; ++i) {
+		for (int i = 0; i < ar.length - 1; i++) {
 			if (ar[i] > ar[i + 1])
 				return false;
 		}
@@ -78,12 +78,13 @@ public class HW_15_BinarySearch {
 			System.out.println("Wrong arrays!");
 			return -1;
 		}
-		for (int i = 0; i < ar.length - 1; i++) {
-			if (ar[i] < ar[i + 1]) {
-				return binarySearch(ar, number);
-			}
-		}
-		return lineSearch(ar, number);
+		return isSorted(ar) ? binarySearch(ar, number) : lineSearch(ar, number);
+//		for (int i = 0; i < ar.length - 1; i++) {
+//			if (ar[i] < ar[i + 1]) {
+//				return binarySearch(ar, number);
+//			}
+//		}
+//		return lineSearch(ar, number);
 	}
 
 //	binary search
