@@ -37,9 +37,8 @@ public class BankAccount {
 		this.amount = amount;
 	}
 
-	// конструктор аноним и без денег
+	// конструктор аноним и без доп денег
 	public BankAccount(long account, String bank, int branch) {
-		super();
 		this.account = account;
 		this.bank = bank;
 		this.branch = branch;
