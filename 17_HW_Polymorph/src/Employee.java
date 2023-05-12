@@ -110,10 +110,10 @@ public class Employee {
 	public void display(boolean tax) {
 		String res;
 		if (!tax) {
-			res = ("Company: " + company + "\nBaseSalary: " + salary() + "\nPosition: " + position + "\nName: " + name
+			res = ("Company: " + company + "\nSalary: " + salary() + "\nPosition: " + position + "\nName: " + name
 					+ "\nId: " + id + "\nAge: " + age + "\n----------------------------\n");
 		} else {
-			res = ("Company: " + company + "\nBaseSalary: " + (salary() - (salary() * 0.3)) + "\nPosition: " + position
+			res = ("Company: " + company + "\nSalary: " + (salary() - (salary() * 0.3)) + "\nPosition: " + position
 					+ "\nName: " + name + "\nId: " + id + "\nAge: " + age + "\n----------------------------\n");
 		}
 		System.out.println(res);
