@@ -7,15 +7,23 @@ public class Employee {
 	private int id;
 	private int age;
 
-	public Employee() {};
+	public Employee() {
+	};
 
 	public Employee(String company, double baseSalary, int position, String name, int id, int age) {
-		this.company = company;
-		this.baseSalary = baseSalary;
-		this.position = position;
-		this.name = name;
+		if (company != null && !company.isEmpty())
+			this.company = company;
+		else {
+			this.company = "No company!";
+		}
+		setBaseSalary(baseSalary);
+		setPosition(position);
+		if (name != null && !name.isEmpty())
+			this.name = name;
+		else
+			this.name = "No name!";
 		this.id = id;
-		this.age = age;
+		setAge(age);
 	}
 
 	public String getCompany() {
@@ -25,8 +33,6 @@ public class Employee {
 	public void setCompany(String company) {
 		if (company != null && !company.isEmpty())
 			this.company = company;
-		else
-			this.company = "No company!";
 	}
 
 	public double getBaseSalary() {
@@ -34,7 +40,7 @@ public class Employee {
 	}
 
 	public void setBaseSalary(double baseSalary) {
-		if (baseSalary < 6000. || baseSalary > 50000.)
+		if (baseSalary >= 6000. || baseSalary <= 50000.)
 			this.baseSalary = baseSalary;
 	}
 
@@ -43,7 +49,7 @@ public class Employee {
 	}
 
 	public void setPosition(int position) {
-		if (position < 1 || position > 7)
+		if (position >= 1 || position <= 7)
 			this.position = position;
 	}
 
@@ -54,8 +60,6 @@ public class Employee {
 	public void setName(String name) {
 		if (name != null && !name.isEmpty())
 			this.name = name;
-		else
-			this.name = "No name!";
 	}
 
 	public int getAge() {
@@ -63,7 +67,7 @@ public class Employee {
 	}
 
 	public void setAge(int age) {
-		if (age < 18 || age > 80)
+		if (age >= 18 || age <= 80)
 			this.age = age;
 	}
 
@@ -101,22 +105,19 @@ public class Employee {
 		return sumSalary;
 	}
 
-	public void display() {
-		String str = ("Company: " + company + "\nPosition: " + position + "\nName: " + name + "\nId: " + id + "\nAge: "
-				+ age + "\n----------------------------\n");
-		System.out.println(str);
+	public String display() {
+		return "Company: " + company + "\nPosition: " + position + "\nName: " + name + "\nId: " + id + "\nAge: " + age
+				+ "\n----------------------------\n";
 	}
 
-	public void display(boolean tax) {
-		String res;
+	public String display(boolean tax) {
 		if (!tax) {
-			res = ("Company: " + company + "\nSalary: " + salary() + "\nPosition: " + position + "\nName: " + name
-					+ "\nId: " + id + "\nAge: " + age + "\n----------------------------\n");
+			return "Company: " + company + "\nSalaryBrutto: " + salary() + "\nPosition: " + position + "\nName: " + name
+					+ "\nId: " + id + "\nAge: " + age + "\n----------------------------\n";
 		} else {
-			res = ("Company: " + company + "\nSalary: " + (salary() - (salary() * 0.3)) + "\nPosition: " + position
-					+ "\nName: " + name + "\nId: " + id + "\nAge: " + age + "\n----------------------------\n");
+			return "Company: " + company + "\nSalaryNetto: " + (salary() - (salary() * 0.3)) + "\nPosition: " + position
+					+ "\nName: " + name + "\nId: " + id + "\nAge: " + age + "\n----------------------------\n";
 		}
-		System.out.println(res);
 	}
 
 }
