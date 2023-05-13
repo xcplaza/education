@@ -19,7 +19,8 @@ public class EmployeeAppl {
 		System.out.println("\n=============All============\n");
 		AllEmployee(employee);
 		System.out.println("\n========Summary salary======\n");
-		System.out.println("Summary salary: " + sumSalary(employee));
+		sumSalary(employee);
+//		System.out.println("Summary salary: " + sumSalary(employee));
 	}
 
 //	метод нетто
@@ -31,8 +32,7 @@ public class EmployeeAppl {
 		for (int i = 0; i < employee.length; i++) {
 			if (employee[i] == null)
 				continue;
-			employee[i].display(true);
-			;
+			System.out.println(employee[i].display(true));
 		}
 	}
 
@@ -45,7 +45,7 @@ public class EmployeeAppl {
 		for (int i = 0; i < employee.length; i++) {
 			if (employee[i] == null)
 				continue;
-			employee[i].display(false);
+			System.out.println(employee[i].display(false));
 		}
 	}
 
@@ -58,16 +58,15 @@ public class EmployeeAppl {
 		for (int i = 0; i < employee.length; i++) {
 			if (employee[i] == null)
 				continue;
-			employee[i].display();
-			;
+			System.out.println(employee[i].display());
 		}
 	}
 
 //	 метод выводящий общую сумму затрат компании на зарплату 5-ых сотрудников
-	public static int sumSalary(Employee[] employee) {
+	public static void sumSalary(Employee[] employee) {
 		if (employee == null || employee.length == 0) {
 			System.out.println("Wrong arrays!");
-			return -1;
+			return;
 		}
 		int sum = 0;
 		for (int i = 0; i < employee.length; i++) {
@@ -75,6 +74,6 @@ public class EmployeeAppl {
 				continue;
 			sum += employee[i].salary();
 		}
-		return sum;
+		System.out.println(sum);
 	}
 }
