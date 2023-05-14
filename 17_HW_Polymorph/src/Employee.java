@@ -98,6 +98,8 @@ public class Employee {
 		case 6:
 			sumSalary = (int) (baseSalary + baseSalary * 0.35);
 			break;
+		case 7:
+			sumSalary = (int) (baseSalary + baseSalary * 0.5);
 		default:
 			sumSalary = (int) baseSalary;
 			break;
