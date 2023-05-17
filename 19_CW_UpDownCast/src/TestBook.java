@@ -29,6 +29,8 @@ public class TestBook {
 		if (books[4] instanceof ChildFictionBook) // instanceof - проверяет является ли объект books порождением класса
 													// ChildFictionBook
 			System.out.println("Hello");
+
+		System.out.println(books[4].getClass());
 	}
 
 //	средний возраст детской литературы
