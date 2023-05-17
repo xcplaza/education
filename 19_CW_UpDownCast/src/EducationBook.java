@@ -1,12 +1,12 @@
 
-public class EducationBook extends FictionBook {
+public class EducationBook extends LibBook {
 	String subject;
 
 	public EducationBook() {
 	}
 
 	public EducationBook(String autor, String nameBook, int pages, int catNumber, String genge, String subject) {
-		super(autor, nameBook, pages, catNumber, genge);
+		super(autor, nameBook, pages, catNumber);
 		if (subject != null && !subject.isEmpty())
 			this.subject = subject;
 		else {
