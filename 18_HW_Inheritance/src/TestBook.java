@@ -10,12 +10,12 @@ public class TestBook {
 				new FictionBook("Pushkin", "Poems", 159, 567890, "Education"),
 				new FictionBook("Hokking", "Space", 852, 678901, "Sciense") };
 
-		EducationBook[] eb = { new EducationBook("Rowling", "Harry Potter", 336, 123456, "Sub1"),
-				new EducationBook("John", "Mathematics", 546, 234567, "Sub2"),
-				new EducationBook("Tolkien", "Ring", 1248, 345678, "Sub3"),
-				new EducationBook("Lev Tolstoy", "War & Mir", 785, 456789, "Sub4"),
-				new EducationBook("Pushkin", "Poems", 159, 567890, "Sub5"),
-				new EducationBook("Hokking", "Space", 852, 678901, "Sub6") };
+		EducationBook[] eb = { new EducationBook("Rowling", "Harry Potter", 336, 123456, "Fantasy", "Sub1"),
+				new EducationBook("John", "Mathematics", 546, 234567, "Education", "Sub2"),
+				new EducationBook("Tolkien", "Ring", 1248, 345678, "Fantasy", "Sub3"),
+				new EducationBook("Lev Tolstoy", "War & Mir", 785, 456789, "Education", "Sub4"),
+				new EducationBook("Pushkin", "Poems", 159, 567890, "Education", "Sub5"),
+				new EducationBook("Hokking", "Space", 852, 678901, "Sciense", "Sub6") };
 
 		fBooks(fb);
 		System.out.println("\n---------------------------\n");
