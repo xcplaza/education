@@ -5,7 +5,7 @@ public class EducationBook extends LibBook {
 	public EducationBook() {
 	}
 
-	public EducationBook(String autor, String nameBook, int pages, int catNumber, String subject) {
+	public EducationBook(String autor, String nameBook, int pages, int catNumber, String genge, String subject) {
 		super(autor, nameBook, pages, catNumber);
 		if (subject != null && !subject.isEmpty())
 			this.subject = subject;
