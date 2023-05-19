@@ -11,10 +11,11 @@ public class CarAppl {
 				new Car("Mustag Musculcar", "Blue", 1990, 3.5) };
 
 		/*
-		 * Car car1 = new Car("BMW X5", "Black", 2008, 3.0); Car car2 = new
-		 * Car("Mercedes-Benz C-Class", "Silver", 1990, 2.0); Car car3 = new
-		 * Car("Audi A1", "White", 2017, 1.5); Car car4 = new Car("Toyota Camry", "Red",
-		 * 2021, 2.5); Car car5 = new Car("Mustag Musculcar", "Blue", 1945, 3.5);
+		 * Car car1 = new Car("BMW X5", "Black", 2008, 3.0); 
+		 * Car car2 = new Car("Mercedes-Benz C-Class", "Silver", 1990, 2.0); 
+		 * Car car3 = new Car("Audi A1", "White", 2017, 1.5); 
+		 * Car car4 = new Car("Toyota Camry", "Red", 2021, 2.5); 
+		 * Car car5 = new Car("Mustag Musculcar", "Blue", 1945, 3.5);
 		 */
 
 //		Car[] cars = { car1, car2, car3, car4, car5 };
