@@ -1,3 +1,4 @@
+import java.util.Objects;
 
 public class Manager extends Employee {
 	int grade; // меняется от 1 до 6
@@ -37,4 +38,25 @@ public class Manager extends Employee {
 	public String toString() {
 		return super.toString() + ", Grade: " + grade;
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + Objects.hash(grade);
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (!(obj instanceof Manager))
+			return false;
+		Manager other = (Manager) obj;
+		return grade == other.grade;
+	}
+	
 }
