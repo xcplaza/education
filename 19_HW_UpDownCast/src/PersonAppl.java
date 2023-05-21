@@ -33,18 +33,19 @@ public class PersonAppl {
 		for (int i = 0; i < people.length; i++) {
 			if (people[i] == null)
 				continue;
-			if (people[i] instanceof Manager) {
-				Manager temp = (Manager) people[i];
-				sum += temp.calculateSalary();
-			}
-			if (people[i] instanceof WageEmployee) {
-				WageEmployee temp = (WageEmployee) people[i];
-				sum += temp.calculateSalary();
-			}
-			if (people[i] instanceof SaleManager) {
-				SaleManager temp = (SaleManager) people[i];
-				sum += temp.calculateSalary();
-			}
+//			if (people[i] instanceof Manager) {
+//				Manager temp = (Manager) people[i];
+//				sum += temp.calculateSalary();
+//			}
+//			if (people[i] instanceof WageEmployee) {
+//				WageEmployee temp = (WageEmployee) people[i];
+//				sum += temp.calculateSalary();
+//			}
+//			if (people[i] instanceof SaleManager) {
+//				SaleManager temp = (SaleManager) people[i];
+//				sum += temp.calculateSalary();
+//			}
+			sum += people[i].calculateSalary();
 		}
 		return sum;
 	}
@@ -61,7 +62,7 @@ public class PersonAppl {
 				continue;
 			if (people[i] instanceof SaleManager) {
 				SaleManager temp = (SaleManager) people[i]; // downCast
-				sum += temp.calculateSalary();
+				sum += temp.getTotalSale();
 			}
 		}
 		return sum;
