@@ -14,7 +14,7 @@ public class SaleManager extends Employee {
 		else {
 			System.out.println("No total sale!");
 		}
-		if (bonus >= 0.)
+		if (bonus >= 0. && bonus <=100.)
 			this.bonus = bonus;
 		else {
 			System.out.println("No bonus!");
@@ -45,7 +45,7 @@ public class SaleManager extends Employee {
 	}
 
 	public double calculateSalary() {
-		return baseSalary + (totalSale * bonus);
+		return baseSalary + (totalSale * bonus/100);
 	}
 
 	@Override
