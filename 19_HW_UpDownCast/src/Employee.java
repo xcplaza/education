@@ -1,3 +1,4 @@
+import java.util.Objects;
 
 public class Employee extends Person {
 	String company;
@@ -67,5 +68,26 @@ public class Employee extends Person {
 	@Override
 	public String toString() {
 		return super.toString() + ", Company: " + company + ", Position: " + position + ", BaseSalary: " + baseSalary;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + Objects.hash(baseSalary, company, position);
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (!(obj instanceof Employee))
+			return false;
+		Employee other = (Employee) obj;
+		return Double.doubleToLongBits(baseSalary) == Double.doubleToLongBits(other.baseSalary)
+				&& Objects.equals(company, other.company) && Objects.equals(position, other.position);
 	}
 }
