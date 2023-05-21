@@ -53,6 +53,10 @@ public class Employee extends Person {
 		if (baseSalary > 0)
 			this.baseSalary = baseSalary;
 	}
+	
+	public double calculateSalary() { // добавляем для обхода DownCast (абстрактный метод) чтобы он проходил через другие объекты
+		return 0.0;
+	}
 
 	public void display() {
 		String str = ("Company: " + company + "\nPosition: " + position + "\nBaseSalary: " + baseSalary
