@@ -2,10 +2,10 @@
 public class HW_20_Primitiv {
 
 	public static void main(String[] args) {
-		minMaxByte();
+		minMax();
 	}
 
-	public static void minMaxByte() {
+	public static void minMax() {
 		byte min = findMinByte();
 		byte max = findMaxByte();
 
@@ -146,4 +146,13 @@ public class HW_20_Primitiv {
 
 		return (char) (value - 1);
 	}
+
+//	public static void minMaxByte() {
+//	    byte min = (byte) (1 << 7);
+//	    byte max = (byte) ((1 << 7) - 1);
+//
+//	    System.out.println("Min: " + min);
+//	    System.out.println("Max: " + max);
+//	}
+
 }
