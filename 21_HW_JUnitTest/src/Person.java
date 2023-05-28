@@ -10,7 +10,10 @@ public class Person {
 	public Person(int id, String name) {
 		super();
 		setId(id);
-		setName(name);
+		if (name != null && !name.isBlank())
+			this.name = name;
+		else
+			this.name = "No name!";
 	}
 
 	public int getId() {
@@ -18,7 +21,7 @@ public class Person {
 	}
 
 	public void setId(int id) {
-		if (id >= 0)
+		if (id > 0)
 			this.id = id;
 	}
 
