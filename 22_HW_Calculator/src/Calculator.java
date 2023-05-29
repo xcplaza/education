@@ -12,7 +12,6 @@ public class Calculator {
 				System.out.println("Arrays is null!");
 				return;
 			}
-
 			double op1 = Double.parseDouble(args[0]);
 			double op2 = Double.parseDouble(args[2]);
 			String op3 = args[1];
