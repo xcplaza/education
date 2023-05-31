@@ -28,6 +28,5 @@ public class Calculator {
 			System.out.println("Wrong value: " + op3);
 		}
 		System.out.println(result);
-
 	}
 }
