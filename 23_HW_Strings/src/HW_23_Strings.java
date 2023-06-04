@@ -21,14 +21,15 @@ public class HW_23_Strings {
 			ar[i] = ar[j];
 			ar[j] = temp;
 		}
-		String strRevers = new String(ar);
-		return strRevers;
+		return new String(ar);
 	}
 
 	public static int countChar(String str, char c) {
 		if (str == null || str.isBlank())
 			return -1;
 		int count = 0;
+		str = str.toLowerCase();
+		Character.toLowerCase(c);
 		for (int i = 0; i < str.length(); i++) {
 			if (str.charAt(i) == c)
 				count++;
@@ -48,10 +49,7 @@ public class HW_23_Strings {
 				upFlag = true;
 			} else if (Character.isLowerCase(ch)) {
 				lowFlag = true;
-			} else if (password.charAt(i) == '~' 
-					|| password.charAt(i) == '!' 
-					|| password.charAt(i) == '-'
-					|| password.charAt(i) == '_') {
+			} else if (isSymbolSpec(ch)) {
 				specFlag = true;
 			}
 			if (numFlag && upFlag && lowFlag && specFlag)
@@ -59,4 +57,26 @@ public class HW_23_Strings {
 		}
 		return false;
 	}
+
+	public static boolean isSymbolSpec(char temp) {
+		char[] symbol = { '~', '!', '-', '_' };
+		for (int i = 0; i < symbol.length; i++) {
+			if (temp == symbol[i])
+				return true;
+		}
+		return false;
+	}
 }
+
+/*
+ * дополнение к домашке метод должен вернуть индекс самого первого символа
+ * который в строке встречается подряд наибольщее количество раз 1. public
+ * static int maxCharIndex(String str) { "aaabbccccddddd" -> 9}
+ * 
+ * 2. public static void maxCharOccurances(String str){ str -> "Mama myla ramu"
+ * ->(вывести на консоль) -> 'a' 'm'(пример) пробелы не считаем. вывести на
+ * консоль тот символ который встречается больщеее количество раз (если
+ * симвоолов несоколько одинаковые по количеству вывести все эти сиволы) }
+ * 
+ * 
+ */
