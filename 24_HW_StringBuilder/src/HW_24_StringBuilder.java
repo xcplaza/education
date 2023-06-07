@@ -21,22 +21,26 @@ public class HW_24_StringBuilder {
 		}
 
 		char[] ar = str.toCharArray();
-		int count = 0;
-		int maxCount = 0;
+		int count = 1, maxCount = 0, indexStart = 0, indexMax = 0;
 		char maxChar = 0;
 
-		for (int i = 0; i < ar.length - 1; i++) {
+		for (int i = 1; i < ar.length - 1; i++) {
 			if (ar[i] == ar[i + 1]) {
 				count++;
 
 				if (count >= maxCount) {
 					maxCount = count;
 					maxChar = ar[i];
+					indexMax = indexStart;
 				}
 			} else {
-				count = 0;
+				count = 1;
 			}
+			if (count > maxCount)
+				maxChar = ar[i];
+			indexMax = indexStart;
 		}
+
 		return str.indexOf(maxChar);
 	}
 
