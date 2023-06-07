@@ -1,23 +1,6 @@
 
 public class HW_24_StringBuilder {
 
-	/*
-	 * дополнение к домашке метод должен вернуть индекс самого первого символа
-	 * который в строке встречается подряд наибольщее количество раз (например:
-	 * "aaabbccccddddd" -> 9)
-	 * 
-	 * public static int maxCharIndex(String str) { }
-	 * 
-	 * 2. написать метод java который должен вывести на консоль тот символ который
-	 * встречается больщеее количество раз (если симвоолов несколько т.е. одинаковые
-	 * по количеству, вывести все эти символы, пробелы не учитываем)
-	 * 
-	 * public static void maxCharOccurances(String str){ str -> "Mama myla ramu"
-	 * ->(вывести на консоль) -> например вывести 'a' 'm'
-	 * 
-	 * 
-	 */
-
 	public static void main(String[] args) {
 		String str = "aaabbccccdddd";
 		System.out.println(maxCharIndex(str));
@@ -25,6 +8,12 @@ public class HW_24_StringBuilder {
 		str = "Mama myla ramu";
 		maxCharOccurances(str);
 	}
+
+	/*
+	 * дополнение к домашке метод должен вернуть индекс самого первого символа
+	 * который в строке встречается подряд наибольщее количество раз (например:
+	 * "aaabbccccddddd" -> 9) public static int maxCharIndex(String str) { }
+	 */
 
 	public static int maxCharIndex(String str) {
 		if (str == null || str.isBlank()) {
@@ -51,34 +40,45 @@ public class HW_24_StringBuilder {
 		return str.indexOf(maxChar);
 	}
 
+	/*
+	 * 2. написать метод java который должен вывести на консоль тот символ который
+	 * встречается больщее количество раз (если символов несколько т.е. одинаковые
+	 * по количеству, вывести все эти символы, пробелы не учитываем) public static
+	 * void maxCharOccurances(String str){ str -> "Mama myla ramu" -> вывести на
+	 * консоль -> 'a' 'm'
+	 */
+
 	public static void maxCharOccurances(String str) {
 		if (str == null || str.isBlank()) {
-			System.out.println("Wrong data");
 			return;
 		}
 		str = str.replace(" ", "");
 		str = str.toLowerCase();
-		StringBuilder sb = new StringBuilder();
 		char[] ar = str.toCharArray();
 		int count = 0;
 		int maxCount = 0;
-		char symbol = 0;
+		char[] symbols = new char[ar.length];
+		int symbolCount = 0;
 
-		for (int i = 0; i < sb.length() - 1; i++) {
-			for (int j = 1; j < i; j++) {
-				if (ar[i] == ar[j - 1])
+		for (int i = 0; i < str.length(); i++) {
+			count = 0;
+			for (int j = 0; j < str.length() - i; j++) {
+				if (ar[i] == ar[j]) {
 					count++;
+				}
 			}
 			if (count > maxCount) {
 				maxCount = count;
-				count = 0;
-				sb.append(ar[i]++);
-				symbol = ar[i];
+				symbolCount = 1;
+				symbols[0] = ar[i];
+			} else if (count == maxCount) {
+				symbols[symbolCount] = ar[i];
+				symbolCount++;
 			}
-
 		}
-		System.out.println(symbol);
 
+		for (int i = 0; i < symbolCount; i++) {
+			System.out.println("'" + symbols[i] + "'");
+		}
 	}
-
 }
