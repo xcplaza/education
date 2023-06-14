@@ -1,4 +1,4 @@
-import java.util.regex.Pattern;
+//import java.util.regex.Pattern;
 
 public class StringExpressions {
 
@@ -12,7 +12,7 @@ public class StringExpressions {
 	}
 
 	public static Object isThreeDigitsNumber(String str) {
-		String pattern = "\\d{3}";
+		String pattern = "\\b(?!00)\\d{3}";
 		return str.matches(pattern);
 	}
 
@@ -22,7 +22,7 @@ public class StringExpressions {
 	}
 
 	public static boolean isPositiveLessThan1000(String str) {
-		String pattern = "\\d{1,3}";
+		String pattern = "\\b(?!00)\\d{1,3}";
 		return str.matches(pattern);
 	}
 
