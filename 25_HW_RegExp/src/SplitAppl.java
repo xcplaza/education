@@ -5,7 +5,7 @@ public class SplitAppl {
 		String text = "FIFA, will never: reget; it";
 		String[] words = text.split("[:;,]?\\s"); // вычищаем слова без разделителей
 
-		text = "a    \tPreved     b";
+		text = "    \tPreved     b";
 		words = text.split("\\s");
 
 		printStrings(words);
