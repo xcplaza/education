@@ -6,12 +6,13 @@ public class Calculator {
 		}
 		String[] parts = str.split("\\s*(?=[+\\-*/])|(?<=[+\\-*/])\\s*");
 		for (int i = 0; i < parts.length; i++) {
-			if(parts[i].equals(" ")) {
+			if (parts[i].equals(" ")) {
 				parts[i] = parts[i].replaceAll("\\s+", "");
 			}
-			if (parts.length % 2 != 1) {
-				return null;
-			}
+
+		}
+		if (parts.length % 2 != 1) {
+			return null;
 		}
 		int result;
 		if (!isInteger(parts[0])) {
