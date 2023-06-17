@@ -23,5 +23,4 @@ public class SplitAppl {
 	 * 10 +10-10 = 10
 	 * 10 * 10-10 = 90
 	 */
-
 }
