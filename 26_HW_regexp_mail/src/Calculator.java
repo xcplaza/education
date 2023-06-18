@@ -1,73 +1,61 @@
+import java.net.Inet4Address;
+
 public class Calculator {
 
-	public static Object computeExpression(String str) {
-		if (str == null || str.isEmpty()) {
+	public static Integer computeExpression(String str) {
+		if (!isArithmeticExpression(str))
 			return null;
+		String[] operands = getOperands(str);
+		String[] operators = getOperators(str);
+//		для просмотра
+//		for (String s : operands)
+//			System.out.println(s);
+//		for (String s2 : operators)
+//			System.out.println(s2);
+		int res = Integer.parseInt(operands[0]);
+		for (int i = 1; i < operands.length; i++) {
+			res = computeOne(res, operands[i], operators[i]);
 		}
-		String[] parts = str.split("\\s*(?=[+\\-*/])|(?<=[+\\-*/])\\s*");
-		for (int i = 0; i < parts.length; i++) {
-			if (parts[i].equals(" ")) {
-				parts[i] = parts[i].replaceAll("\\s+", "");
-			}
+		return 10;
 
-		}
-		if (parts.length % 2 != 1) {
-			return null;
-		}
-		int result;
-		if (!isInteger(parts[0])) {
-			return null;
-		} else {
-			result = Integer.parseInt(parts[0]);
-		}
-
-		for (int i = 1; i < parts.length; i += 2) {
-			String operator = parts[i];
-			if (!isInteger(parts[i + 1])) {
-				return null;
-			}
-			int operand = Integer.parseInt(parts[i + 1]);
-			switch (operator) {
-			case "+":
-				result += operand;
-				break;
-			case "-":
-				result -= operand;
-				break;
-			case "*":
-				result *= operand;
-				break;
-			case "/":
-				if (operand == 0) {
-					return null;
-				}
-				result /= operand;
-				break;
-			default:
-				return null;
-			}
-		}
-		return result;
 	}
 
-	private static boolean isInteger(String str) {
-		if (str == null || str.isEmpty()) {
-			return false;
+	private static Integer computeOne(int res, String operand, String operator) {
+		int number = Integer.parseInt(operand);
+		switch (operator) {
+		case "+":
+			res += number;
+			break;
+		case "-":
+			res = res - number;
+			break;
+		case "*":
+			res = res * number;
+			break;
+		case "/":
+			if (number == 0)
+				return null;
+			res = res / number;
+			break;
+		default:
+			return null;
 		}
-		int length = str.length();
-		int i = 0;
-		if (str.charAt(0) == '-') {
-			if (length == 1) {
-				return false;
-			}
-			i = 1;
-		}
-		for (; i < length; i++) {
-			char c = str.charAt(i);
-			if (c < '0' || c > '9') {
-				return false;
-			}
-		}
-		return true;
+		return res;
 	}
+
+	// разделитель - число и пробел
+	private static String[] getOperators(String str) {
+		return str.split("[ \\d]+");
+	}
+
+	private static String[] getOperands(String str) {
+		return str.trim().split("\\D+");
+	}
+
+	// вычисляем цифры и арифметику
+	private static boolean isArithmeticExpression(String expression) {
+		String pattern = "\\s*\\d+(\\s*[*/+-]\\s*\\d+)+\\s*";
+		return expression.matches(pattern);
+	}
+
 }
