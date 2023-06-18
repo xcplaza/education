@@ -14,7 +14,8 @@ public class Test_mail {
 		assertTrue(StringExpressions.isEmailCoIlMailRu("t%u@12.co.il"));
 		assertTrue(StringExpressions.isEmailCoIlMailRu("t#u@t.mail.ru"));
 		assertTrue(StringExpressions.isEmailCoIlMailRu("12_5-6*@y.co.il"));
-		assertFalse(StringExpressions.isEmailCoIlMailRu("t,u@co.il"));//
+		assertTrue(StringExpressions.isEmailCoIlMailRu("12_5-6*@co.il"));
+		
 		assertFalse(StringExpressions.isEmailCoIlMailRu("t,u@12.co.il"));// ,-disallowed
 		assertFalse(StringExpressions.isEmailCoIlMailRu("t u@12.co.il"));// space disallowed
 		assertFalse(StringExpressions.isEmailCoIlMailRu("ttu@1#2.co.il"));// after @ the symbol # disallowed
