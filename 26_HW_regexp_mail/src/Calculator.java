@@ -16,8 +16,7 @@ public class Calculator {
 		for (int i = 1; i < operands.length; i++) {
 			res = computeOne(res, operands[i], operators[i]);
 		}
-		return 10;
-
+		return res;
 	}
 
 	private static Integer computeOne(int res, String operand, String operator) {
