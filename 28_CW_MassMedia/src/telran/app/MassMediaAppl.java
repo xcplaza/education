@@ -23,21 +23,28 @@ public class MassMediaAppl {
 
 	private static void displayPrintable(MassMedia[] ar) {
 		for (int i = 0; i < ar.length; i++) {
-			if (ar[i] instanceof Newspaper)
-				((Newspaper) ar[i]).print();
-			else if (ar[i] instanceof Journal)
-				((Journal) ar[i]).print();
+			if (ar[i] instanceof IPrintable) {
+				((IPrintable) ar[i]).print();
+			}
 		}
 	}
 
 	private static IPrintable[] getPrintableElements(MassMedia[] ar) {
-		IPrintable[] printableArray = new IPrintable[ar.length];
+		int count = 0;
 		for (int i = 0; i < ar.length; i++) {
 			if (ar[i] instanceof IPrintable) {
-				printableArray[i] = (IPrintable) ar[i];
+				count++;
 			}
 		}
-		return printableArray;
+		IPrintable[] arr = new IPrintable[count];
+		count =0;
+		for (int i = 0; i < ar.length; i++) {
+			if (ar[i] instanceof IPrintable) {
+				arr[count] = (IPrintable) ar[i];
+				count++;
+			}
+		}
+		return arr;
 	}
 
 	private static void displayMassMediaRatingMoreThen(MassMedia[] ar, int thresholdRating) {
