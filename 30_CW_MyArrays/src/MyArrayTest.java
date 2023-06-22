@@ -128,5 +128,10 @@ public class MyArrayTest {
 		assertArrayEquals(arNumbers, numbers.toArray());
 		assertArrayEquals(arStrings, strings.toArray());
 	}
+	
+	@Test
+	public void testAddAll() {
+		
+	}
 
 }
