@@ -118,4 +118,22 @@ public class MyArray implements IList {
 		return Arrays.copyOf(array, size);
 	}
 
+	@Override
+	public void addAll(MyArray other) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addAll(MyArray other, int index) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean removeAll(Object obj) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }
