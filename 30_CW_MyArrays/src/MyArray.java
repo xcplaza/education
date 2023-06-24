@@ -15,7 +15,7 @@ public class MyArray implements IList {
 	}
 
 	@Override
-	public boolean add(Object obj) {
+	public boolean add(Object obj) { // добавляем в конец
 		if (obj == null)
 			return false;
 		if (size == array.length)
@@ -25,12 +25,12 @@ public class MyArray implements IList {
 		return true;
 	}
 
-	private void allocateArray() {
+	private void allocateArray() { // увеличиваем массив
 		array = Arrays.copyOf(array, array.length * 2);
 	}
 
 	@Override
-	public boolean add(int index, Object obj) {
+	public boolean add(int index, Object obj) { // добавление по индексу
 		if (index < 0 || index > size || obj == null)
 			return false;
 		if (index == size)
@@ -67,7 +67,7 @@ public class MyArray implements IList {
 	}
 
 	@Override
-	public int lastInsdexOf(Object obj) {
+	public int lastIndexOf(Object obj) {
 		if (obj == null)
 			return -1;
 		for (int i = size - 1; i >= 0; i--) {
@@ -120,20 +120,64 @@ public class MyArray implements IList {
 
 	@Override
 	public void addAll(MyArray other) {
-		// TODO Auto-generated method stub
-		
+		if (other == null)
+			return;
+		while (other.size() + size > array.length)
+			allocateArray();
+		for (int i = 0; i < other.size(); i++) {
+			array[size] = other.get(i);
+			size++;
+		}
 	}
 
 	@Override
-	public void addAll(MyArray other, int index) {
-		// TODO Auto-generated method stub
-		
+	public void addAll(int index, MyArray other) {
+		if (index < 0 || index > size || other == null)
+			return;
+		while (other.size() + size > array.length)
+			allocateArray();
+		System.arraycopy(array, index, array, index + other.size(), size - index);
+		size += other.size();
+		for (int i = 0; i < other.size(); i++) {
+			array[index + i] = other.get(i);
+		}
 	}
 
 	@Override
 	public boolean removeAll(Object obj) {
-		// TODO Auto-generated method stub
+		if (obj == null)
+			return false;
+		for (int i = 0; i < size; i++) {
+			if (array[i].equals(obj)) {
+				remove(i);
+				size = i;
+			}
+			return true;
+		}
 		return false;
 	}
 
+//	@Override
+//	public void addAll(MyArray other) {
+//		if (other == null)
+//			return;
+//		System.arraycopy(other, 0, array, size + 1, other.size);
+//		size++;
+//	}
+//
+//	@Override
+//	public void addAll(int index, MyArray[] other) {
+//		if (index < 0 || index > size || other == null)
+//			return;
+//		if (other.size >= array.length || other.size >= size) // проверили что сдивг не приведет к exception
+//			allocateArray();
+//		System.arraycopy(other, index, array, index + 1, size - index);
+//
+//	}
+//
+//	@Override
+//	public boolean removeAll(Object obj) {
+//		// TODO Auto-generated method stub
+//		return false;
+//	}
 }
