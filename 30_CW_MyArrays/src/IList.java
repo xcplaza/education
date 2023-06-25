@@ -1,18 +1,19 @@
 
-public interface IList {
-	boolean add(Object obj); // возвращает 
-	boolean add(int index, Object obj); //возвращает true если по указанному индексу есть объект
-	Object get(int index); //метод возвращает объект по индексу
+public interface IList<T> {
+	
+	boolean add(T obj); // возвращает 
+	boolean add(int index, T obj); //возвращает true если по указанному индексу есть объект
+	T get(int index); //метод возвращает объект по индексу
 	int size(); // метод возвращает размер
 
-	int indexOf(Object obj);
-	int lastIndexOf(Object obj);
-	boolean contains(Object obj);
-	Object remove(int index);
-	boolean remove(Object obj);
+	int indexOf(T obj);
+	int lastIndexOf(T obj);
+	boolean contains(T obj);
+	T remove(int index);
+	boolean remove(T obj);
 	Object[] toArray(); // от 0 до size
 	
-	void addAll(MyArray other); // из MyArray other добавить в конец MyArray (наш)
-	void addAll(int index, MyArray other); // из MyArray other добавить в MyArray (наш) + сдвигаем и вставляем по index
-	boolean removeAll(Object obj); // удалить все объекты(передаваемые например 10) и возвратить  true если хотя бы 1 элемент удален
+	void addAll(MyArray<T> other); // из MyArray other добавить в конец MyArray (наш)
+	void addAll(int index, MyArray<T> other); // из MyArray other добавить в MyArray (наш) + сдвигаем и вставляем по index
+	boolean removeAll(T obj); // удалить все объекты(передаваемые например 10) и возвратить  true если хотя бы 1 элемент удален
 }
