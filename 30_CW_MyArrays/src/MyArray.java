@@ -120,64 +120,69 @@ public class MyArray implements IList {
 
 	@Override
 	public void addAll(MyArray other) {
-		if (other == null)
+		if (other == null || other.size() == 0)
 			return;
-		while (other.size() + size > array.length)
-			allocateArray();
-		for (int i = 0; i < other.size(); i++) {
-			array[size] = other.get(i);
-			size++;
+		for (int i = 0; i < other.size; i++) {
+			add(other.get(i));
 		}
+
+//		while (other.size() + size > array.length)
+//			allocateArray();
+//		for (int i = 0; i < other.size(); i++) {
+//			array[size] = other.get(i);
+//			size++;
+//		}
 	}
 
 	@Override
 	public void addAll(int index, MyArray other) {
-		if (index < 0 || index > size || other == null)
+		if (index < 0 || index > size || other == null || other.size() == 0)
 			return;
-		while (other.size() + size > array.length)
-			allocateArray();
-		System.arraycopy(array, index, array, index + other.size(), size - index);
-		size += other.size();
-		for (int i = 0; i < other.size(); i++) {
-			array[index + i] = other.get(i);
+		if (index == size) {
+			addAll(other);
+		} else {
+			shiftRight(index, other.size());
+			System.arraycopy(other.array, 0, array, index, other.size());
+			size += other.size();
 		}
+//		while (other.size() + size > array.length)
+//			allocateArray();
+//		System.arraycopy(array, index, array, index + other.size(), size - index);
+//		size += other.size();
+//		for (int i = 0; i < other.size(); i++) {
+//			array[index + i] = other.get(i);
+//		}
+	}
+
+	private void shiftRight(int index, int otherSize) {
+		if (otherSize + size > array.length) {
+			int newCapacity = Math.max(size + otherSize, array.length + CAPACITY);
+			array = Arrays.copyOf(array, newCapacity);
+		}
+		System.arraycopy(array, index, array, index + otherSize, size - index);
 	}
 
 	@Override
 	public boolean removeAll(Object obj) {
 		if (obj == null)
 			return false;
-		for (int i = 0; i < size; i++) {
-			if (array[i].equals(obj)) {
-				remove(i);
-				size = i;
-			}
-			return true;
+//		==================================
+//		int temp = size;
+//		for (int i = size -1; i >=0; i--) {
+//		if (array[i].equals(obj))
+//			remove(i);
+//		==================================
+//		for (int i = 0; i < size; i++) {
+//			if (array[i].equals(obj))
+//				remove(i);
+//			i--;
+//		}
+//		return temp != size;
+//		==================================
+		int count = 0;
+		while (remove(obj)) {
+			count++;
 		}
-		return false;
+		return count > 0;
 	}
-
-//	@Override
-//	public void addAll(MyArray other) {
-//		if (other == null)
-//			return;
-//		System.arraycopy(other, 0, array, size + 1, other.size);
-//		size++;
-//	}
-//
-//	@Override
-//	public void addAll(int index, MyArray[] other) {
-//		if (index < 0 || index > size || other == null)
-//			return;
-//		if (other.size >= array.length || other.size >= size) // проверили что сдивг не приведет к exception
-//			allocateArray();
-//		System.arraycopy(other, index, array, index + 1, size - index);
-//
-//	}
-//
-//	@Override
-//	public boolean removeAll(Object obj) {
-//		// TODO Auto-generated method stub
-//		return false;
-//	}
 }
