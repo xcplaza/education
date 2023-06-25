@@ -1,6 +1,6 @@
 import java.util.Arrays;
 
-public class MyArray implements IList {
+public class MyArray<T> implements IList<T> {
 	private Object[] array;
 	private int size = 0;
 	private static final int CAPACITY = 16;
@@ -15,7 +15,7 @@ public class MyArray implements IList {
 	}
 
 	@Override
-	public boolean add(Object obj) { // добавляем в конец
+	public boolean add(T obj) { // добавляем в конец
 		if (obj == null)
 			return false;
 		if (size == array.length)
@@ -30,7 +30,7 @@ public class MyArray implements IList {
 	}
 
 	@Override
-	public boolean add(int index, Object obj) { // добавление по индексу
+	public boolean add(int index, T obj) { // добавление по индексу
 		if (index < 0 || index > size || obj == null)
 			return false;
 		if (index == size)
@@ -43,11 +43,12 @@ public class MyArray implements IList {
 		return true;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
-	public Object get(int index) {
+	public T get(int index) {
 		if (index < 0 || index >= size)
 			return null;
-		return array[index];
+		return (T) array[index];
 	}
 
 	@Override
@@ -56,7 +57,7 @@ public class MyArray implements IList {
 	}
 
 	@Override
-	public int indexOf(Object obj) {
+	public int indexOf(T obj) {
 		if (obj == null)
 			return -1;
 		for (int i = 0; i < size; i++) {
@@ -67,7 +68,7 @@ public class MyArray implements IList {
 	}
 
 	@Override
-	public int lastIndexOf(Object obj) {
+	public int lastIndexOf(T obj) {
 		if (obj == null)
 			return -1;
 		for (int i = size - 1; i >= 0; i--) {
@@ -78,7 +79,7 @@ public class MyArray implements IList {
 	}
 
 	@Override
-	public boolean contains(Object obj) { // true - объект есть, false - объекта нет
+	public boolean contains(T obj) { // true - объект есть, false - объекта нет
 		if (obj == null)
 			return false;
 		for (int i = 0; i < size; i++) {
@@ -93,8 +94,9 @@ public class MyArray implements IList {
 //		return indexOf(obj) != -1;
 //	}
 
+	@SuppressWarnings("unchecked")
 	@Override
-	public Object remove(int index) {
+	public T remove(int index) {
 		if (index < 0 || index >= size)
 			return null;
 //		Object res = get(index);
@@ -104,11 +106,11 @@ public class MyArray implements IList {
 			System.arraycopy(array, index + 1, array, index, size - index - 1);
 		}
 		size--;
-		return res;
+		return (T) res;
 	}
 
 	@Override
-	public boolean remove(Object obj) {
+	public boolean remove(T obj) {
 		int index = indexOf(obj);
 		return remove(index) != null;
 	}
@@ -119,7 +121,7 @@ public class MyArray implements IList {
 	}
 
 	@Override
-	public void addAll(MyArray other) {
+	public void addAll(MyArray<T> other) {
 		if (other == null || other.size() == 0)
 			return;
 		for (int i = 0; i < other.size; i++) {
@@ -135,7 +137,7 @@ public class MyArray implements IList {
 	}
 
 	@Override
-	public void addAll(int index, MyArray other) {
+	public void addAll(int index, MyArray<T> other) {
 		if (index < 0 || index > size || other == null || other.size() == 0)
 			return;
 		if (index == size) {
@@ -163,7 +165,7 @@ public class MyArray implements IList {
 	}
 
 	@Override
-	public boolean removeAll(Object obj) {
+	public boolean removeAll(T obj) {
 		if (obj == null)
 			return false;
 //		==================================
