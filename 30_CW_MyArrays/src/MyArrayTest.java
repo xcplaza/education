@@ -7,25 +7,25 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 public class MyArrayTest {
-	IList numbers;
-	IList strings;
+	IList<Integer> numbers;
+	IList<String> strings;
 	Integer[] arNumbers = { 10, 7, 11, -2, 13, 10, 2000 };
 	String[] arStrings = { "abc", "lmn", "fg", "abc" };
 
-	MyArray other;
+	MyArray<Integer> other;
 	Integer[] arOther = { 1, 2, 3, 4 };
 
 	@Before
 	public void setUp() throws Exception {
-		numbers = new MyArray(1);
+		numbers = new MyArray<Integer>(1);
 		for (int i = 0; i < arNumbers.length; i++) {
 			numbers.add(arNumbers[i]);
 		}
-		strings = new MyArray();
+		strings = new MyArray<String>();
 		for (int i = 0; i < arStrings.length; i++) {
 			strings.add(arStrings[i]);
 		}
-		other = new MyArray();
+		other = new MyArray<Integer>();
 		for (int i = 0; i < arOther.length; i++) {
 			other.add(arOther[i]);
 		}
@@ -107,7 +107,7 @@ public class MyArrayTest {
 	@Test
 	public void testRemoveAtIndex() {
 		Integer[] exp = { 10, 7, -2, 13, 10, 2000 };
-		assertEquals(11, numbers.remove(2));
+		assertEquals((Integer)11, numbers.remove(2));
 		assertEquals(null, numbers.remove(100));
 		assertEquals(null, numbers.remove(-1));
 		for (int i = 0; i < numbers.size(); i++) {
@@ -168,7 +168,7 @@ public class MyArrayTest {
 	@Test
 	public void testRemoveAll2() {
 		Integer[] arNumbers2 = { 10, 7, 11, -2, 13, 10, 10, 2000 };
-		numbers = new MyArray(1);
+		numbers = new MyArray<Integer>(1);
 		for (int i = 0; i < arNumbers2.length; i++) {
 			numbers.add(arNumbers2[i]);
 		}
