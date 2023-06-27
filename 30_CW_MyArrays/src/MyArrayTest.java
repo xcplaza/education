@@ -1,6 +1,7 @@
 import static org.junit.Assert.*;
 
 import java.util.Iterator;
+import java.util.function.Predicate;
 
 import org.junit.Before;
 import org.junit.Ignore;
@@ -74,23 +75,23 @@ public class MyArrayTest {
 	public void testIndexOf() {
 		assertEquals(0, numbers.indexOf(10));
 		assertEquals(-1, numbers.indexOf(100));
-		assertEquals(-1, numbers.indexOf(null));
+		assertEquals(-1, numbers.indexOf((Integer) null));
 		assertEquals(6, numbers.indexOf(2000));
 		String str = new String("abc");
 		assertEquals(0, strings.indexOf(str));
 		assertEquals(-1, strings.indexOf("abca"));
-		assertEquals(-1, strings.indexOf(null));
+		assertEquals(-1, strings.indexOf((String) null));
 	}
 
 	@Test
 	public void testLastIndexOf() {
 		assertEquals(5, numbers.lastIndexOf(10));
 		assertEquals(-1, numbers.lastIndexOf(100));
-		assertEquals(-1, numbers.lastIndexOf(null));
+		assertEquals(-1, numbers.lastIndexOf((Integer) null));
 
 		assertEquals(3, strings.lastIndexOf("abc"));
 		assertEquals(-1, strings.lastIndexOf("abca"));
-		assertEquals(-1, strings.lastIndexOf(null));
+		assertEquals(-1, strings.lastIndexOf((String) null));
 	}
 
 	@Test
@@ -107,7 +108,7 @@ public class MyArrayTest {
 	@Test
 	public void testRemoveAtIndex() {
 		Integer[] exp = { 10, 7, -2, 13, 10, 2000 };
-		assertEquals((Integer)11, numbers.remove(2));
+		assertEquals((Integer) 11, numbers.remove(2));
 		assertEquals(null, numbers.remove(100));
 		assertEquals(null, numbers.remove(-1));
 		for (int i = 0; i < numbers.size(); i++) {
@@ -176,8 +177,28 @@ public class MyArrayTest {
 		assertTrue(numbers.removeAll(10));
 		for (int i = 0; i < numbers.size(); i++) {
 			assertEquals(exp1[i], numbers.get(i));
-
 		}
+	}
 
+//		{ 10, 7, 11, -2, 13, 10, 2000 };
+	@Test
+	public void testRemoveIf() {
+		Integer[] arExp1 = { 11, 13, 2000 };
+		Predicate<Integer> pred = new Predicate<Integer>() {
+			@Override
+			public boolean test(Integer t) {
+				return t < 11;
+			}
+		};
+		assertTrue(numbers.removeIf(pred));
+		assertArrayEquals(arExp1, numbers.toArray());
+
+		assertFalse(numbers.removeIf(new Predicate<Integer>() {
+			@Override
+			public boolean test(Integer t) {
+				return t > 10000;
+			}
+		}));
+		assertArrayEquals(arExp1, numbers.toArray());
 	}
 }
