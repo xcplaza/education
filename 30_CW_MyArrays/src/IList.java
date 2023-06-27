@@ -1,3 +1,4 @@
+import java.util.function.Predicate;
 
 public interface IList<T> {
 	
@@ -16,4 +17,8 @@ public interface IList<T> {
 	void addAll(MyArray<T> other); // из MyArray other добавить в конец MyArray (наш)
 	void addAll(int index, MyArray<T> other); // из MyArray other добавить в MyArray (наш) + сдвигаем и вставляем по index
 	boolean removeAll(T obj); // удалить все объекты(передаваемые например 10) и возвратить  true если хотя бы 1 элемент удален
+	
+	boolean removeIf(Predicate<T> pred); // удалит все элементы из массива равные predicate
+	int indexOf(Predicate<T> pred); //индекс первого встреченного элемента, если элемента нет то - 1
+	int lastIndexOf(Predicate<T> pred);  //индекс последнего встреченного элемента, если элемента нет то - 1
 }
