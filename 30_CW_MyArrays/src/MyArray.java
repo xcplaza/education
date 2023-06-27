@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.function.Predicate;
 
 public class MyArray<T> implements IList<T> {
 	private Object[] array;
@@ -186,5 +187,47 @@ public class MyArray<T> implements IList<T> {
 			count++;
 		}
 		return count > 0;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public boolean removeIf(Predicate<T> pred) {
+		if (pred == null)
+			return false;
+		Object[] temp = new Object[array.length];
+		int indexTemp = 0;
+		for (int i = 0; i < size; i++) {
+			if (!pred.test((T) array[i])) {
+				temp[indexTemp++] = array[i];
+			}
+		}
+		array = temp;
+		boolean res = size != indexTemp;
+		size = indexTemp;
+		return res;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public int indexOf(Predicate<T> pred) {
+		if (pred == null)
+			return -1;
+		for (int i = 0; i < size; i++) {
+			if (pred.test((T) array[i]))
+				return i;
+		}
+		return -1;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public int lastIndexOf(Predicate<T> pred) {
+		if (pred == null)
+			return -1;
+		for (int i = size - 1; i >= 0; i--) {
+			if (pred.test((T) array[i]))
+				return i;
+		}
+		return -1;
 	}
 }
