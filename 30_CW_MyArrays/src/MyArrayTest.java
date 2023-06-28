@@ -33,6 +33,15 @@ public class MyArrayTest {
 	}
 
 	@Test
+	public void testIterable() {
+		int ind = 0;
+		for (Integer n : numbers) {
+			assertEquals(arNumbers[ind++], n);
+		}
+		assertTrue(ind == arNumbers.length);
+	}
+
+	@Test
 	public void testSetUp() {
 		int sizeNumbers = numbers.size();
 		int sizeStrings = strings.size();
@@ -135,8 +144,6 @@ public class MyArrayTest {
 		assertArrayEquals(arNumbers, numbers.toArray());
 		assertArrayEquals(strings.toArray(), arStrings);
 	}
-//	Integer[] arNumbers = {10, 7, 11, -2, 13, 10, 2000};
-//	String[] arStrings = {"abc", "lmn", "fg", "abc"};
 
 	@Test
 	public void testAddAll() {
@@ -180,7 +187,6 @@ public class MyArrayTest {
 		}
 	}
 
-//		{ 10, 7, 11, -2, 13, 10, 2000 };
 	@Test
 	public void testRemoveIf() {
 		Integer[] arExp1 = { 11, 13, 2000 };
