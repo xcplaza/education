@@ -18,6 +18,28 @@ public class ForEachAppl {
 			System.out.print(c + " ");
 		}
 		System.out.println();
-	}
+//		=====================================
+//		ms.remove('l');
+//		System.out.println(ms.getStr());
 
+//		for (Character character : ms) {
+//			if (character == 'l')
+//				ms.remove(character);
+//		}
+//		System.out.println(ms.getStr());
+//	}
+
+		MyStringIterator iter = (MyStringIterator) ms.iterator();
+		while (iter.hasNext()) {
+			if (iter.next() == 'l')
+				iter.remove();
+		}
+		System.out.println(ms.getStr());
+
+		MyStringIteratorRevers iter2 = new MyStringIteratorRevers(new MyString("Hello2").getStrBuild());
+		while (iter2.hasNext()) {
+			System.out.print(iter2.next() + " ");
+		}
+		System.out.println();
+	}
 }
