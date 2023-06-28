@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.function.Predicate;
 
 public class MyArray<T> implements IList<T> {
@@ -229,5 +230,10 @@ public class MyArray<T> implements IList<T> {
 				return i;
 		}
 		return -1;
+	}
+
+	@Override
+	public Iterator<T> iterator() {
+		return new MyIterator<T>(array, size);
 	}
 }
