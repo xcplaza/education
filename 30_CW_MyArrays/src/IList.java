@@ -1,6 +1,6 @@
 import java.util.function.Predicate;
 
-public interface IList<T> {
+public interface IList<T>extends Iterable<T> {
 	
 	boolean add(T obj); // возвращает 
 	boolean add(int index, T obj); //возвращает true если по указанному индексу есть объект
