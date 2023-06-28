@@ -22,4 +22,9 @@ public class MyStringIterator implements Iterator<Character> {
 		return str.charAt(current++);
 	}
 
+	public void remove() {
+		str.deleteCharAt(--current);
+		size--;
+	}
+
 }
