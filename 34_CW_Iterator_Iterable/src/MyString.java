@@ -11,6 +11,10 @@ public class MyString implements Iterable<Character> {
 	public String getStr() {
 		return str.toString();
 	}
+	
+	public StringBuilder getStrBuild() {
+		return str;
+	}
 
 	public void setStr(String str) {
 		this.str = new StringBuilder(str);
