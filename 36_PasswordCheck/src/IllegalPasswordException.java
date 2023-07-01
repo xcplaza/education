@@ -1,9 +1,15 @@
+import java.util.Arrays;
 
+@SuppressWarnings("serial")
 public class IllegalPasswordException extends Exception {
+	private String[] message;
 
-	public Object[] getMessages() {
-		// TODO Auto-generated method stub
-		return null;
+	public IllegalPasswordException(String... message) {
+		this.message = message;
+	}
+
+	public String[] getMessages() {
+		return message;
 	}
 
 }
