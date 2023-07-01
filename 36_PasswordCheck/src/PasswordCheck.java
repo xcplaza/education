@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.regex.Pattern;
 
 public class PasswordCheck {
@@ -13,31 +14,42 @@ public class PasswordCheck {
 		if (password == null) {
 			throw new IllegalArgumentException("null");
 		}
-		String[] errors = new String[6];
+		String[] errors = new String[0];
 		int indexError = 0;
 
 		if (password.length() < 8) {
-			throw new IllegalPasswordException(new String[] { WRONG_LENGTH_MESSAGE });
+			errors = Arrays.copyOf(errors, errors.length + 1);
+			indexError++;
+			throw new IllegalPasswordException(WRONG_LENGTH_MESSAGE);
 		}
 		if (Pattern.compile("\\s").matcher(password).find()) {
-			throw new IllegalPasswordException(new String[] { WRONG_SYMBOL_MESSAGE });
+			errors = Arrays.copyOf(errors, errors.length + 1);
+			indexError++;
+			throw new IllegalPasswordException(WRONG_SYMBOL_MESSAGE);
 		}
 		if (!Pattern.compile("[A-Z]").matcher(password).find()) {
-			throw new IllegalPasswordException(new String[] { NO_UPPER_CASE_MESSAGE });
+			errors = Arrays.copyOf(errors, errors.length + 1);
+			indexError++;
+			throw new IllegalPasswordException(NO_UPPER_CASE_MESSAGE);
 		}
 		if (!Pattern.compile("[a-z]").matcher(password).find()) {
-			throw new IllegalPasswordException(new String[] { NO_LOWER_CASE_MESSAGE });
+			errors = Arrays.copyOf(errors, errors.length + 1);
+			indexError++;
+			throw new IllegalPasswordException(NO_LOWER_CASE_MESSAGE);
 		}
 		if (!Pattern.compile("\\d").matcher(password).find()) {
-			throw new IllegalPasswordException(new String[] { NO_DIGIT_MESSAGE });
+			errors = Arrays.copyOf(errors, errors.length + 1);
+			indexError++;
+			throw new IllegalPasswordException(NO_DIGIT_MESSAGE);
 		}
 		if (!Pattern.compile("[!@#$%^&*(),.?\":{}|<>]").matcher(password).find()) {
-			throw new IllegalPasswordException(new String[] { NO_SPEC_SYMBOL_MESSAGE });
+			errors = Arrays.copyOf(errors, errors.length + 1);
+			indexError++;
+			throw new IllegalPasswordException(NO_SPEC_SYMBOL_MESSAGE);
 		}
 		if (indexError > 0) {
-			String[] Errors = new String[indexError];
-			System.arraycopy(errors, 0, Errors, 0, indexError);
-			throw new IllegalPasswordException(Errors);
+			System.arraycopy(errors, 0, errors, 0, indexError);
+			throw new IllegalPasswordException(errors);
 		}
 	}
 }
