@@ -1,55 +1,63 @@
-import java.util.Arrays;
-import java.util.regex.Pattern;
 
 public class PasswordCheck {
 
+	private static final int PASSWORD_LENGTH = 8;
 	public static final String WRONG_LENGTH_MESSAGE = "wrong length";
 	public static final String NO_SPEC_SYMBOL_MESSAGE = "no symbol";
 	public static final String NO_DIGIT_MESSAGE = "no digit";
 	public static final String NO_UPPER_CASE_MESSAGE = "no upper case letter";
 	public static final String NO_LOWER_CASE_MESSAGE = "no lower case letter";
 	public static final String WRONG_SYMBOL_MESSAGE = "wrong symbol";
+	static final String[] MESSAGES = { NO_UPPER_CASE_MESSAGE, NO_LOWER_CASE_MESSAGE, NO_DIGIT_MESSAGE,
+			NO_SPEC_SYMBOL_MESSAGE };
+
+	static final int UPPER_CASE_INDEX = 0;
+	static final int LOWER_CASE_INDEX = 1;
+	static final int DIGIT_INDEX = 2;
+	static final int SPEC_SYMBOL_INDEX = 3;
+	private static final int N_FLAGS = 4;
+	static boolean[] flags;
 
 	public static void check(String password) throws IllegalPasswordException {
-		if (password == null) {
+		flags = new boolean[N_FLAGS];
+		if (password == null)
 			throw new IllegalArgumentException("null");
+		if (password.length() < PASSWORD_LENGTH)
+			throw new IllegalPasswordException(new String[] { WRONG_LENGTH_MESSAGE });
+		for (char symb : password.toCharArray()) {
+			if (Character.isWhitespace(symb))
+				throw new IllegalPasswordException(new String[] { WRONG_SYMBOL_MESSAGE });
+			if (Character.isUpperCase(symb))
+				flags[UPPER_CASE_INDEX] = true;
+			else if (Character.isLowerCase(symb))
+				flags[LOWER_CASE_INDEX] = true;
+			else if (Character.isDigit(symb))
+				flags[DIGIT_INDEX] = true;
+			else {
+				flags[SPEC_SYMBOL_INDEX] = true;
+			}
 		}
-		String[] errors = new String[0];
-		int indexError = 0;
+		int countErrors = getCountErrors();
+		if (countErrors != 0)
+			throw new IllegalPasswordException(getMessages(countErrors));
+	}
 
-		if (password.length() < 8) {
-			errors = Arrays.copyOf(errors, errors.length + 1);
-			indexError++;
-			throw new IllegalPasswordException(WRONG_LENGTH_MESSAGE);
+	private static String[] getMessages(int countErrors) {
+		String[] res = new String[countErrors];
+		int index = 0;
+		for (int i = 0; i < flags.length; i++) {
+			if (!flags[i])
+				res[index++] = MESSAGES[i];
 		}
-		if (Pattern.compile("\\s").matcher(password).find()) {
-			errors = Arrays.copyOf(errors, errors.length + 1);
-			indexError++;
-			throw new IllegalPasswordException(WRONG_SYMBOL_MESSAGE);
+		return res;
+	}
+
+	private static int getCountErrors() {
+		int count = 0;
+		for (boolean flag : flags) {
+			if (!flag)
+				count++;
 		}
-		if (!Pattern.compile("[A-Z]").matcher(password).find()) {
-			errors = Arrays.copyOf(errors, errors.length + 1);
-			indexError++;
-			throw new IllegalPasswordException(NO_UPPER_CASE_MESSAGE);
-		}
-		if (!Pattern.compile("[a-z]").matcher(password).find()) {
-			errors = Arrays.copyOf(errors, errors.length + 1);
-			indexError++;
-			throw new IllegalPasswordException(NO_LOWER_CASE_MESSAGE);
-		}
-		if (!Pattern.compile("\\d").matcher(password).find()) {
-			errors = Arrays.copyOf(errors, errors.length + 1);
-			indexError++;
-			throw new IllegalPasswordException(NO_DIGIT_MESSAGE);
-		}
-		if (!Pattern.compile("[!@#$%^&*(),.?\":{}|<>]").matcher(password).find()) {
-			errors = Arrays.copyOf(errors, errors.length + 1);
-			indexError++;
-			throw new IllegalPasswordException(NO_SPEC_SYMBOL_MESSAGE);
-		}
-		if (indexError > 0) {
-			System.arraycopy(errors, 0, errors, 0, indexError);
-			throw new IllegalPasswordException(errors);
-		}
+		return count;
 	}
 }
