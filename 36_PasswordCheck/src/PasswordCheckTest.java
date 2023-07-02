@@ -78,7 +78,7 @@ class PasswordCheckTest {
 		}
 	}
 
-	@Disabled
+
 	@Test
 	void testAllTogether() {
 		String[] expected = { PasswordCheck.NO_LOWER_CASE_MESSAGE, PasswordCheck.NO_DIGIT_MESSAGE,
