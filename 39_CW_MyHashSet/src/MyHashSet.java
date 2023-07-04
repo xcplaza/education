@@ -1,25 +1,52 @@
+import java.security.DrbgParameters.Capability;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Set;
 
-public class MyHashSet<E> implements Set<E>{
+public class MyHashSet<E> implements Set<E> {
+	List<E>[] table;
+	int size;
+	int capacasity;
+	double loadFactor;
+
+	@SuppressWarnings("unchecked")
+	public MyHashSet(int capacasity, double loadFactor) {
+		super();
+		table = new LinkedList[capacasity];
+		this.capacasity = capacasity;
+		this.loadFactor = loadFactor;
+	}
+
+	@SuppressWarnings("unchecked")
+	public MyHashSet(int capacasity) {
+		super();
+		table = new LinkedList[capacasity];
+		this.capacasity = capacasity;
+		loadFactor = 0.75;
+	}
+
+	public MyHashSet() { // default construct (size, loadFactor)
+		this(16, 0.75);
+	}
 
 	@Override
 	public int size() {
-		// TODO Auto-generated method stub
-		return 0;
+		return size;
 	}
 
 	@Override
 	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		return false;
+		return size == 0;
 	}
 
 	@Override
 	public boolean contains(Object o) {
-		// TODO Auto-generated method stub
-		return false;
+		int index = getIndex(o);
+		if (table[index] == null)
+			return false;
+		return table[index].contains(o);
 	}
 
 	@Override
@@ -79,7 +106,7 @@ public class MyHashSet<E> implements Set<E>{
 	@Override
 	public void clear() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }
