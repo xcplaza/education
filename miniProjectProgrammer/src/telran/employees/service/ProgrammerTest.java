@@ -49,6 +49,12 @@ public class ProgrammerTest {
 
 	@Test
 	public void getProgrammerData() {
+		
+		System.out.println(s.getProgrammerData(303));
+	}
+	
+	@Test
+	public void addNewTechnology() {
 		System.out.println(s.getProgrammerData(303));
 	}
 
