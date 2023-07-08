@@ -72,9 +72,16 @@ public class ProgrammersMaps implements IProgrammer {
 
 	@Override
 	public List<Programmer> getProgrammersWithSalaries(int salaryFrom, int salaryTo) {
-		// TODO Auto-generated method stub
-		return null;
+	    List<Programmer> res = new ArrayList<>();
+	    for (Programmer programmer : programmers.values()) {
+	        int salary = programmer.getSalary();
+	        if (salary >= salaryFrom && salary <= salaryTo) {
+	            res.add(programmer);
+	        }
+	    }
+	    return res;
 	}
+
 
 	@Override
 	public boolean updateSalary(int id, int salary) {
