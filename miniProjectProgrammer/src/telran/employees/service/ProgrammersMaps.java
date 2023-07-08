@@ -9,6 +9,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
 import java.util.Map.Entry;
 
 import telran.employees.dto.Programmer;
@@ -16,6 +17,8 @@ import telran.employees.dto.Programmer;
 public class ProgrammersMaps implements IProgrammer {
 
 	private Map<Integer, Programmer> programmers = new HashMap<>();
+	private HashMap<String, List<Programmer>> techProgrammers;
+	private TreeMap<Integer, List<Programmer>> salaryProgrammers;
 
 	public ProgrammersMaps(Map<Integer, Programmer> programmers) {
 		super();
@@ -26,15 +29,19 @@ public class ProgrammersMaps implements IProgrammer {
 	public boolean addProgrammer(Programmer programmer) {
 		if (programmer == null)
 			return false;
-		return programmers.putIfAbsent(programmer.getId(), programmer) == null ? true : false;
-	}
+		String a =  programmer.getTechnologies().toString();
+	    techProgrammers.put(a,getProgrammersWithTechnology(a));
+	    salaryProgrammers.put(programmer.getId(), getProgrammersWithTechnology(a));
+	  
+	    return programmers.putIfAbsent(programmer.getId(), programmer) == null ? true : false;
+	  }
 
 	@Override
 	public boolean removeProgrammer(int id) {
 		if (id < 0 || !(programmers.containsKey(id)))
 			return false;
-		programmers.remove(id);
-		return true;
+		return programmers.remove(id) != null ? true : false;
+		
 	}
 
 	@Override
@@ -60,6 +67,8 @@ public class ProgrammersMaps implements IProgrammer {
 
 	@Override
 	public List<Programmer> getProgrammersWithTechnology(String technology) {
+		if (technology.isEmpty())
+			return null;
 		List<Programmer> res = new ArrayList<>();
 		for (Programmer programmer : programmers.values()) {
 			Set<String> tech = programmer.getTechnologies();
@@ -72,16 +81,17 @@ public class ProgrammersMaps implements IProgrammer {
 
 	@Override
 	public List<Programmer> getProgrammersWithSalaries(int salaryFrom, int salaryTo) {
-	    List<Programmer> res = new ArrayList<>();
-	    for (Programmer programmer : programmers.values()) {
-	        int salary = programmer.getSalary();
-	        if (salary >= salaryFrom && salary <= salaryTo) {
-	            res.add(programmer);
-	        }
-	    }
-	    return res;
+		if (salaryFrom < 0 || salaryFrom > salaryTo)
+			return null;
+		List<Programmer> res = new ArrayList<>();
+		for (Programmer programmer : programmers.values()) {
+			int salary = programmer.getSalary();
+			if (salary >= salaryFrom && salary <= salaryTo) {
+				res.add(programmer);
+			}
+		}
+		return res;
 	}
-
 
 	@Override
 	public boolean updateSalary(int id, int salary) {
