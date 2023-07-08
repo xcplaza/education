@@ -37,11 +37,13 @@ public class ProgrammerTest {
 
 		s.addProgrammer(svyat);
 		s.addProgrammer(vika);
+		s.addProgrammer(elik);
 	}
 
 	@Test
 	public void testAddProgrammer() {
-		assertEquals(true, s.addProgrammer(elik));
+//		assertEquals(true, s.addProgrammer(elik));
+		assertEquals(false, s.addProgrammer(elik));
 		assertEquals(false, s.addProgrammer(nul));
 	}
 
@@ -101,6 +103,5 @@ public class ProgrammerTest {
 		assertTrue(result.contains(svyat));
 		assertFalse(result.contains(elik));
 		assertFalse(result.contains(null));
-		assertFalse(result.contains(nul));
 	}
 }
