@@ -6,12 +6,15 @@ import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
+
 import telran.employees.dto.Programmer;
 
 public class ProgrammerTest {
@@ -22,9 +25,9 @@ public class ProgrammerTest {
 	String[] skils2 = { "python", "kotlin" };
 	String[] skils3 = { "php" };
 
-	Programmer elik = new Programmer(302, "Elik", skils1, 20000);
-	Programmer vika = new Programmer(303, "Vika", skils2, 20000);
-	Programmer svyat = new Programmer(304, "Svyat", skils3, 20000);
+	Programmer elik = new Programmer(302, "Elik", skils1, 20150);
+	Programmer vika = new Programmer(303, "Vika", skils2, 21380);
+	Programmer svyat = new Programmer(304, "Svyat", skils3, 25390);
 	Programmer nul = null;
 
 	@Before
@@ -84,24 +87,36 @@ public class ProgrammerTest {
 		assertEquals(false, s.updateSalary(304, 0));
 		assertEquals(false, s.updateSalary(-100, 25000));
 	}
-	
-    @Test
-    public void testGetProgrammersWithTechnology() {
-        List<Programmer> expectedList = new ArrayList<>();
-        expectedList.add(svyat);
-
-        List<Programmer> actualList = s.getProgrammersWithTechnology("php");
-
-        assertEquals(expectedList.size(), actualList.size());
-        assertEquals(expectedList.get(0).getName(), actualList.get(0).getName());
-    }
 
 	@Test
 	public void getProgrammersWithTechnology() {
-		assertEquals(svyat, s.getProgrammersWithTechnology("php"));
-		for (Programmer programmer : s.getProgrammersWithTechnology("php")) {
-			System.out.println(programmer.getName());
-		}
+		List<Programmer> result = s.getProgrammersWithTechnology("php");
+		assertTrue(result.contains(svyat));
+		assertFalse(result.contains(elik));
+		assertFalse(result.contains(vika));
 	}
+
+	@Test
+	public void getProgrammersWithSalaries() {
+		List<Programmer> result = s.getProgrammersWithSalaries(21000, 26000);
+		assertTrue(result.contains(vika));
+		assertTrue(result.contains(svyat));
+		assertFalse(result.contains(elik));
+		assertFalse(result.contains(null));
+		assertFalse(result.contains(nul));
+	}
+
+//	@Ignore
+//	@Test
+//	public void getProgrammersWithTechnology() {
+//		assertEquals(svyat, s.getProgrammersWithTechnology("php"));
+//		for (Programmer programmer : s.getProgrammersWithTechnology("php")) {
+//			System.out.println(programmer.getName());
+//		}
+
+//    for (Programmer programmer : result) {
+//        System.out.println(programmer.getName() + " - " + programmer.getSalary());
+//    }
+//	}
 
 }
