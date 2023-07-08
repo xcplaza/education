@@ -50,7 +50,6 @@ public class ProgrammerTest {
 		assertEquals(true, s.removeProgrammer(303));
 		assertEquals(false, s.removeProgrammer(900));
 		assertEquals(false, s.removeProgrammer(-100));
-
 	}
 
 	@Test
@@ -76,7 +75,6 @@ public class ProgrammerTest {
 		assertEquals(false, s.removeTechnology(900, "java"));
 		assertEquals(false, s.removeTechnology(304, ""));
 		assertEquals(false, s.removeTechnology(-100, "java"));
-//		System.out.println(s.addNewTechnology(304, "java"));
 	}
 
 	@Test
@@ -105,18 +103,4 @@ public class ProgrammerTest {
 		assertFalse(result.contains(null));
 		assertFalse(result.contains(nul));
 	}
-
-//	@Ignore
-//	@Test
-//	public void getProgrammersWithTechnology() {
-//		assertEquals(svyat, s.getProgrammersWithTechnology("php"));
-//		for (Programmer programmer : s.getProgrammersWithTechnology("php")) {
-//			System.out.println(programmer.getName());
-//		}
-
-//    for (Programmer programmer : result) {
-//        System.out.println(programmer.getName() + " - " + programmer.getSalary());
-//    }
-//	}
-
 }
