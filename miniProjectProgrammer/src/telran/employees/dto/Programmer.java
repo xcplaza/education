@@ -2,6 +2,7 @@ package telran.employees.dto;
 
 import java.util.Objects;
 import java.util.Set;
+import java.util.Arrays;
 import java.util.HashSet;
 
 public class Programmer {
@@ -18,10 +19,7 @@ public class Programmer {
 			return;
 		this.id = id;
 		this.name = name;
-		this.technologies = new HashSet<>();
-		for (String tech : technologies) {
-			this.technologies.add(tech);
-		}
+		this.technologies = new HashSet<String>(Arrays.asList(technologies));
 		this.salary = salary;
 	}
 
