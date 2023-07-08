@@ -60,41 +60,15 @@ public class ProgrammersMaps implements IProgrammer {
 
 	@Override
 	public List<Programmer> getProgrammersWithTechnology(String technology) {
-		String skills = technology;
-	}
-	
-	
-	
-	private static void displayWordCounts(String str) {
-		String[] words = str.split("[^a-zA-Z]+");
-		HashMap<String, Integer> temp = new HashMap<>();
-		for (String w : words) {
-			temp.put(w, temp.getOrDefault(w, 0) + 1);
-		}
-		ArrayList<Entry<String, Integer>> list = new ArrayList<>(temp.entrySet());
-		list.sort(new Comparator<Entry<String, Integer>>() {
-
-			@Override
-			public int compare(Entry<String, Integer> o1, Entry<String, Integer> o2) {
-				int res = o2.getValue() - o1.getValue();
-				return res != 0 ? res : o1.getValue().compareTo(o2.getValue());
+		List<Programmer> res = new ArrayList<>();
+		for (Programmer programmer : programmers.values()) {
+			Set<String> tech = programmer.getTechnologies();
+			if (!tech.isEmpty() && tech.contains(technology)) {
+				res.add(programmer);
 			}
-		});
-		for (Entry<String, Integer> e : list) {
-			System.out.printf("%s - %d\n", e.getKey(), e.getValue());
 		}
+		return res;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
 	@Override
 	public List<Programmer> getProgrammersWithSalaries(int salaryFrom, int salaryTo) {
