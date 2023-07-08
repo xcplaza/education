@@ -2,6 +2,7 @@ package telran.employees.service;
 
 import static org.junit.Assert.*;
 
+import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -83,10 +84,24 @@ public class ProgrammerTest {
 		assertEquals(false, s.updateSalary(304, 0));
 		assertEquals(false, s.updateSalary(-100, 25000));
 	}
+	
+    @Test
+    public void testGetProgrammersWithTechnology() {
+        List<Programmer> expectedList = new ArrayList<>();
+        expectedList.add(svyat);
+
+        List<Programmer> actualList = s.getProgrammersWithTechnology("php");
+
+        assertEquals(expectedList.size(), actualList.size());
+        assertEquals(expectedList.get(0).getName(), actualList.get(0).getName());
+    }
 
 	@Test
 	public void getProgrammersWithTechnology() {
-		System.out.println(s.getProgrammersWithTechnology("java"));
+		assertEquals(svyat, s.getProgrammersWithTechnology("php"));
+		for (Programmer programmer : s.getProgrammersWithTechnology("php")) {
+			System.out.println(programmer.getName());
+		}
 	}
 
 }
