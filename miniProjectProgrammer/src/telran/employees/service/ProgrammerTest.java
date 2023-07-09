@@ -43,6 +43,7 @@ public class ProgrammerTest {
 
 	@Test
 	public void testAddProgrammer() {
+		assertNotEquals(true, programmers);
 		assertEquals(true, s.addProgrammer(david));
 		assertEquals(false, s.addProgrammer(elik));
 		assertEquals(false, s.addProgrammer(nul));
@@ -53,6 +54,7 @@ public class ProgrammerTest {
 		assertEquals(true, s.removeProgrammer(303));
 		assertEquals(false, s.removeProgrammer(900));
 		assertEquals(false, s.removeProgrammer(-100));
+//		assertEquals(false, s.removeProgrammer(null));
 	}
 
 	@Test
@@ -98,6 +100,7 @@ public class ProgrammerTest {
 		assertFalse(result.contains(null));
 		assertEquals(null, s.getProgrammersWithSalaries(-10000, 0));
 		assertEquals(null, s.getProgrammersWithSalaries(0, -10000));
+		assertEquals(null, s.getProgrammersWithSalaries(10000, 500));
 	}
 
 	@Test
