@@ -28,7 +28,8 @@ public class Programmer {
 	}
 
 	public void setSalary(int salary) {
-		this.salary = salary;
+		if (salary > 0)
+			this.salary = salary;
 	}
 
 	public int getId() {
