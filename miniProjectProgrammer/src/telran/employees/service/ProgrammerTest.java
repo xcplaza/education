@@ -28,6 +28,7 @@ public class ProgrammerTest {
 	Programmer elik = new Programmer(302, "Elik", skils1, 20150);
 	Programmer vika = new Programmer(303, "Vika", skils2, 21380);
 	Programmer svyat = new Programmer(304, "Svyat", skils3, 25390);
+	Programmer david = new Programmer(305, "David", skils1, 20390);
 	Programmer nul = null;
 
 	@Before
@@ -42,7 +43,7 @@ public class ProgrammerTest {
 
 	@Test
 	public void testAddProgrammer() {
-//		assertEquals(true, s.addProgrammer(elik));
+		assertEquals(true, s.addProgrammer(david));
 		assertEquals(false, s.addProgrammer(elik));
 		assertEquals(false, s.addProgrammer(nul));
 	}
@@ -72,20 +73,11 @@ public class ProgrammerTest {
 
 	@Test
 	public void removeTechnology() {
-		assertEquals(true, s.removeTechnology(304, "php"));
-		assertEquals(false, s.removeTechnology(304, "java"));
+		s.removeTechnology(303, "python");
+		s.removeTechnology(304, "php");
 		assertEquals(false, s.removeTechnology(900, "java"));
 		assertEquals(false, s.removeTechnology(304, ""));
 		assertEquals(false, s.removeTechnology(-100, "java"));
-	}
-
-	@Test
-	public void updateSalary() {
-		assertEquals(true, s.updateSalary(304, 25000));
-		assertEquals(false, s.updateSalary(900, 25000));
-		assertEquals(false, s.updateSalary(900, -10000));
-		assertEquals(false, s.updateSalary(304, 0));
-		assertEquals(false, s.updateSalary(-100, 25000));
 	}
 
 	@Test
@@ -94,6 +86,7 @@ public class ProgrammerTest {
 		assertTrue(result.contains(svyat));
 		assertFalse(result.contains(elik));
 		assertFalse(result.contains(vika));
+		assertEquals(null, s.getProgrammersWithTechnology(""));
 	}
 
 	@Test
@@ -103,5 +96,16 @@ public class ProgrammerTest {
 		assertTrue(result.contains(svyat));
 		assertFalse(result.contains(elik));
 		assertFalse(result.contains(null));
+		assertEquals(null, s.getProgrammersWithSalaries(-10000, 0));
+		assertEquals(null, s.getProgrammersWithSalaries(0, -10000));
+	}
+
+	@Test
+	public void updateSalary() {
+		assertEquals(true, s.updateSalary(304, 25000));
+		assertEquals(false, s.updateSalary(900, 25000));
+		assertEquals(false, s.updateSalary(900, -10000));
+		assertEquals(false, s.updateSalary(304, 0));
+		assertEquals(false, s.updateSalary(-100, 25000));
 	}
 }
