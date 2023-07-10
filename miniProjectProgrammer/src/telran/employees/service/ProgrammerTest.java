@@ -29,7 +29,6 @@ public class ProgrammerTest {
 	Programmer vika = new Programmer(303, "Vika", skils2, 21380);
 	Programmer svyat = new Programmer(304, "Svyat", skils3, 25390);
 	Programmer david = new Programmer(305, "David", skils1, 20390);
-	Programmer nul = null;
 
 	@Before
 	public void setUp() throws Exception {
@@ -45,41 +44,48 @@ public class ProgrammerTest {
 	public void testAddProgrammer() {
 		assertNotEquals(true, programmers);
 		assertEquals(true, s.addProgrammer(david));
+		assertTrue(programmers.containsKey(305));
 		assertEquals(false, s.addProgrammer(elik));
-		assertEquals(false, s.addProgrammer(nul));
+		assertEquals(false, s.addProgrammer(null));
 	}
 
 	@Test
 	public void removeProgrammer() {
 		assertEquals(true, s.removeProgrammer(303));
+		assertEquals(false, s.removeProgrammer(303));
 		assertEquals(false, s.removeProgrammer(900));
-		assertEquals(false, s.removeProgrammer(-100));
-//		assertEquals(false, s.removeProgrammer(null));
+		assertEquals(false, s.removeProgrammer(-303));
 	}
 
 	@Test
 	public void getProgrammerData() {
 		assertEquals(svyat, s.getProgrammerData(304));
+		assertEquals(vika, s.getProgrammerData(303));
 		assertEquals(null, s.getProgrammerData(900));
-		assertEquals(null, s.getProgrammerData(-100));
+		assertEquals(null, s.getProgrammerData(-304));
 	}
 
 	@Test
 	public void addNewTechnology() {
 		assertEquals(true, s.addNewTechnology(304, "java"));
+		assertEquals(true, s.addNewTechnology(303, "php"));
 		assertEquals(false, s.addNewTechnology(304, "php"));
 		assertEquals(false, s.addNewTechnology(900, "java"));
 		assertEquals(false, s.addNewTechnology(304, ""));
-		assertEquals(false, s.addNewTechnology(-100, "java"));
+		assertEquals(false, s.addNewTechnology(304, "   "));
+		assertEquals(false, s.addNewTechnology(-304, "java"));
+		assertEquals(false, s.addNewTechnology(304, null));
 	}
 
 	@Test
 	public void removeTechnology() {
-		s.removeTechnology(303, "python");
-		s.removeTechnology(304, "php");
+		assertEquals(true, s.removeTechnology(303, "python"));
+		assertEquals(true, s.removeTechnology(304, "php"));
 		assertEquals(false, s.removeTechnology(900, "java"));
 		assertEquals(false, s.removeTechnology(304, ""));
-		assertEquals(false, s.removeTechnology(-100, "java"));
+		assertEquals(false, s.removeTechnology(304, "   "));
+		assertEquals(false, s.removeTechnology(-304, "java"));
+		assertEquals(false, s.removeTechnology(304, null));
 	}
 
 	@Test
@@ -88,7 +94,9 @@ public class ProgrammerTest {
 		assertTrue(result.contains(svyat));
 		assertFalse(result.contains(elik));
 		assertFalse(result.contains(vika));
+		assertFalse(result.contains(null));
 		assertEquals(null, s.getProgrammersWithTechnology(""));
+		assertEquals(null, s.getProgrammersWithTechnology("   "));
 	}
 
 	@Test
@@ -105,10 +113,12 @@ public class ProgrammerTest {
 
 	@Test
 	public void updateSalary() {
-		assertEquals(true, s.updateSalary(304, 25000));
+		assertEquals(true, s.updateSalary(304, 26000));
+		assertEquals(true, s.updateSalary(304, 22000));
+		assertEquals(true, s.updateSalary(303, 15000));
 		assertEquals(false, s.updateSalary(900, 25000));
 		assertEquals(false, s.updateSalary(900, -10000));
 		assertEquals(false, s.updateSalary(304, 0));
-		assertEquals(false, s.updateSalary(-100, 25000));
+		assertEquals(false, s.updateSalary(-304, 25000));
 	}
 }
