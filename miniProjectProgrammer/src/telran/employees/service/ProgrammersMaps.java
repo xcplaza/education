@@ -23,6 +23,9 @@ public class ProgrammersMaps implements IProgrammer {
 	public ProgrammersMaps(Map<Integer, Programmer> programmers) {
 		super();
 		this.programmers = programmers;
+//		this.programmers = new HashMap<>();
+//		this.techProgrammers = new HashMap<>();
+//		this.salaryProgrammers = new TreeMap<>();
 	}
 
 	@Override
@@ -47,7 +50,6 @@ public class ProgrammersMaps implements IProgrammer {
 			techProgrammers.get(tech).remove(rmv);
 		salaryProgrammers.remove(id);
 		return programmers.remove(id) != null ? true : false;
-
 	}
 
 	@Override
@@ -59,7 +61,7 @@ public class ProgrammersMaps implements IProgrammer {
 
 	@Override
 	public boolean addNewTechnology(int id, String technology) {
-		if (id < 0 || technology.isEmpty() || !(programmers.containsKey(id)))
+		if (id < 0 || technology == null || technology.isBlank() || !(programmers.containsKey(id)))
 			return false;
 		List<Programmer> tempTechProg = techProgrammers.getOrDefault(technology, new ArrayList<>());
 		techProgrammers.put(technology, tempTechProg);
@@ -68,16 +70,21 @@ public class ProgrammersMaps implements IProgrammer {
 
 	@Override
 	public boolean removeTechnology(int id, String technology) {
-		if (id < 0 || technology.isEmpty() || !(programmers.containsKey(id)))
+		if (programmers.get(id) == null || !programmers.get(id).getTechnologies().contains(technology))
 			return false;
+		programmers.get(id).getTechnologies().remove(technology);
 		Programmer programmer = getProgrammerData(id);
-		programmer.getTechnologies().remove(technology);
-		return programmers.get(id).getTechnologies().remove(technology);
+		if (!techProgrammers.containsKey(technology)) {
+			return false;
+		} else {
+			techProgrammers.get(technology).remove(programmer);
+		}
+		return true;
 	}
 
 	@Override
 	public List<Programmer> getProgrammersWithTechnology(String technology) {
-		if (technology.isEmpty())
+		if (technology == null || technology.isBlank())
 			return null;
 		List<Programmer> res = techProgrammers.get(technology);
 //		List<Programmer> res = new ArrayList<>();
