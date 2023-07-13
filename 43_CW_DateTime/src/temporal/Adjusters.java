@@ -39,7 +39,7 @@ public class Adjusters {
 		System.out.println(date.with(TemporalAdjusters.previousOrSame(DayOfWeek.THURSDAY)));
 		System.out.println();
 
-		System.out.println(date.with(new NonLeapYear(5)));
+		System.out.println(date.with(new NonLeapYear(10)));
 	}
 
 }
