@@ -28,7 +28,7 @@ public class PrintCalendarAppl {
 	private static void printDates(int month, int year) {
 		int firstColumn = getFirstColumn(month, year);
 		printOffSet(firstColumn); // пробелы смещения
-		printNumbersFromOffSet(firstColumn, month, year); // наполняем числами
+		printNumbersFromOffSet(firstColumn, month, year); // наполняем числами (* от 1 - вск до 7 - суб)
 
 	}
 
