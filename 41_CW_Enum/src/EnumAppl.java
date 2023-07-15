@@ -14,7 +14,7 @@ public class EnumAppl {
 		System.out.println(person);
 
 		Weekday[] array = Weekday.values();
-		System.out.println(Arrays.toString(array));
+		System.out.println("[]" + Arrays.toString(array));
 
 		System.out.println(Weekday.valueOf("SUN"));
 		Weekday day = Weekday.valueOf("MON");
