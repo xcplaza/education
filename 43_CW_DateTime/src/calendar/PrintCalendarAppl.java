@@ -32,6 +32,21 @@ public class PrintCalendarAppl {
 
 	}
 
+	private static void printNumbersFromOffSet(int firstColumn, int month, int year) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private static void printOffSet(int firstColumn) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private static int getFirstColumn(int month, int year) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 	private static void printWeekDaysNames() {
 		for (int i = 1; i <= 7; i++) {
 			DayOfWeek day = DayOfWeek.of(i);
