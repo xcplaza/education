@@ -3,6 +3,7 @@ package calendar;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.Month;
+import java.time.Year;
 import java.time.format.TextStyle;
 import java.util.Iterator;
 import java.util.Locale;
@@ -33,18 +34,39 @@ public class PrintCalendarAppl {
 	}
 
 	private static void printNumbersFromOffSet(int firstColumn, int month, int year) {
-		// TODO Auto-generated method stub
+		int daysInMonth = getDaysInMonth(month, year);
+        int currentDay = 1;
+
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 7; j++) {
+                if (i == 0 && j < firstColumn) {
+                    System.out.print(" "); // Выводим пробелы до начала месяца
+                } else if (currentDay <= daysInMonth) {
+                    System.out.printf("%4d", currentDay); // Выводим числа месяца
+                    currentDay++;
+                } else {
+                    System.out.print("   "); // Выводим пробелы после окончания месяца
+                }
+            }
+            System.out.println();
+        }
 		
+	}
+	private static int getDaysInMonth(int month, int year) {
+	    boolean isLeapYear = Year.of(year).isLeap();
+	    return Month.of(month).length(isLeapYear);
 	}
 
 	private static void printOffSet(int firstColumn) {
-		// TODO Auto-generated method stub
-		
+        for (int i = 0; i < firstColumn; i++) {
+            System.out.print("   "); // Выводим пробелы для смещения
+        }
 	}
 
 	private static int getFirstColumn(int month, int year) {
-		// TODO Auto-generated method stub
-		return 0;
+		LocalDate date = LocalDate.of(year, month, 1);
+        DayOfWeek dayOfWeek = date.getDayOfWeek();
+        return dayOfWeek.getValue() % 7;
 	}
 
 	private static void printWeekDaysNames() {
@@ -59,7 +81,7 @@ public class PrintCalendarAppl {
 	private static void printTitle(int month, int year) {
 		Month m = Month.of(month);
 		String res = m.getDisplayName(TextStyle.FULL, Locale.ENGLISH);
-		System.out.printf("%8s%s %d\n", " ", res, year);
+		System.out.printf("%8s %s %d\n", " ", res, year);
 	}
 
 	private static int[] getCurrentMonthYear() {
