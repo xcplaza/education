@@ -4,11 +4,14 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.Month;
 import java.time.Year;
+import java.time.YearMonth;
 import java.time.format.TextStyle;
 import java.util.Iterator;
 import java.util.Locale;
 
 public class PrintCalendarAppl {
+
+//	private static final int DATE_W = 4;
 
 	public static void main(String[] args) {
 
@@ -34,39 +37,54 @@ public class PrintCalendarAppl {
 	}
 
 	private static void printNumbersFromOffSet(int firstColumn, int month, int year) {
-		int daysInMonth = getDaysInMonth(month, year);
-        int currentDay = 1;
+//		YearMonth ym = YearMonth.of(year, month);
+//		int days = ym.lengthOfMonth();
+//
+//		System.out.println("  ");
+//		for (int i = 0; i < days; i++) {
+//			System.out.printf("%" + DATE_W + "d", i);
+//			if (firstColumn == 7) {
+//				firstColumn = 1;
+//				System.out.println();
+//			} else {
+//				firstColumn++;
+//			}
+//		}
 
-        for (int i = 0; i < 6; i++) {
-            for (int j = 0; j < 7; j++) {
-                if (i == 0 && j < firstColumn) {
-                    System.out.print(" "); // Выводим пробелы до начала месяца
-                } else if (currentDay <= daysInMonth) {
-                    System.out.printf("%4d", currentDay); // Выводим числа месяца
-                    currentDay++;
-                } else {
-                    System.out.print("   "); // Выводим пробелы после окончания месяца
-                }
-            }
-            System.out.println();
-        }
-		
+		int daysInMonth = getDaysInMonth(month, year);
+		int currentDay = 1;
+
+		for (int i = 0; i < 6; i++) {
+			for (int j = 0; j < 7; j++) {
+				if (i == 0 && j < firstColumn) {
+					System.out.print(" "); // Выводим пробелы до начала месяца
+				} else if (currentDay <= daysInMonth) {
+					System.out.printf("%4d", currentDay); // Выводим числа месяца
+					currentDay++;
+				} else {
+					System.out.print("   "); // Выводим пробелы после окончания месяца
+				}
+			}
+			System.out.println();
+		}
+
 	}
+
 	private static int getDaysInMonth(int month, int year) {
-	    boolean isLeapYear = Year.of(year).isLeap();
-	    return Month.of(month).length(isLeapYear);
+		boolean isLeapYear = Year.of(year).isLeap();
+		return Month.of(month).length(isLeapYear);
 	}
 
 	private static void printOffSet(int firstColumn) {
-        for (int i = 0; i < firstColumn; i++) {
-            System.out.print("   "); // Выводим пробелы для смещения
-        }
+		for (int i = 0; i < firstColumn; i++) {
+			System.out.print("   "); // Выводим пробелы для смещения
+		}
 	}
 
 	private static int getFirstColumn(int month, int year) {
 		LocalDate date = LocalDate.of(year, month, 1);
-        DayOfWeek dayOfWeek = date.getDayOfWeek();
-        return dayOfWeek.getValue() % 7;
+//		DayOfWeek dayOfWeek = date.getDayOfWeek();
+		return date.getDayOfWeek().getValue() % 7;
 	}
 
 	private static void printWeekDaysNames() {
