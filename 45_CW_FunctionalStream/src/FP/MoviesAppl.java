@@ -45,6 +45,12 @@ public class MoviesAppl {
 		System.out.println();
 		Stream.of(1, 2, 3, 4, 5, 6, 7, 8, 9).dropWhile(n -> n < 6).forEach(System.out::println);
 
+		System.out.println("\nsolution 7");
+		Arrays.stream(array).filter(m -> m.year == 2022 && m.rating >= 4).peek(System.out::println).sorted((m1, m2) -> {
+			int res = Double.compare(m1.rating, m2.rating);
+			return res == 0 ? m1.title.compareTo(m2.title) : res;
+		}).peek(System.out::println).map(m -> m.title).forEach(System.out::println);
+
 //		Practics
 		System.out.println("\nPractics");
 //		1. Create a stream that will give you and outputs unique movie ratings to your console
