@@ -1,7 +1,11 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
+import java.util.function.BinaryOperator;
 
 //int prevKwatt = ; // предыдущее значение kWt 29/09-28/11 ()
 //471.34
@@ -15,20 +19,38 @@ import java.util.Scanner;
 //432.97
 
 public class CalcEnergy {
+	static Map<String, BinaryOperator<Integer>> mapOperations;
+	static {
+		mapOperations = new HashMap<>();
+		mapOperations.put("+", (x, y) -> x + y);
+		mapOperations.put("-", (x, y) -> x - y);
+		mapOperations.put("x", (x, y) -> x * y);
+		mapOperations.put("/", (x, y) -> y == 0 ? null : x / y);
+	}
+
+	static Map<Integer, Integer> kWts = new HashMap<>();;
+	static {
+		kWts.put(1, 13284);
+		kWts.put(1, 14064);
+		kWts.put(2, 14798);
+		kWts.put(3, 16209);
+		kWts.put(4, 16263);
+		kWts.put(5, 16847);
+	}
+
 	public static void main(String[] args) {
 		double febDiscount = 0.068; // скидка на оплату в феврале 6.8%
 		double cost = 66.55; // стоимость 1 кВт в 2022 году
 
-		Integer[] kWt = { 13284, 14064, 14798, 16209, 16263, 16847 };
-		List<Integer> kWts = new ArrayList<>(Arrays.asList(kWt));
-
-
+//		Integer[] kWt = { 13284, 14064, 14798, 16209, 16263, 16847 };
+//		List<Integer> kWts = new ArrayList<>(Arrays.asList(kWt));
 
 		int prevKwatt = 16847; // предыдущее значение kWt
 		System.out.println("Введите текущее значение kWt: ");
 		Scanner scanner = new Scanner(System.in);
 		int currentKwatt = scanner.nextInt();
 
+		
 		double totalSum = calculateTotalSum(currentKwatt, prevKwatt, cost, febDiscount);
 //        double sum = calculateSum(currentKwatt, prevKwatt, cost);
 //        System.out.printf("Сумма к оплате в 2022 году = %.2f\n", sum);
