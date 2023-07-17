@@ -28,7 +28,25 @@ public class MoviesAppl {
 		System.out.println("\nsolution 5");
 		Arrays.stream(array).limit(3).skip(2).forEach(System.out::println);
 
+		System.out.println("\nShuffled");
+		displayArrayShuffled(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 });
+		System.out.println();
+
+		System.out.println("\nsportLoto");
+		int min, max, limit;
+		min = 1;
+		max = 49;
+		limit = 7;
+		sportLoto(min, max, limit);
+		System.out.println();
+
+		System.out.println("\nsolution 6");
+		Stream.of(1, 2, 3, 6, 4, 5, 6, 7, 8, 9).takeWhile(n -> n < 6).forEach(System.out::println);
+		System.out.println();
+		Stream.of(1, 2, 3, 4, 5, 6, 7, 8, 9).dropWhile(n -> n < 6).forEach(System.out::println);
+
 //		Practics
+		System.out.println("\nPractics");
 //		1. Create a stream that will give you and outputs unique movie ratings to your console
 		Arrays.stream(array).distinct().map(x -> x.rating).forEach(System.out::println);
 
@@ -43,8 +61,17 @@ public class MoviesAppl {
 
 //		5. Create a stream that will announce each next movie in the list in a format "Next movie is <our movie>", but only if they are not repeated.
 		Arrays.stream(array).distinct().map(m -> m.title).forEach(t -> System.out.println("Next movie is: " + t));
-		System.out.println();
+		System.out.println("or ");
 		Arrays.stream(array).distinct().map(m -> "Next movie is: " + m.title).forEach(System.out::println);
+	}
+
+	private static void sportLoto(int min, int max, int limit) {
+		new Random().ints(min, max + 1).distinct().limit(limit).forEach(i -> System.out.print(i + " "));
+	}
+
+	private static void displayArrayShuffled(int[] array) {
+		new Random().ints(0, array.length).distinct().limit(array.length)
+				.forEach(i -> System.out.print(array[i] + " "));
 	}
 
 //	solution 1
