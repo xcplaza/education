@@ -26,7 +26,8 @@ public class StreamAppl {
 		Stream.of(2, 3, 0, 1, 3).flatMapToInt(x -> IntStream.range(0, x + 1)).forEach(System.out::print);
 
 		ArrayList<Company> list1 = new ArrayList<>(
-				Arrays.asList(new Company("a", new ArrayList<>(Arrays.asList("Masha", "Sasha"))),
+				Arrays.asList(
+						new Company("a", new ArrayList<>(Arrays.asList("Masha", "Sasha"))),
 						new Company("b", new ArrayList<>(Arrays.asList("Dasha", "Sasha"))),
 						new Company("c", new ArrayList<>(Arrays.asList("Masha", "Pasha")))));
 
