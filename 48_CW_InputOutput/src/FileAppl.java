@@ -38,7 +38,7 @@ public class FileAppl {
 		System.out.println(node.canWrite());
 		System.out.println(node.isHidden());
 		System.out.println(node.getAbsolutePath());
-		System.out.println(node.getPath());
+		System.out.println("getPath: " + node.getPath());
 		System.out.println(node.getParent());
 		System.out.println(node5.getParent());
 		System.out.println(node.length());
@@ -54,7 +54,7 @@ public class FileAppl {
 		System.out.println(Arrays.toString(listDir));
 
 		System.out.println("------------------------");
-		pintDir("dir1/dir2");
+		printDir("dir1/dir2");
 //		System.out.println("------------------------");
 //		pintDir("file1");
 //		System.out.println("------------------------");
@@ -68,7 +68,7 @@ public class FileAppl {
 		file.createNewFile();
 	}
 
-	private static void pintDir(String path) {
+	private static void printDir(String path) {
 //		dir3 -> is directory
 //		file1 -> if file
 		File node = new File(path);
