@@ -10,6 +10,7 @@ public class CopyFilesAppl {
 	final static String DIR_DEST = "dest/";
 	final static String FILE_DEST = DIR_DEST + FILE_NAME;
 	final static String OVER = "overwrite";
+	final static int BUFFER = 16_777_216;
 
 	public static void main(String[] args) throws Exception {
 		copyFile(FILE_NAME, FILE_DEST, OVER);
@@ -41,7 +42,7 @@ public class CopyFilesAppl {
 			try {
 				is = new FileInputStream(fileS);
 				os = new FileOutputStream(fileD);
-				byte[] buffer = new byte[16_777_216];
+				byte[] buffer = new byte[BUFFER];
 				int length;
 				long startTime = System.currentTimeMillis();
 				while ((length = is.read(buffer)) > 0) {
