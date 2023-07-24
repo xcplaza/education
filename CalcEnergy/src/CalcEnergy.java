@@ -50,7 +50,6 @@ public class CalcEnergy {
 		Scanner scanner = new Scanner(System.in);
 		int currentKwatt = scanner.nextInt();
 
-		
 		double totalSum = calculateTotalSum(currentKwatt, prevKwatt, cost, febDiscount);
 //        double sum = calculateSum(currentKwatt, prevKwatt, cost);
 //        System.out.printf("Сумма к оплате в 2022 году = %.2f\n", sum);
