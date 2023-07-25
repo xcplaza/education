@@ -60,4 +60,14 @@ public class RentCompanyTest {
 		assertEquals(CarsRetunCode.OK, company.addCar(newCar));
 	}
 
+	@Test
+	public void testAddDriver() {
+
+	}
+
+	@Test
+	public void testAddModel() {
+
+	}
+
 }
