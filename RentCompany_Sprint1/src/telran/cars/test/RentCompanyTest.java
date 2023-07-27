@@ -62,6 +62,7 @@ public class RentCompanyTest {
 
 	@Test
 	public void testAddDriver() {
+		assertEquals(CarsRetunCode.DRIVER_EXISTS, company.addDriver(driver));
 		Driver newDriver = new Driver(LICENSE, "Max", 1980, "322223");
 		assertEquals(CarsRetunCode.DRIVER_EXISTS, company.addDriver(newDriver));
 		newDriver = new Driver(LICENSE + 123, "Max", 1980, "322223");
@@ -72,6 +73,7 @@ public class RentCompanyTest {
 
 	@Test
 	public void testAddModel() {
+		assertEquals(CarsRetunCode.MODEL_EXISTS, company.addModel(model));
 		Model newModel = new Model(MODEL_NAME, GAS_TANK, "BMW", "Germany", PRICE_DAY);
 		assertEquals(CarsRetunCode.MODEL_EXISTS, company.addModel(newModel));
 		newModel = new Model(MODEL_NAME + "M", GAS_TANK, "BMW", "Germany", PRICE_DAY);
