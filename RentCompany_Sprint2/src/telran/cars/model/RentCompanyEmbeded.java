@@ -4,7 +4,12 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
+import java.util.TreeMap;
 
 import telran.util.Persistable;
 import telran.cars.dto.*;
@@ -14,6 +19,11 @@ public class RentCompanyEmbeded extends AbstractRentCompany implements Persistab
 	HashMap<String, Car> cars = new HashMap<>();
 	HashMap<Long, Driver> drivers = new HashMap<>();
 	HashMap<String, Model> models = new HashMap<>();
+//	sprint2
+	HashMap<String, List<Car>> modelCars = new HashMap<>();
+	HashMap<Long, List<RentRecord>> driverRecords = new HashMap<>();
+	HashMap<String, List<RentRecord>> carRecords = new HashMap<>();
+	TreeMap<LocalDate, List<RentRecord>> records = new TreeMap<>();
 
 	@Override
 	public CarsRetunCode addModel(Model model) {
@@ -29,7 +39,19 @@ public class RentCompanyEmbeded extends AbstractRentCompany implements Persistab
 	public CarsRetunCode addCar(Car car) {
 		if (!models.containsKey(car.getModelName()))
 			return CarsRetunCode.NO_MODEL;
-		return cars.putIfAbsent(car.getRegNumber(), car) == null ? CarsRetunCode.OK : CarsRetunCode.CAR_EXISTS;
+		boolean res = cars.putIfAbsent(car.getRegNumber(), car) == null;
+		if (!res) {
+			return CarsRetunCode.CAR_EXISTS;
+		}
+		addModelCars(car);
+		return CarsRetunCode.OK;
+	}
+
+	private void addModelCars(Car car) {
+		String modelName = car.getModelName();
+		List<Car> listCar = modelCars.getOrDefault(modelName, new ArrayList<>());
+		listCar.add(car);
+		modelCars.putIfAbsent(modelName, listCar);
 	}
 
 	@Override
@@ -64,6 +86,74 @@ public class RentCompanyEmbeded extends AbstractRentCompany implements Persistab
 			System.out.println(e.getMessage());
 			return new RentCompanyEmbeded();
 		}
+	}
+
+	@Override
+	public CarsRetunCode rentCar(String regNumber, long licenseId, LocalDate rentDate, int rentDays) {
+		Car car = getCar(regNumber);
+		if (car == null) {
+			return CarsRetunCode.NO_CAR;
+		}
+		if (car.isFlRemoved()) {
+			return CarsRetunCode.CAR_REMOVED;
+		}
+		if (car.isInUse()) {
+			return CarsRetunCode.CAR_IN_USE;
+		}
+		if (!drivers.containsKey(licenseId)) {
+			return CarsRetunCode.NO_DRIVER;
+		}
+		RentRecord record = new RentRecord(regNumber, licenseId, rentDate, rentDays);
+		addToCarRecord(record);
+		addToDriverRecords(record);
+		addToRecords(record);
+		car.setInUse(true);
+		return CarsRetunCode.OK;
+	}
+
+	private void addToRecords(RentRecord record) {
+		String regNumber = record.getRegNumber();
+		List<RentRecord> listRecords = carRecords.getOrDefault(regNumber, new ArrayList<>());
+		listRecords.add(record);
+		carRecords.putIfAbsent(regNumber, listRecords);
+	}
+
+	private void addToDriverRecords(RentRecord record) {
+		long licenseId = record.getLicenseId();
+		List<RentRecord> listRecords = driverRecords.getOrDefault(licenseId, new ArrayList<>());
+		listRecords.add(record);
+		driverRecords.putIfAbsent(licenseId, listRecords);
+	}
+
+	private void addToCarRecord(RentRecord record) {
+		LocalDate rentDate = record.getRentDate();
+		List<RentRecord> listRecords = records.getOrDefault(rentDate, new ArrayList<>());
+		listRecords.add(record);
+		records.putIfAbsent(rentDate, listRecords);
+	}
+
+	@Override
+	public List<Car> getDriverCars(long licenseId) {
+		List<RentRecord> listRecords = driverRecords.getOrDefault(licenseId, new ArrayList<>());
+		return listRecords.stream().map(r -> getCar(r.getRegNumber())).distinct().toList();
+	}
+
+	@Override
+	public List<Driver> getCarDrivers(String regNumString) {
+		List<RentRecord> listRecords = carRecords.getOrDefault(regNumString, new ArrayList<>());
+		return listRecords.stream().map(d -> getDriver(d.getLicenseId())).distinct().toList();
+	}
+
+	@Override
+	public List<Car> getModelCars(String modelName) {
+		List<Car> carList = modelCars.getOrDefault(modelName, new ArrayList<>());
+		return carList.stream().filter(c -> !c.isFlRemoved() && !c.isInUse()).toList();
+	}
+
+	@Override
+	public List<RentRecord> getRentRecordsAtDates(LocalDate fromDate, LocalDate toDate) {
+		Collection<List<RentRecord>> collRecords = records.subMap(fromDate, toDate).values();
+		return collRecords.stream().flatMap(l -> l.stream()).toList();
 	}
 
 }
