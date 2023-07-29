@@ -2,65 +2,88 @@ package telran.library.entities;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.Objects;
 
 @SuppressWarnings("serial")
-public class Reader implements Serializable {
+public class Reader implements Serializable
+{
 	private int readerId;
 	private String name;
 	private String phone;
-	private LocalDate birthDate;
+	private LocalDate birthData;
 
-	public Reader() {
-	}
+	public Reader(){}
 
-	public Reader(int readerId, String name, String phone, LocalDate birthDate) {
+	public Reader(int readerId, String name, String phone, LocalDate birthData)
+	{
 		super();
-		this.readerId = readerId;
+		if(readerId > 0)
+			this.readerId = readerId;
 		this.name = name;
 		this.phone = phone;
-		this.birthDate = birthDate;
+		this.birthData = birthData;
 	}
 
-	public String getPhone() {
+	public String getPhone()
+	{
 		return phone;
 	}
 
-	public void setPhone(String phone) {
+	public void setPhone(String phone)
+	{
 		this.phone = phone;
 	}
 
-	public int getReaderId() {
+	public int getReaderId()
+	{
 		return readerId;
 	}
 
-	public String getName() {
+	public String getName()
+	{
 		return name;
 	}
 
-	public LocalDate getBirthDate() {
-		return birthDate;
+	public LocalDate getBirthData()
+	{
+		return birthData;
 	}
 
 	@Override
-	public int hashCode() {
-		return Objects.hash(readerId);
+	public int hashCode()
+	{
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + readerId;
+		return result;
 	}
 
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(Object obj)
+	{
 		if (this == obj)
+		{
 			return true;
-		if (!(obj instanceof Reader))
+		}
+		if (obj == null)
+		{
 			return false;
+		}
+		if (!(obj instanceof Reader))
+		{
+			return false;
+		}
 		Reader other = (Reader) obj;
-		return readerId == other.readerId;
+		if (readerId != other.readerId)
+		{
+			return false;
+		}
+		return true;
 	}
 
 	@Override
-	public String toString() {
-		return "Reader [readerId=" + readerId + ", name=" + name + ", phone=" + phone + ", birthDate=" + birthDate
-				+ "]";
+	public String toString()
+	{
+		return "Reader [readerId=" + readerId + ", name=" + name + ", phone=" + phone + ", birthData=" + birthData + "]";
 	}
 
 }
