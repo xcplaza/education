@@ -1,29 +1,37 @@
 package telran.library.model;
 
 @SuppressWarnings("serial")
-public abstract class AbstractLibrary implements ILibrary {
-	protected int maxPickPeriod = 30;
-	protected int minPickPeriod = 3;
+public abstract class AbstractLibrary implements ILibrary
+{
+	protected int maxPickPeriod;
+	protected int minPickPeriod;
 
-	public int getMaxPickPeriod() {
+	public AbstractLibrary()
+	{
+		maxPickPeriod = 30;
+		minPickPeriod = 3;
+	}
+
+	public int getMaxPickPeriod()
+	{
 		return maxPickPeriod;
 	}
 
-	public void setMaxPickPeriod(int maxPickPeriod) {
-		this.maxPickPeriod = maxPickPeriod;
+	public void setMaxPickPeriod(int maxPickPeriod)
+	{
+		if(maxPickPeriod > 0)
+			this.maxPickPeriod = maxPickPeriod;
 	}
 
-	public int getMinPickPeriod() {
+	public int getMinPickPeriod()
+	{
 		return minPickPeriod;
 	}
 
-	public void setMinPickPeriod(int minPickPeriod) {
-		this.minPickPeriod = minPickPeriod;
-	}
-
-	@Override
-	public String toString() {
-		return "AbstractLibrary [maxPickPeriod=" + maxPickPeriod + ", minPickPeriod=" + minPickPeriod + "]";
+	public void setMinPickPeriod(int minPickPeriod)
+	{
+		if(minPickPeriod > 0)
+			this.minPickPeriod = minPickPeriod;
 	}
 
 }
