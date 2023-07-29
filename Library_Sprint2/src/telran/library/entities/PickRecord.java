@@ -14,13 +14,11 @@ public class PickRecord implements Serializable {
 	public PickRecord() {
 	}
 
-	public PickRecord(long isbn, int readerId, LocalDate pickDate, LocalDate returnDate, int delayDays) {
+	public PickRecord(long isbn, int readerId, LocalDate pickDate) {
 		super();
 		this.isbn = isbn;
 		this.readerId = readerId;
 		this.pickDate = pickDate;
-		this.returnDate = returnDate;
-		this.delayDays = delayDays;
 	}
 
 	public LocalDate getReturnDate() {
