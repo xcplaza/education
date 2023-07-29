@@ -1,84 +1,113 @@
 package telran.library.entities;
 
 import java.io.Serializable;
-import java.util.Objects;
 
 @SuppressWarnings("serial")
-public class Book implements Serializable {
+public class Book implements Serializable
+{
 	private long isbn;
 	private String title;
-	private String autor;
+	private String author;
 	private int amount;
 	private int amountInUse;
-	private int picPeriod;
+	private int pickPeriod;
 
-	public Book() {
-	}
+	public Book(){}
 
-	public Book(long isbn, String title, String autor, int amount, int picPeriod) {
+	public Book(long isbn, String title, String author, int amount, int pickPeriod)
+	{
 		super();
-		this.isbn = isbn;
+		if(isbn > 0)
+			this.isbn = isbn;
 		this.title = title;
-		this.autor = autor;
-		this.amount = amount;
-		this.picPeriod = picPeriod;
+		this.author = author;
+		setAmount(amount);
+		setPickPeriod(pickPeriod);
 	}
 
-	public int getAmount() {
+	public int getAmount()
+	{
 		return amount;
 	}
 
-	public void setAmount(int amount) {
-		this.amount = amount;
+	public void setAmount(int amount)
+	{
+		if(amount >= 0)
+			this.amount = amount;
 	}
 
-	public int getAmountInUse() {
+	public int getAmountInUse()
+	{
 		return amountInUse;
 	}
 
-	public void setAmountInUse(int amountInUse) {
+	public void setAmountInUse(int amountInUse)
+	{
 		this.amountInUse = amountInUse;
 	}
 
-	public int getPicPeriod() {
-		return picPeriod;
+	public int getPickPeriod()
+	{
+		return pickPeriod;
 	}
 
-	public void setPicPeriod(int picPeriod) {
-		this.picPeriod = picPeriod;
+	public void setPickPeriod(int pickPeriod)
+	{
+		if(pickPeriod > 0)
+			this.pickPeriod = pickPeriod;
 	}
 
-	public long getIsbn() {
+	public long getIsbn()
+	{
 		return isbn;
 	}
 
-	public String getTitle() {
+	public String getTitle()
+	{
 		return title;
 	}
 
-	public String getAutor() {
-		return autor;
+	public String getAuthor()
+	{
+		return author;
 	}
 
 	@Override
-	public int hashCode() {
-		return Objects.hash(isbn);
+	public int hashCode()
+	{
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (int) (isbn ^ (isbn >>> 32));
+		return result;
 	}
 
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(Object obj)
+	{
 		if (this == obj)
+		{
 			return true;
-		if (!(obj instanceof Book))
+		}
+		if (obj == null)
+		{
 			return false;
+		}
+		if (!(obj instanceof Book))
+		{
+			return false;
+		}
 		Book other = (Book) obj;
-		return isbn == other.isbn;
+		if (isbn != other.isbn)
+		{
+			return false;
+		}
+		return true;
 	}
 
 	@Override
-	public String toString() {
-		return "Book [isbn=" + isbn + ", title=" + title + ", autor=" + autor + ", amount=" + amount + ", amountInUse="
-				+ amountInUse + ", picPeriod=" + picPeriod + "]";
+	public String toString()
+	{
+		return "Book [isbn=" + isbn + ", title=" + title + ", author=" + author + ", amount=" + amount
+				+ ", amountInUse=" + amountInUse + ", pickPeriod=" + pickPeriod + "]";
 	}
-
 }
