@@ -16,6 +16,7 @@ import java.util.TreeMap;
 public class LibraryMaps extends AbstractLibrary implements Persistable {
 	HashMap<Long, Book> books = new HashMap<>();
 	HashMap<Integer, Reader> readers = new HashMap<>();
+//	Sprint2
 	HashMap<Long, List<PickRecord>> bookRecords = new HashMap<>();
 	HashMap<Integer, List<PickRecord>> readerRecords = new HashMap<>();
 	HashMap<String, List<Book>> authorBooks = new HashMap<>();
@@ -73,6 +74,7 @@ public class LibraryMaps extends AbstractLibrary implements Persistable {
 		}
 	}
 
+//	Sprint2
 	@Override
 	public BooksReturnCode pickBook(long isbn, int readerId, LocalDate pickDate) {
 		// TODO Auto-generated method stub
