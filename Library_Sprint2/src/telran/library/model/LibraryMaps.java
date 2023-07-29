@@ -8,9 +8,12 @@ import telran.utils.Persistable;
 
 import java.io.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.TreeMap;
+import java.util.stream.Collectors;
 
 @SuppressWarnings("serial")
 public class LibraryMaps extends AbstractLibrary implements Persistable {
@@ -77,31 +80,71 @@ public class LibraryMaps extends AbstractLibrary implements Persistable {
 //	Sprint2
 	@Override
 	public BooksReturnCode pickBook(long isbn, int readerId, LocalDate pickDate) {
-		// TODO Auto-generated method stub
-		return null;
+		Book book = getBookItem(isbn);
+		if (book == null)
+			return BooksReturnCode.NO_BOOK_ITEM;
+		if (book.getAmountInUse() == book.getAmount())
+			return BooksReturnCode.NO_BOOK_EXEMPLARS;
+		if (!readers.containsKey(readerId))
+			return BooksReturnCode.READER_EXISTS;
+		PickRecord record = new PickRecord(isbn, readerId, pickDate);
+		addToBookRecord(record);
+		addToReaderRecord(record);
+		addToRecords(record);
+		book.setAmount(readerId);
+
+		return BooksReturnCode.OK;
+
+//		RentRecord record = new RentRecord(regNumber, licenseId, rentDate, rentDays);
+//		addToCarRecord(record);
+//		addToDriverRecords(record);
+//		addToRecords(record);
+//		car.setInUse(true);
+//		return CarsRetunCode.OK;
+	}
+
+	private void addToRecords(PickRecord record) {
+		long isbnBook = record.getIsbn();
+		List<PickRecord> listRecords = bookRecords.getOrDefault(isbnBook, new ArrayList<>());
+		listRecords.add(record);
+		bookRecords.putIfAbsent(isbnBook, listRecords);
+	}
+
+	private void addToReaderRecord(PickRecord record) {
+		long readerId = record.getReaderId();
+		List<PickRecord> listRecords = readerRecords.getOrDefault(readerId, new ArrayList<>());
+		listRecords.add(record);
+		readerRecords.putIfAbsent((int) readerId, listRecords);
+	}
+
+	private void addToBookRecord(PickRecord record) {
+		LocalDate rentBook = record.getPickDate();
+		List<PickRecord> listRecords = records.getOrDefault(rentBook, new ArrayList<>());
+		listRecords.add(record);
+		records.putIfAbsent(rentBook, listRecords);
 	}
 
 	@Override
 	public List<Book> getBooksPickedByReader(int readerId) {
-		// TODO Auto-generated method stub
-		return null;
+		List<PickRecord> listRecord = bookRecords.getOrDefault(readerId, new ArrayList<>());
+		return listRecord.stream().map(r -> getBookItem(r.getReaderId())).distinct().toList();
 	}
 
 	@Override
 	public List<Reader> getReadersPickedBook(long isbn) {
-		// TODO Auto-generated method stub
-		return null;
+		List<PickRecord> listReaders = readerRecords.getOrDefault(isbn, new ArrayList<>());
+		return listReaders.stream().map(r -> getReader(r.getReaderId())).distinct().toList();
 	}
 
 	@Override
 	public List<Book> getBooksAuthor(String authorName) {
-		// TODO Auto-generated method stub
-		return null;
+		List<Book> listAuthor = authorBooks.getOrDefault(authorName, new ArrayList<>());
+		return listAuthor.stream().filter(b -> b.getAuthor().equals(authorName)).distinct().toList();
 	}
 
 	@Override
 	public List<PickRecord> getPickRecordsAtDates(LocalDate from, LocalDate to) {
-		// TODO Auto-generated method stub
-		return null;
+		Collection<List<PickRecord>> collRecords = records.subMap(from, to).values();
+		return collRecords.stream().flatMap(l -> l.stream()).toList();
 	}
 }
