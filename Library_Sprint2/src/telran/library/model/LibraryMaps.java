@@ -13,7 +13,6 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.TreeMap;
-import java.util.stream.Collectors;
 
 @SuppressWarnings("serial")
 public class LibraryMaps extends AbstractLibrary implements Persistable {
@@ -91,7 +90,7 @@ public class LibraryMaps extends AbstractLibrary implements Persistable {
 		addToBookRecord(record);
 		addToReaderRecord(record);
 		addToRecords(record);
-		book.setAmount(readerId);
+		book.setAmountInUse(readerId);
 
 		return BooksReturnCode.OK;
 
