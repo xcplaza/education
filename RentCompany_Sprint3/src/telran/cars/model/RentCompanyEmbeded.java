@@ -156,4 +156,44 @@ public class RentCompanyEmbeded extends AbstractRentCompany implements Persistab
 		return collRecords.stream().flatMap(l -> l.stream()).toList();
 	}
 
+	@Override
+	public RemovedCarData removeCar(String regNumber) {
+		Car car = getCar(regNumber);
+		if (car == null || car.isFlRemoved())
+			return null;
+		car.setFlRemoved(true);
+		return car.isInUse() ? new RemovedCarData(car, null) : actualCarRemoved(car);
+	}
+
+	private RemovedCarData actualCarRemoved(Car car) {
+		String regNumber = car.getRegNumber();
+		List<RentRecord> removedRecords = carRecords.getOrDefault(regNumber, new ArrayList<>());
+		removedFromDriverRecords(removedRecords);
+		removeFromRecords(removedRecords);
+		cars.remove(regNumber);
+		carRecords.remove(regNumber);
+		return new RemovedCarData(car, removedRecords);
+	}
+
+	private void removedFromDriverRecords(List<RentRecord> removedRecords) {
+		removedRecords.forEach(r -> driverRecords.get(r.getLicenseId()).remove(r));
+	}
+
+	private void removeFromRecords(List<RentRecord> removedRecords) {
+		removedRecords.forEach(r -> records.get(r.getRentDate()).remove(r));
+	}
+
+	@Override
+	public List<RemovedCarData> removeModel(String modelName) {
+		List<Car> carsModel = modelCars.getOrDefault(modelName, new ArrayList<>());
+		return carsModel.stream().filter(c -> !c.isFlRemoved()).map(c -> removeCar(c.getRegNumber())).toList();
+	}
+
+	@Override
+	public RemovedCarData returnCar(String regNumber, long licenseId, LocalDate returnDate, int damages,
+			int tankPersent) {
+		
+		return null;
+	}
+
 }
