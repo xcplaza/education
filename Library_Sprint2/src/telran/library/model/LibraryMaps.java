@@ -86,6 +86,9 @@ public class LibraryMaps extends AbstractLibrary implements Persistable {
 			return BooksReturnCode.NO_BOOK_EXEMPLARS;
 		if (!readers.containsKey(readerId))
 			return BooksReturnCode.READER_EXISTS;
+//		if(readers.containsKey(isbn)) {
+//			return BooksReturnCode.READER_READS_IT;
+//		}
 		PickRecord record = new PickRecord(isbn, readerId, pickDate);
 		addToBookRecord(record);
 		addToReaderRecord(record);
@@ -138,7 +141,7 @@ public class LibraryMaps extends AbstractLibrary implements Persistable {
 	@Override
 	public List<Book> getBooksAuthor(String authorName) {
 		List<Book> listAuthor = authorBooks.getOrDefault(authorName, new ArrayList<>());
-		return listAuthor.stream().filter(b -> b.getAuthor().equals(authorName)).distinct().toList();
+		return listAuthor.stream().filter(b -> b.getAuthor().equals(authorName)).toList();
 	}
 
 	@Override
