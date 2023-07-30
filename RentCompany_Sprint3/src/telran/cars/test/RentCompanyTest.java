@@ -81,5 +81,10 @@ public class RentCompanyTest {
 		newModel = new Model(MODEL_NAME + "M", GAS_TANK, "AUDI", "Germany", PRICE_DAY);
 		assertEquals(CarsRetunCode.MODEL_EXISTS, company.addModel(newModel));
 	}
+	
+	@Test
+	public void removeCarInUseTest() {
+		
+	}
 
 }
