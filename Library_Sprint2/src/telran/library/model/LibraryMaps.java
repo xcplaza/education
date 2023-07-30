@@ -90,7 +90,7 @@ public class LibraryMaps extends AbstractLibrary implements Persistable {
 		addToBookRecord(record);
 		addToReaderRecord(record);
 		addToRecords(record);
-		book.setAmountInUse(readerId);
+		book.setAmountInUse(book.getAmountInUse()+1);
 
 		return BooksReturnCode.OK;
 
