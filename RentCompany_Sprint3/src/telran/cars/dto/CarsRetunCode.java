@@ -1,0 +1,5 @@
+package telran.cars.dto;
+
+public enum CarsRetunCode {
+	OK, MODEL_EXISTS, CAR_EXISTS, NO_MODEL, DRIVER_EXISTS, NO_CAR, NO_DRIVER, CAR_REMOVED, CAR_IN_USE
+}
