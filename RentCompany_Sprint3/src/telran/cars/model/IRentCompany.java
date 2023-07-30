@@ -23,4 +23,9 @@ public interface IRentCompany extends Serializable {
 	List<Driver> getCarDrivers(String regNumString);
 	List<Car> getModelCars(String modelName);
 	List<RentRecord> getRentRecordsAtDates(LocalDate fromDate, LocalDate toDate);
+	
+//	sprint3
+	RemovedCarData removeCar(String regNumber);
+	List<RemovedCarData> removeModel(String modelName);
+	RemovedCarData returnCar(String regNumber, long licenseId, LocalDate returnDate, int damages, int tankPersent);
 }
