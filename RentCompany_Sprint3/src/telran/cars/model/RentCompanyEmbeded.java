@@ -5,6 +5,8 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.time.LocalDate;
+import java.time.temporal.ChronoField;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -16,6 +18,9 @@ import telran.cars.dto.*;
 
 @SuppressWarnings("serial")
 public class RentCompanyEmbeded extends AbstractRentCompany implements Persistable {
+	private static final int REMOVE_THRESHOLD = 60;
+	private static final int BAD_THRESHOLD = 30;
+	private static final int GOOD_THRESHOLD = 10;
 	HashMap<String, Car> cars = new HashMap<>();
 	HashMap<Long, Driver> drivers = new HashMap<>();
 	HashMap<String, Model> models = new HashMap<>();
@@ -192,8 +197,57 @@ public class RentCompanyEmbeded extends AbstractRentCompany implements Persistab
 	@Override
 	public RemovedCarData returnCar(String regNumber, long licenseId, LocalDate returnDate, int damages,
 			int tankPersent) {
-		
-		return null;
+		RentRecord record = driverRecords.get(licenseId).stream()
+				.filter(rr -> rr.getRegNumber().equals(regNumber) && rr.getReturnDate() == null).findFirst()
+				.orElse(null);
+		if (record == null)
+			return null;
+		updateRecord(record, returnDate, damages, tankPersent);
+		Car car = getCar(regNumber);
+		updateCar(car, damages);
+		return car.isFlRemoved() || damages > REMOVE_THRESHOLD ? actualCarRemoved(car) : new RemovedCarData(car, null);
+	}
+
+	private void updateRecord(RentRecord record, LocalDate returnDate, int damages, int tankPercent) {
+		record.setDamages(damages);
+		record.setReturnDate(returnDate);
+		record.setTankPercent(tankPercent);
+		double cost = computeCost(getRentPrice(record.getRegNumber()), record.getRentDays(), getDelay(record),
+				tankPercent, getTankVolume(record.getRegNumber()));
+		record.setCost(cost);
+	}
+
+	private double computeCost(int rentPrice, int rentDays, int delay, int tankPercent, int tankVolume) {
+		double cost = rentPrice * rentDays;
+		if (delay > 0)
+			cost += delay * (rentPrice * (1 + finePercent / 100.));
+		if (tankPercent < 100)
+			cost += tankVolume * ((100 - tankPercent) / 100.) * gasPrice;
+		return cost;
+	}
+
+	private int getRentPrice(String regNumber) {
+		String modelName = cars.get(regNumber).getModelName();
+		return models.get(modelName).getPriceDay();
+	}
+
+	private int getDelay(RentRecord record) {
+		long realDays = ChronoUnit.DAYS.between(record.getRentDate(), record.getReturnDate());
+		int delta = (int) (realDays - record.getRentDays());
+		return delta < 0 ? 0 : delta;
+	}
+
+	private int getTankVolume(String regNumber) {
+		String modelName = cars.get(regNumber).getModelName();
+		return models.get(modelName).getGasTank();
+	}
+
+	private void updateCar(Car car, int damages) {
+		car.setInUse(false);
+		if (damages >= BAD_THRESHOLD)
+			car.setState(State.BAD);
+		else if (damages >= GOOD_THRESHOLD)
+			car.setState(State.GOOD);
 	}
 
 }
