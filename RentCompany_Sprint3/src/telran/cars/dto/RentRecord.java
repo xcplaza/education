@@ -14,9 +14,8 @@ public class RentRecord implements Serializable {
 	private int damages;
 	private int tankPercent;
 	private double cost;
-
-	public RentRecord() {
-	}
+	
+	public RentRecord() {}
 
 	public RentRecord(String regNumber, long licenseId, LocalDate rentDate, int rentDays) {
 		super();
@@ -98,5 +97,7 @@ public class RentRecord implements Serializable {
 				&& Objects.equals(rentDate, other.rentDate) && rentDays == other.rentDays
 				&& Objects.equals(returnDate, other.returnDate) && tankPercent == other.tankPercent;
 	}
+	
+	
 
 }
