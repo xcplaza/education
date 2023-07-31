@@ -7,9 +7,8 @@ import java.util.List;
 public class RemovedCarData implements Serializable {
 	private Car car;
 	private List<RentRecord> removedRecords;
-
-	public RemovedCarData() {
-	}
+	
+	public RemovedCarData() {}
 
 	public RemovedCarData(Car car, List<RentRecord> removedRecords) {
 		super();
@@ -28,6 +27,6 @@ public class RemovedCarData implements Serializable {
 	@Override
 	public String toString() {
 		return "RemovedCarData [car=" + car + ", removedRecords=" + removedRecords + "]";
-	}
+	}	
 
 }
