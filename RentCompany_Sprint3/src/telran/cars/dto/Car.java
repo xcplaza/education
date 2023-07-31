@@ -11,9 +11,8 @@ public class Car implements Serializable {
 	private String modelName;
 	private boolean inUse;
 	private boolean flRemoved;
-
-	public Car() {
-	}
+	
+	public Car() {}
 
 	public Car(String regNumber, String color, String modelName) {
 		super();
@@ -77,6 +76,5 @@ public class Car implements Serializable {
 			return false;
 		Car other = (Car) obj;
 		return Objects.equals(regNumber, other.regNumber);
-	}
-
+	}	
 }
