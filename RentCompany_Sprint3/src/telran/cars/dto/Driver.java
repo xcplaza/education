@@ -9,9 +9,8 @@ public class Driver implements Serializable {
 	private String name;
 	private int birthYear;
 	private String phone;
-
-	public Driver() {
-	}
+	
+	public Driver() {}
 
 	public Driver(long licenseId, String name, int birthYear, String phone) {
 		super();
@@ -61,5 +60,5 @@ public class Driver implements Serializable {
 		Driver other = (Driver) obj;
 		return licenseId == other.licenseId;
 	}
-
+	
 }
