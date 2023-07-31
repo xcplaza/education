@@ -8,18 +8,17 @@ public class Model implements Serializable {
 	private String modelName;
 	private int gasTank;
 	private String company;
-	private String counrty;
+	private String country;
 	private int priceDay;
+	
+	public Model() {}
 
-	public Model() {
-	}
-
-	public Model(String modelName, int gasTank, String company, String counrty, int priceDay) {
+	public Model(String modelName, int gasTank, String company, String country, int priceDay) {
 		super();
 		this.modelName = modelName;
 		this.gasTank = gasTank;
 		this.company = company;
-		this.counrty = counrty;
+		this.country = country;
 		this.priceDay = priceDay;
 	}
 
@@ -43,14 +42,14 @@ public class Model implements Serializable {
 		return company;
 	}
 
-	public String getCounrty() {
-		return counrty;
+	public String getCountry() {
+		return country;
 	}
 
 	@Override
 	public String toString() {
-		return "Model [modelName=" + modelName + ", gasTank=" + gasTank + ", company=" + company + ", counrty="
-				+ counrty + ", priceDay=" + priceDay + "]";
+		return "Model [modelName=" + modelName + ", gasTank=" + gasTank + ", company=" + company + ", country="
+				+ country + ", priceDay=" + priceDay + "]";
 	}
 
 	@Override
@@ -66,6 +65,5 @@ public class Model implements Serializable {
 			return false;
 		Model other = (Model) obj;
 		return Objects.equals(modelName, other.modelName);
-	}
-
+	}		
 }
