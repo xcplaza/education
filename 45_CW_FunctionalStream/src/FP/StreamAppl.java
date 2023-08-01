@@ -39,8 +39,6 @@ public class StreamAppl {
 //		solution 6 - builder (значения любые - но нужны одинаковые)
 		Stream<Object> str6 = Stream.builder().add("1").add(2).add(true).build();
 
-//		solution 7 - infinity stream (iterate)
-		IntStream str7 = IntStream.iterate(1, x -> x * 2);
 		IntStream.iterate(1, x -> x * 2).limit(10).forEach(System.out::println);
 
 //		solution 8 - generate
