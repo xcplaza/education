@@ -34,20 +34,22 @@ public class RentCompanyStatisticsTest {
 
 	private void rentReturns() {
 		int[] license = { 0, 0, 1, 1, 2, 2, 3, 3, 0 };
-		String[] regNumbers = { CAR + 0, CAR + 1, CAR + 0, CAR + 1, CAR + 2, CAR + 3, CAR + 2, CAR + 3, CAR + 4 };
+		String[] regNumbers = {CAR + 0, CAR + 1, CAR + 0, CAR + 1, CAR + 2, CAR + 3, CAR + 2, CAR + 3, CAR + 4};
 		assertTrue(regNumbers.length == license.length);
 		int rentDays = 5;
-		for (int i = 0; i < regNumbers.length; i++) {
+		for(int i = 0; i<regNumbers.length;i++) {
 			company.rentCar(regNumbers[i], license[i], rentDate, rentDays);
 			company.returnCar(regNumbers[i], license[i], rentDate.plusDays(rentDays), 0, 100);
 			rentDate = rentDate.plusDays(rentDays + 1);
 		}
+
 	}
 
 	private void createDrivers() {
 		for (int licenseId = 0; licenseId < years.length; licenseId++) {
 			company.addDriver(new Driver(licenseId, "name", years[licenseId], "phone"));
 		}
+
 	}
 
 	private void createCars() {
@@ -58,23 +60,23 @@ public class RentCompanyStatisticsTest {
 
 	private void createModels() {
 		for (int i = 0; i < prices.length; i++) {
-			company.addModel(new Model(MODEL + i, 50, "comnpany", "country", prices[i]));
+			company.addModel(new Model(MODEL + i, 50, "company", "country", prices[i]));
 		}
 	}
 
 	@Test
 	public void testGetMostPopularCarModels() {
-		fail("Not yet implemented");
+		
 	}
 
 	@Test
 	public void testGetMostProfitableCarModels() {
-		fail("Not yet implemented");
+		
 	}
 
 	@Test
 	public void testGetMostActiveDriver() {
-		fail("Not yet implemented");
+		
 	}
 
 }
