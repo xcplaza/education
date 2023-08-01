@@ -121,8 +121,7 @@ public class DateTimeIntro {
 		System.out.println(zdt);
 		ZonedDateTime zdt1 = ZonedDateTime.now(ZoneId.of("Asia/Almaty"));
 		System.out.println(zdt1);
-		ZonedDateTime zdt2 = ZonedDateTime.now(ZoneId.of("GMT-4"));
-//		System.out.println(zdt2);
+		//		System.out.println(zdt2);
 //		for (String str : ZoneId.getAvailableZoneIds()) {
 //			System.out.println(str);
 //		}
