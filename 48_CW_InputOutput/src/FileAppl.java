@@ -3,8 +3,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 
-import javax.management.RuntimeErrorException;
-
 public class FileAppl {
 
 	public static void main(String[] args) throws IOException {
@@ -63,7 +61,6 @@ public class FileAppl {
 //		pintDir("..");
 
 		Path p = Paths.get("dir1", "dir12");
-		Path p1 = node.toPath();
 		File file = p.toFile();
 		file.createNewFile();
 	}
