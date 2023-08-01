@@ -37,8 +37,10 @@ public class RentCompanyTest {
 	private static final int MONTH = 12;
 	private static final int DAY = 2;
 	private static final LocalDate RENT_DATE = LocalDate.of(YEAR, MONTH, DAY);
-
+	
 //	Sprint3
+	private static final int FINE_PERCENT = 15;
+	private static final int GAS_PRICE = 10;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -143,6 +145,8 @@ public class RentCompanyTest {
 		cars = company.getModelCars(MODEL_NAME + "YYY");
 		assertTrue(cars.isEmpty());// model doesn't exist
 	}
+	
+	//Sprint3
 
 	@Test
 	public void removeCarInUseTest() {
@@ -178,31 +182,97 @@ public class RentCompanyTest {
 		List<Car> carsModel = company.getModelCars(MODEL_NAME);
 		assertTrue(carsModel.isEmpty() || carsModel.stream().allMatch(c -> c.isFlRemoved()));
 	}
-
+	
 	@Test
-	public void removeModelTest() {
+	public void removeModelTest()
+	{
 		assertTrue(company.removeModel(MODEL_NAME + "11").isEmpty());
 		assertFalse(company.removeModel(MODEL_NAME).isEmpty());
 		Car car = company.getCar(REG_NUMBER);
 		assertTrue(car.isFlRemoved());
 	}
-
+	
 	@Test
-	public void returnCarWithRemoving() {
+	public void returnCarWithRemoving()
+	{
+		// after return car with flRemoved=true
+		// actual removing
 		company.removeCar(REG_NUMBER);
 		LocalDate returnDate = RENT_DATE.plusDays(RENT_DAYS);
 		RemovedCarData rcd = company.returnCar(REG_NUMBER, LICENSE, returnDate, 0, 100);
 		testActualRemoved(returnDate, rcd);
 	}
 
-//	@Test
-//	public void returnCarWithNoDamagesNoDelayFullTank() {
-//		LocalDate returnDate = RENT_DATE.plusDays(RENT_DAYS);
-//		RentRecord recordExpected = new RentRecord(REG_NUMBER, LICENSE, RENT_DATE, RENT_DAYS);
-//		double cost = PRICE_DAY * RENT_DAYS;
-//		int damages = 0;
-//		int tankPercent = 100;
-//		setRecordExpected
-//	}
+	@Test
+	public void returnCarWithNoDamagesNoDelayFullTank()
+	{
+		LocalDate returnDate = RENT_DATE.plusDays(RENT_DAYS);
+		RentRecord recordExpected = new RentRecord(REG_NUMBER, LICENSE, RENT_DATE, RENT_DAYS);
+		double cost=PRICE_DAY * RENT_DAYS;
+		int damages = 0;
+		int tankPercent = 100;
+		setRecordExpected(returnDate, recordExpected, cost, damages, tankPercent);
+		company.returnCar(REG_NUMBER, LICENSE, returnDate, 0, 100);
+		List<RentRecord> records = company.getRentRecordsAtDates(RENT_DATE, returnDate);
+		assertEquals(1,records.size());
+		assertEquals(recordExpected,records.get(0));
+	}
+	
+	@Test
+	public void returnCarWithDelay() 
+	{
+		//delay 1 day
+		LocalDate returnDate = RENT_DATE.plusDays(RENT_DAYS+1);
+		RentRecord recordExpected = new RentRecord(REG_NUMBER, LICENSE, RENT_DATE, RENT_DAYS);
+		double cost = PRICE_DAY * RENT_DAYS + PRICE_DAY + PRICE_DAY / 100. * FINE_PERCENT;
+		int damages = 0;
+		int tankPercent = 100;
+		setRecordExpected(returnDate, recordExpected, cost, damages, tankPercent);
+		company.returnCar(REG_NUMBER, LICENSE, returnDate, 0, 100);
+		List<RentRecord> records = company.getRentRecordsAtDates(RENT_DATE, returnDate);
+		assertEquals(1,records.size());
+		assertEquals(recordExpected,records.get(0));
+	}
+	
+	@Test
+	public void returnCarWithNoFullTank() 
+	{
+		//Tank percent=50
+		LocalDate returnDate = RENT_DATE.plusDays(RENT_DAYS);
+		RentRecord recordExpected = new RentRecord(REG_NUMBER, LICENSE, RENT_DATE, RENT_DAYS);
+		double cost = PRICE_DAY * RENT_DAYS + GAS_TANK / 2 * GAS_PRICE;
+		int damages = 0;
+		int tankPercent = 50;
+		setRecordExpected(returnDate, recordExpected, cost, damages, tankPercent);
+		company.returnCar(REG_NUMBER, LICENSE, returnDate, 0, tankPercent);
+		List<RentRecord> records = company.getRentRecordsAtDates(RENT_DATE, returnDate);
+		assertEquals(1,records.size());
+		assertEquals(recordExpected,records.get(0));
+	}
+	
+	@Test
+	public void returnCarWithTotalLostDamages() 
+	{
+		LocalDate returnDate = RENT_DATE.plusDays(RENT_DAYS);
+		RentRecord recordExpected = new RentRecord(REG_NUMBER, LICENSE, RENT_DATE, RENT_DAYS);
+		double cost = PRICE_DAY * RENT_DAYS;
+		int damages = 70;
+		int tankPercent = 100;
+		setRecordExpected(returnDate, recordExpected, cost, damages, tankPercent);
+		RemovedCarData rcd = company.returnCar(REG_NUMBER, LICENSE, returnDate, damages, 
+				tankPercent);
+		//with damages greater than 50 - actual removing
+		Car car = company.getCar(rcd.getCar().getRegNumber());
+		assertNull(car);
+	}
+	
+	private void setRecordExpected(LocalDate returnDate, RentRecord recordExpected, double cost, 
+			int damages, int tankPercent) 
+	{
+		recordExpected.setCost(cost);
+		recordExpected.setTankPercent(tankPercent);
+		recordExpected.setDamages(damages);
+		recordExpected.setReturnDate(returnDate);
+	}
 
 }
