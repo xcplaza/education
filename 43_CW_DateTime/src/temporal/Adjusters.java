@@ -7,8 +7,6 @@ import java.time.temporal.ChronoUnit;
 import java.time.temporal.TemporalAdjuster;
 import java.time.temporal.TemporalAdjusters;
 
-import javax.print.attribute.standard.Chromaticity;
-
 public class Adjusters {
 
 	public static void main(String[] args) {
