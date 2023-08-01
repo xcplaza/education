@@ -4,9 +4,7 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.Month;
 import java.time.Year;
-import java.time.YearMonth;
 import java.time.format.TextStyle;
-import java.util.Iterator;
 import java.util.Locale;
 
 public class PrintCalendarAppl {
