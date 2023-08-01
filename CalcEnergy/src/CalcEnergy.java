@@ -43,13 +43,14 @@ public class CalcEnergy {
 
 		int prevKwatt = 16847; // предыдущее значение kWt
 		System.out.println("Введите текущее значение kWt: ");
-		Scanner scanner = new Scanner(System.in);
-		int currentKwatt = scanner.nextInt();
+		try (Scanner scanner = new Scanner(System.in)) {
+			int currentKwatt = scanner.nextInt();
 
-		double totalSum = calculateTotalSum(currentKwatt, prevKwatt, cost, febDiscount);
+			double totalSum = calculateTotalSum(currentKwatt, prevKwatt, cost, febDiscount);
 //        double sum = calculateSum(currentKwatt, prevKwatt, cost);
 //        System.out.printf("Сумма к оплате в 2022 году = %.2f\n", sum);
-		System.out.printf("Примерно к оплате = %.2f\n", totalSum);
+			System.out.printf("Примерно к оплате = %.2f\n", totalSum);
+		}
 	}
 
 	private static double calculateTotalSum(int currentKwatt, int prevKwatt, double cost, double febDiscount) {
