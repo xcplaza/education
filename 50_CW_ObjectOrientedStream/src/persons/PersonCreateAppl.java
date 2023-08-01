@@ -3,8 +3,6 @@ package persons;
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Stream;
@@ -24,9 +22,9 @@ public class PersonCreateAppl {
 	private static final String[] TITLES = new String[] { "programmer", "manager", "cleaner", "qa" };
 
 	public static void main(String[] args) {
-		Person p = new Person(1, "name", LocalDate.now(), new Address("city", "street", 0, 0));
-		Child c = new Child(2, "nameC", LocalDate.now(), new Address("city", "street", 0, 0), "garten");
-		Employee emp = new Employee(3, "nameE", LocalDate.now(), new Address("city", "street", 0, 0), "company", 10000,
+		new Person(1, "name", LocalDate.now(), new Address("city", "street", 0, 0));
+		new Child(2, "nameC", LocalDate.now(), new Address("city", "street", 0, 0), "garten");
+		new Employee(3, "nameE", LocalDate.now(), new Address("city", "street", 0, 0), "company", 10000,
 				"title");
 		List<Person> list = getRandomPersons();
 		try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("persons.data"))) {
@@ -62,7 +60,7 @@ public class PersonCreateAppl {
 	private static LocalDate getRandomDate(int minYear, int maxYear) {
 		int year = getRandomNumber(minYear, maxYear);
 		int month = getRandomNumber(1, 12);
-		int day = getRandomNumber(1, 28);
+		getRandomNumber(1, 28);
 		return LocalDate.of(year, month, month);
 	}
 
