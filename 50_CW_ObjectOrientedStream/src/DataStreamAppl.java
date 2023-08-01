@@ -17,23 +17,24 @@ public class DataStreamAppl {
 //		22byte -> 8double 4int 10string
 		out.close();
 
-		DataInputStream in = new DataInputStream(new BufferedInputStream(new FileInputStream(FILE_NAME)));
-		double total = 0;
-		double price = 0;
-		int unit = 0;
-		String good = null;
-		try {
-			while (true) {
-				price = in.readDouble();
-				unit = in.readInt();
-				good = in.readUTF();
-				System.out.printf("You ordered %d unit of %s at $%.2f\n", unit, good, price);
-				total += unit * price;
+		try (DataInputStream in = new DataInputStream(new BufferedInputStream(new FileInputStream(FILE_NAME)))) {
+			double total = 0;
+			double price = 0;
+			int unit = 0;
+			String good = null;
+			try {
+				while (true) {
+					price = in.readDouble();
+					unit = in.readInt();
+					good = in.readUTF();
+					System.out.printf("You ordered %d unit of %s at $%.2f\n", unit, good, price);
+					total += unit * price;
+				}
+			} catch (EOFException e) {
+				System.out.println("End: ");
 			}
-		} catch (EOFException e) {
-			System.out.println("End: ");
+			System.out.println("Total sum " + total);
 		}
-		System.out.println("Total sum " + total);
 	}
 
 }
