@@ -2,19 +2,11 @@ package telran.employees.service;
 
 import static org.junit.Assert.*;
 
-import java.lang.reflect.Array;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
-
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.BeforeClass;
-import org.junit.Ignore;
-
 import telran.employees.dto.Programmer;
 
 public class ProgrammerTest {
