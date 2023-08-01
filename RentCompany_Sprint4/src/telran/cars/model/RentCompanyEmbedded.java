@@ -178,6 +178,8 @@ public class RentCompanyEmbedded extends AbstractRentCompany implements Persista
 		removeFromRecords(removedRecords);
 		cars.remove(regNumber);
 		carRecords.remove(regNumber);
+		List<Car> mCars = modelCars.get(car.getModelName());
+		mCars.remove(car);
 		return new RemovedCarData(car, removedRecords);
 	}
 
