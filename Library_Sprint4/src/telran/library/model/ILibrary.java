@@ -4,8 +4,6 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 
-import org.w3c.dom.html.HTMLAreaElement;
-
 import telran.library.entities.Book;
 import telran.library.entities.BooksReturnCode;
 import telran.library.entities.PickRecord;
@@ -35,9 +33,11 @@ public interface ILibrary extends Serializable
 	RemovedBookData returnBook(long isbn,int readerId,LocalDate returnDate);
 	
 //	Sprint4
-	List<ReaderDelay> getReadersDelayingBooks(LocalDate currentDate);
-	List<ReaderDelay> getReadersDelayedBooks();
-	List<Book> getMostPopularBooks(LocalDate fromDate, LocalDate toDate, int fromAge, int toAge);
+	List<ReaderDelay> getReadersDelayingBooks(LocalDate currentDate); 
+	//list of readers ordered by total delay on current date (they have not returned yet)
+	List<ReaderDelay> getReadersDelayedBooks(); 
+	//list of readers ordered by total delay of all returned books (they returned but with a delay)
+	List<Book> getMostPopularBooks(LocalDate fromDate,LocalDate toDate, int fromAge,int toAge);
 	List<String> getMostPopularAuthors();
-	List<Reader> getMostPopularReaders(LocalDate fromDate, LocalDate toDate);
+	List<Reader> getMostActiveReaders(LocalDate fromDate,LocalDate toDate);
 }
