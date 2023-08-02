@@ -1,45 +1,65 @@
 package telran.library.entities;
 
-import java.util.Objects;
-
-public class ReaderDelay {
+public class ReaderDelay
+{
 	Reader reader;
 	int delay;
 
-	public ReaderDelay() {
+	public ReaderDelay()
+	{
 	}
 
-	public ReaderDelay(Reader reader, int delay) {
+	public Reader getReader()
+	{
+		return reader;
+	}
+
+	public int getDelay()
+	{
+		return delay;
+	}
+
+	public ReaderDelay(Reader reader, int delay)
+	{
 		super();
 		this.reader = reader;
 		this.delay = delay;
 	}
 
-	public Reader getReader() {
-		return reader;
-	}
-
-	public int getDelay() {
-		return delay;
+	@Override
+	public int hashCode()
+	{
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + delay;
+		result = prime * result + ((reader == null) ? 0 : reader.hashCode());
+		return result;
 	}
 
 	@Override
-	public int hashCode() {
-		return Objects.hash(delay, reader);
-	}
-
-	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(Object obj)
+	{
 		if (this == obj)
 			return true;
-		if (!(obj instanceof ReaderDelay))
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
 			return false;
 		ReaderDelay other = (ReaderDelay) obj;
-		return delay == other.delay && Objects.equals(reader, other.reader);
+		if (delay != other.delay)
+			return false;
+		if (reader == null)
+		{
+			if (other.reader != null)
+				return false;
+		} else if (!reader.equals(other.reader))
+			return false;
+		return true;
 	}
 
 	@Override
-	public String toString() {
+	public String toString()
+	{
 		return "ReaderDelay [reader=" + reader + ", delay=" + delay + "]";
 	}
 
