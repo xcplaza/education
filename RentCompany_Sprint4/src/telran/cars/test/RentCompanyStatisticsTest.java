@@ -3,6 +3,7 @@ package telran.cars.test;
 import static org.junit.Assert.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -34,10 +35,10 @@ public class RentCompanyStatisticsTest {
 
 	private void rentReturns() {
 		int[] license = { 0, 0, 1, 1, 2, 2, 3, 3, 0 };
-		String[] regNumbers = {CAR + 0, CAR + 1, CAR + 0, CAR + 1, CAR + 2, CAR + 3, CAR + 2, CAR + 3, CAR + 4};
+		String[] regNumbers = { CAR + 0, CAR + 1, CAR + 0, CAR + 1, CAR + 2, CAR + 3, CAR + 2, CAR + 3, CAR + 4 };
 		assertTrue(regNumbers.length == license.length);
 		int rentDays = 5;
-		for(int i = 0; i<regNumbers.length;i++) {
+		for (int i = 0; i < regNumbers.length; i++) {
 			company.rentCar(regNumbers[i], license[i], rentDate, rentDays);
 			company.returnCar(regNumbers[i], license[i], rentDate.plusDays(rentDays), 0, 100);
 			rentDate = rentDate.plusDays(rentDays + 1);
@@ -66,17 +67,35 @@ public class RentCompanyStatisticsTest {
 
 	@Test
 	public void testGetMostPopularCarModels() {
-		
+		int ageYoungFrom = rentDate.getYear() - years[0];
+		int ageYoungTo = rentDate.getYear() - years[1] + 1;
+		int ageOldFrom = rentDate.getYear() - years[2];
+		int ageOldTo = rentDate.getYear() - years[3] + 1;
+
+		List<String> youngModels = company.getMostPopularCarModels(fromDate, toDate, ageYoungFrom, ageYoungTo);
+		assertEquals(2, youngModels.size());
+		assertTrue(youngModels.contains(MODEL + 0));
+		assertTrue(youngModels.contains(MODEL + 1));
+		List<String> oldModels = company.getMostPopularCarModels(fromDate, toDate, ageOldFrom, ageOldTo);
+		assertEquals(2, oldModels.size());
+		assertTrue(oldModels.contains(MODEL + 2));
+		assertTrue(oldModels.contains(MODEL + 3));
+
 	}
 
 	@Test
 	public void testGetMostProfitableCarModels() {
-		
+		List<String> profitableModels = company.getMostProfitableCarModels(fromDate, toDate);
+		assertEquals(1, profitableModels.size());
+		assertEquals(MODEL + 4, profitableModels.get(0));
 	}
 
 	@Test
 	public void testGetMostActiveDriver() {
-		
+		List<Driver> activeDrivers = company.getMostActiveDriver();
+		assertEquals(1, activeDrivers.size());
+		assertEquals(0L, activeDrivers.get(0).getLicenseId());
+
 	}
 
 }
