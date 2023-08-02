@@ -51,6 +51,7 @@ public class RentCompanyEmbedded extends AbstractRentCompany implements Persista
 		if (!res)
 			return CarsReturnCode.CAR_EXISTS;
 		addModelCars(car);
+
 		return CarsReturnCode.OK;
 	}
 
@@ -63,11 +64,13 @@ public class RentCompanyEmbedded extends AbstractRentCompany implements Persista
 
 	@Override
 	public Car getCar(String regNumber) {
+
 		return cars.get(regNumber);
 	}
 
 	@Override
 	public CarsReturnCode addDriver(Driver driver) {
+
 		return drivers.putIfAbsent(driver.getLicenseId(), driver) == null ? CarsReturnCode.OK
 				: CarsReturnCode.DRIVER_EXISTS;
 	}
@@ -160,7 +163,6 @@ public class RentCompanyEmbedded extends AbstractRentCompany implements Persista
 		return collRecords.stream().flatMap(l -> l.stream()).toList();
 	}
 
-//	Sprint3
 	@Override
 	public RemovedCarData removeCar(String regNumber) {
 		Car car = getCar(regNumber);
@@ -254,18 +256,18 @@ public class RentCompanyEmbedded extends AbstractRentCompany implements Persista
 			car.setState(State.GOOD);
 	}
 
-//	Sprint4
 	@Override
 	public List<String> getMostPopularCarModels(LocalDate fromDate, LocalDate toDate, int fromAge, int toAge) {
 		List<RentRecord> rRecords = getRentRecordsAtDates(fromDate, toDate);
 		Map<String, Long> mapOccurances = rRecords.stream().filter(r -> isProperAge(r, fromAge, toAge))
 				.collect(Collectors.groupingBy(r -> getCar(r.getRegNumber()).getModelName(), Collectors.counting()));
-		long maxOccurances = Collections.max(mapOccurances.values());
+		long maxOccurrances = Collections.max(mapOccurances.values());
 		List<String> res = new ArrayList<>();
 		mapOccurances.forEach((k, v) -> {
-			if (v == maxOccurances)
+			if (v == maxOccurrances)
 				res.add(k);
 		});
+
 		return res;
 	}
 
