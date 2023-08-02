@@ -32,7 +32,7 @@ public class Book implements Serializable
 
 	public void setAmount(int amount)
 	{
-		
+		if(amount >= 0)
 			this.amount = amount;
 	}
 
