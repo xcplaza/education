@@ -38,4 +38,5 @@ public interface IRentCompany extends Serializable {
 	
 //	sprint5
 	List<String> getModelNames();
+	List<Long> getLicenseDriver();
 }
