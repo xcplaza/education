@@ -308,5 +308,9 @@ public class RentCompanyEmbedded extends AbstractRentCompany implements Persista
 	public List<String> getModelNames() {
 		return new ArrayList<>(models.keySet());
 	}
+	
+	public List<Long> getLicenseDriver() {
+		return new ArrayList<>(drivers.keySet());
+	}
 
 }
