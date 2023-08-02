@@ -1,6 +1,7 @@
 package telran.cars;
 
 import telran.cars.cli.SaveAndExit;
+import telran.cars.cli.clerk.AddDriverItem;
 import telran.cars.cli.manager.AddCarItem;
 import telran.cars.cli.manager.AddModelItem;
 import telran.cars.cli.manager.RemoveCarItem;
@@ -29,7 +30,16 @@ public class RentCompanyAppl {
 	private static Item[] getMainMenuItems() {
 		Item[] res = {
 				new SubMenu("Manager", inOut, getManagerMenuItems()),
+				new SubMenu("Clerk", inOut, getClerkMenuItems()),
 				new SaveAndExit(inOut, company, COMPANY_FILE),
+				new ExitItem()
+		};
+		return res;
+	}
+
+	private static Item[] getClerkMenuItems() {
+		Item[] res = {
+				new AddDriverItem(inOut, company),
 				new ExitItem()
 		};
 		return res;
