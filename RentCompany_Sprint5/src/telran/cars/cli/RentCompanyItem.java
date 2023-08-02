@@ -14,4 +14,14 @@ public abstract class RentCompanyItem implements Item {
 		this.company = company;
 	}
 
+	public String getRegNumberIfNotExist() {
+		String regNumber = inOut.inputString("Enter new registration number");
+		if (regNumber == null)
+			return null;
+		if (company.getCar(regNumber) != null) {
+			inOut.outputLine("Car already exists");
+			return null;
+		}
+		return regNumber;
+	}
 }
