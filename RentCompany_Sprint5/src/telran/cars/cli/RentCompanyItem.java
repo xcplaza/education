@@ -15,7 +15,7 @@ public abstract class RentCompanyItem implements Item {
 	}
 
 	public String getRegNumberIfNotExist() {
-		String regNumber = inOut.inputString("Enter new registration number");
+		String regNumber = inOut.inputString("Enter registration number");
 		if (regNumber == null)
 			return null;
 		if (company.getCar(regNumber) != null) {
