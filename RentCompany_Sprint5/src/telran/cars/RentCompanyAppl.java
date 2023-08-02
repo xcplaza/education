@@ -3,6 +3,8 @@ package telran.cars;
 import telran.cars.cli.SaveAndExit;
 import telran.cars.cli.manager.AddCarItem;
 import telran.cars.cli.manager.AddModelItem;
+import telran.cars.cli.manager.RemoveCarItem;
+import telran.cars.cli.manager.RemoveModelItem;
 import telran.cars.model.IRentCompany;
 import telran.cars.model.RentCompanyEmbedded;
 import telran.view.ConsoleInputOutput;
@@ -37,6 +39,8 @@ public class RentCompanyAppl {
 		Item[] res = {
 				new AddModelItem(inOut, company),
 				new AddCarItem(inOut, company),
+				new RemoveModelItem(inOut, company),
+				new RemoveCarItem(inOut, company),
 				new ExitItem()
 		};
 		return res;
