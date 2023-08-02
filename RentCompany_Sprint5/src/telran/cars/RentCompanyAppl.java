@@ -2,6 +2,8 @@ package telran.cars;
 
 import telran.cars.cli.SaveAndExit;
 import telran.cars.cli.clerk.AddDriverItem;
+import telran.cars.cli.clerk.GetCarsByModelItel;
+import telran.cars.cli.clerk.RentCarItem;
 import telran.cars.cli.manager.AddCarItem;
 import telran.cars.cli.manager.AddModelItem;
 import telran.cars.cli.manager.RemoveCarItem;
@@ -40,6 +42,9 @@ public class RentCompanyAppl {
 	private static Item[] getClerkMenuItems() {
 		Item[] res = {
 				new AddDriverItem(inOut, company),
+				new GetCarsByModelItel(inOut, company),
+				new RentCarItem(inOut, company),
+				new ReturnCarItem(inOut, company),
 				new ExitItem()
 		};
 		return res;
