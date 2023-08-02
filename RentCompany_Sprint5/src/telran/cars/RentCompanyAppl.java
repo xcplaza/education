@@ -8,6 +8,8 @@ import telran.cars.cli.manager.AddCarItem;
 import telran.cars.cli.manager.AddModelItem;
 import telran.cars.cli.manager.RemoveCarItem;
 import telran.cars.cli.manager.RemoveModelItem;
+import telran.cars.cli.statist.MostActiveDriversItem;
+import telran.cars.cli.statist.MostPopularModelsItem;
 import telran.cars.model.IRentCompany;
 import telran.cars.model.RentCompanyEmbedded;
 import telran.view.ConsoleInputOutput;
@@ -31,10 +33,36 @@ public class RentCompanyAppl {
 
 	private static Item[] getMainMenuItems() {
 		Item[] res = {
-				new SubMenu("Manager", inOut, getManagerMenuItems()),
 				new SubMenu("Clerk", inOut, getClerkMenuItems()),
+				new SubMenu("Driver", inOut, getDriverMenuItems()),
+				new SubMenu("Manager", inOut, getManagerMenuItems()),
+				new SubMenu("Statist", inOut, getStatistMenuItems()),
+				new SubMenu("Technic", inOut, getTechMenuItems()),
 				new SaveAndExit(inOut, company, COMPANY_FILE),
 				new ExitItem()
+		};
+		return res;
+	}
+
+	private static Item[] getTechMenuItems() {
+		Item[] res = {
+				new ExitItem()	
+		};
+		return res;
+	}
+
+	private static Item[] getStatistMenuItems() {
+		Item[] res = {
+				new MostActiveDriversItem(inOut, company),
+				new MostPopularModelsItem(inOut, company),
+				new ExitItem()	
+		};
+		return res;
+	}
+
+	private static Item[] getDriverMenuItems() {
+		Item[] res = {
+				new ExitItem()	
 		};
 		return res;
 	}
