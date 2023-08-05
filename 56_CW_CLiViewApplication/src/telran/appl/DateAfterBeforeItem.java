@@ -21,6 +21,7 @@ public class DateAfterBeforeItem implements Item {
 		return "Date after or before given amount days";
 	}
 
+	@SuppressWarnings("unused")
 	@Override
 	public void perform() {
 		LocalDate date = inOut.inputDate("Enter date " + format, "yyyy-MM-dd");
