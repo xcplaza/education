@@ -3,7 +3,6 @@ package telran.statist;
 import java.time.LocalDate;
 
 import telran.library.cli.LibraryItem;
-import telran.library.cli.LibraryItem;
 import telran.library.model.ILibrary;
 import telran.view.InputOutput;
 
