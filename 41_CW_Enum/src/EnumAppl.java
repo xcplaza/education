@@ -2,6 +2,7 @@ import java.util.Arrays;
 
 public class EnumAppl {
 
+	@SuppressWarnings("unused")
 	public static void main(String[] args) {
 		Weekday firstWeekday = Weekday.FRI;
 		Weekday secondWeekday = Weekday.FRI;
