@@ -6,37 +6,65 @@ import java.util.List;
 
 import telran.cars.dto.*;
 
-public interface IRentCompany extends Serializable {
+public interface IRentCompany extends Serializable
+{
+//	Sprint1
 	int getGasPrice();
 	void setGasPrice(int price);
 	int getFinePercent();
-	void setFinePercent(int percent);
-
-	CarsReturnCode addModel(Model model);
-	Model getModel(String modelName);
+	void setFinePercent(int finePercent);
+	
 	CarsReturnCode addCar(Car car);
-	Car getCar(String regNumber);
 	CarsReturnCode addDriver(Driver driver);
+	CarsReturnCode addModel(Model model);
+	
+	Car getCar(String regNumber);
+	Model getModel(String modelName);
 	Driver getDriver(long licenseId);
-
-	// Sprint2
+	
+//	Sprint 2
 	CarsReturnCode rentCar(String regNumber, long licenseId, LocalDate rentDate, int rentDays);
-	List<Car> getDriverCars(long licenseId);
-	List<Driver> getCarDrivers(String regNumber);
-	List<Car> getModelCars(String modelName);
+//	list cars, which was rented by driver with this licenseId
+	List<Car> getCarsByDriver(long licenseId);
+//	list drivers, which rented car with this regNumber
+	List<Driver> getDriversByCar(String regNumber);
+//	list cars of model with this modelName
+	List<Car> getCarsByModel(String modelName);
+//	list records, in which rent date in period from date to date
 	List<RentRecord> getRentRecordsAtDates(LocalDate fromDate, LocalDate toDate);
 	
-	//Sprint3
+//	Sprint 3
 	RemovedCarData removeCar(String regNumber);
-	List<RemovedCarData> removeModel(String modelName);
+	List<RemovedCarData> removeCarsOfModel(String modelName);
 	RemovedCarData returnCar(String regNumber, long licenseId, LocalDate returnDate, int damages, int tankPercent);
+//	RemoverCarData = {car = Car, List<RentRecord> = null}
 	
-	//Sprint4
+//	Sprint 4
 	List<String> getMostPopularCarModels(LocalDate fromDate, LocalDate toDate, int fromAge, int toAge);
 	List<String> getMostProfitableCarModels(LocalDate fromDate, LocalDate toDate);
 	List<Driver> getMostActiveDriver();
 	
-//	sprint5
+//	Sprint5
 	List<String> getModelNames();
-	List<Long> getLicenseDriver();
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

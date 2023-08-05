@@ -1,30 +1,35 @@
 package telran.cars.model;
 
 @SuppressWarnings("serial")
-public abstract class AbstractRentCompany implements IRentCompany {
+public abstract class AbstractRentCompany implements IRentCompany
+{
 	protected int finePercent = 15;
 	protected int gasPrice = 10;
 	
-	@Override
-	public int getFinePercent() {
+	public int getGasPrice()
+	{
+		return gasPrice;
+	}
+	public void setGasPrice(int price)
+	{
+		this.gasPrice = price;
+	}
+	public int getFinePercent()
+	{
 		return finePercent;
 	}
-	@Override
-	public void setFinePercent(int finePercent) {
+	public void setFinePercent(int finePercent)
+	{
 		this.finePercent = finePercent;
 	}
 	
-	@Override
-	public int getGasPrice() {
-		return gasPrice;
+	protected double computeCost(int rentPrice, int rentDays, int delay, int tankPercent, int tankVolume)
+	{
+		double cost = rentPrice*rentDays;
+		if(delay > 0)
+			cost += delay * (rentPrice * (1 + (double) finePercent / 100));
+		if(tankPercent < 100)
+			cost += tankVolume * ((double) (100 - tankPercent) / 100) * gasPrice;
+		return cost;
 	}
-	@Override
-	public void setGasPrice(int gasPrice) {
-		this.gasPrice = gasPrice;
-	}
-	@Override
-	public String toString() {
-		return "AbstractRentCompany [finePercent=" + finePercent + ", gasPrice=" + gasPrice + "]";
-	}		
-
 }
