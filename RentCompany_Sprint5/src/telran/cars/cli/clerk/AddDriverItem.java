@@ -5,44 +5,33 @@ import telran.cars.dto.Driver;
 import telran.cars.model.IRentCompany;
 import telran.view.InputOutput;
 
-public class AddDriverItem extends RentCompanyItem
-{
+public class AddDriverItem extends RentCompanyItem {
 
-	private static final Integer MIN_YEAR = 1950;
-	private static final Integer MAX_YEAR = 2000;
-
-	public AddDriverItem(InputOutput inOut, IRentCompany company)
-	{
+	public AddDriverItem(InputOutput inOut, IRentCompany company) {
 		super(inOut, company);
 	}
 
 	@Override
-	public String displayedName()
-	{
+	public String displayName() {
 		return "Add driver";
 	}
 
 	@Override
-	public void perform()
-	{
-		Long licenseId = getLicenseIdIfNotExists();
-		if(licenseId == null)
+	public void perform() {
+		Long licenseId = inOut.inputLong("Enter license ID");
+		if (licenseId == null)
 			return;
-		
-		String name = inOut.inputString("Enter name");
-		if(name == null)
+		String driverName = inOut.inputString("Enter name driver");
+		if (driverName == null)
 			return;
-		
-		Integer birthYear = inOut.inputInteger(String.format("Enter birth year from range [%d-%d]", MIN_YEAR, MAX_YEAR), 
-				MIN_YEAR, MAX_YEAR);
-		if(birthYear == null)
+		Integer birdthYear = inOut.inputInteger("Enter birdth year driver");
+		if (birdthYear == null)
 			return;
-		
-		String phone = inOut.inputString("Enter phone number");
-		if(phone == null)
+		String phoneNumber = inOut.inputString("Enter phone number");
+		if (phoneNumber == null)
 			return;
-		
-		Driver driver = new Driver(licenseId, name, birthYear, phone);
-		inOut.outputLine(company.addDriver(driver ));
+		Driver driver = new Driver(licenseId, driverName, birdthYear, phoneNumber);
+		inOut.outputLine(company.addDriver(driver));
 	}
+
 }
