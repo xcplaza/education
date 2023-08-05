@@ -4,26 +4,20 @@ import telran.cars.cli.RentCompanyItem;
 import telran.cars.model.IRentCompany;
 import telran.view.InputOutput;
 
-public class RemoveCarItem extends RentCompanyItem
-{
-	public RemoveCarItem(InputOutput inputOutput, IRentCompany company)
-	{
-		super(inputOutput, company);
+public class RemoveCarItem extends RentCompanyItem {
+
+	public RemoveCarItem(InputOutput inOut, IRentCompany company) {
+		super(inOut, company);
 	}
 
 	@Override
-	public String displayedName()
-	{
-		return "Remove car item";
+	public String displayName() {
+		return "Remove car";
 	}
 
 	@Override
-	public void perform()
-	{
-		String regNumber = getRegNumberIfExists();
-		if (regNumber == null)
-			return;
-		
-		inOut.outputLine(company.removeCar(regNumber));
+	public void perform() {
+		inOut.outputLine(company.removeCar(getRegNumberIfNotExist()));
 	}
+
 }
