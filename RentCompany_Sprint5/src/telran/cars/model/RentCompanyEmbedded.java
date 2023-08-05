@@ -15,238 +15,194 @@ import java.util.Map;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
 
-import telran.cars.dto.Car;
-import telran.cars.dto.CarsReturnCode;
-import telran.cars.dto.Driver;
-import telran.cars.dto.Model;
-import telran.cars.dto.RemovedCarData;
-import telran.cars.dto.RentRecord;
-import telran.cars.dto.State;
-import telran.cars.utils.Persistable;
+import telran.cars.dto.*;
+import telran.util.Persistable;
 
 @SuppressWarnings("serial")
-public class RentCompanyEmbedded extends AbstractRentCompany implements Persistable
-{
+public class RentCompanyEmbedded extends AbstractRentCompany implements Persistable {
 	private static final int REMOVE_THRESHOLD = 60;
-	private static final int BAD_THRESHOLD = 30;
 	private static final int GOOD_THRESHOLD = 10;
-	
-//	Sprint1
+	private static final int BAD_THRESHOLD = 30;
 	HashMap<String, Car> cars = new HashMap<>();
 	HashMap<Long, Driver> drivers = new HashMap<>();
 	HashMap<String, Model> models = new HashMap<>();
-
-//	Sprint2
-	TreeMap<LocalDate, List<RentRecord>> records = new TreeMap<>();
+	// Sprint2
+	HashMap<String, List<Car>> modelCars = new HashMap<>();
 	HashMap<Long, List<RentRecord>> driverRecords = new HashMap<>();
 	HashMap<String, List<RentRecord>> carRecords = new HashMap<>();
-	HashMap<String, List<Car>> modelCars = new HashMap<>();
+	TreeMap<LocalDate, List<RentRecord>> records = new TreeMap<>();
 
 	@Override
-	public CarsReturnCode addCar(Car car)
-	{
-		if (!models.containsKey(car.getModelName()))
-			return CarsReturnCode.NO_MODEL;
-		boolean res = cars.putIfAbsent(car.getRegNumber(), car) == null;
-		if (!res)
-			return CarsReturnCode.CAR_EXISTS;
-
-		addToModelCars(car);
-		return CarsReturnCode.OK;
-	}
-
-	private void addToModelCars(Car car)
-	{
-		String modelName = car.getModelName();
-		List<Car> list = modelCars.getOrDefault(modelName, new ArrayList<>());
-		list.add(car);
-		modelCars.putIfAbsent(modelName, list);
-	}
-
-	@Override
-	public CarsReturnCode addDriver(Driver driver)
-	{
-		return drivers.putIfAbsent(driver.getLicenseId(), driver) == null ? CarsReturnCode.OK
-				: CarsReturnCode.DRIVER_EXISTS;
-	}
-
-	@Override
-	public CarsReturnCode addModel(Model model)
-	{
+	public CarsReturnCode addModel(Model model) {
 		return models.putIfAbsent(model.getModelName(), model) == null ? CarsReturnCode.OK
 				: CarsReturnCode.MODEL_EXISTS;
 	}
 
 	@Override
-	public Car getCar(String regNumber)
-	{
-		return cars.get(regNumber);
-	}
-
-	@Override
-	public Model getModel(String modelName)
-	{
+	public Model getModel(String modelName) {
 		return models.get(modelName);
 	}
 
 	@Override
-	public Driver getDriver(long licenseId)
-	{
+	public CarsReturnCode addCar(Car car) {
+		if (!models.containsKey(car.getModelName()))
+			return CarsReturnCode.NO_MODEL;
+		boolean res = cars.putIfAbsent(car.getRegNumber(), car) == null;
+		if (!res)
+			return CarsReturnCode.CAR_EXISTS;
+		addModelCars(car);
+
+		return CarsReturnCode.OK;
+	}
+
+	private void addModelCars(Car car) {
+		String modelName = car.getModelName();
+		List<Car> listCar = modelCars.getOrDefault(modelName, new ArrayList<>());
+		listCar.add(car);
+		modelCars.putIfAbsent(modelName, listCar);
+	}
+
+	@Override
+	public Car getCar(String regNumber) {
+
+		return cars.get(regNumber);
+	}
+
+	@Override
+	public CarsReturnCode addDriver(Driver driver) {
+
+		return drivers.putIfAbsent(driver.getLicenseId(), driver) == null ? CarsReturnCode.OK
+				: CarsReturnCode.DRIVER_EXISTS;
+	}
+
+	@Override
+	public Driver getDriver(long licenseId) {
 		return drivers.get(licenseId);
 	}
 
 	@Override
-	public void save(String fileName)
-	{
-		try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(fileName)))
-		{
-			out.writeObject(this);
-		} catch (Exception e)
-		{
-			System.out.println("Error in method save " + e.getMessage());
+	public void save(String fileName) {
+		try (ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream(fileName))) {
+			output.writeObject(this);
+		} catch (Exception e) {
+			System.out.println("Error int method save " + e.getMessage());
 		}
 	}
 
-	public static RentCompanyEmbedded restoreFromFile(String fileName)
-	{
-		try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(fileName)))
-		{
-			return (RentCompanyEmbedded) in.readObject();
-		} catch (Exception e)
-		{
+	public static IRentCompany restoreFromFile(String fileName) {
+		try (ObjectInputStream input = new ObjectInputStream(new FileInputStream(fileName))) {
+			return (IRentCompany) input.readObject();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
 			return new RentCompanyEmbedded();
 		}
 	}
 
 	@Override
-	public CarsReturnCode rentCar(String regNumber, long licenseId, LocalDate rentDate, int rentDays)
-	{
+	public CarsReturnCode rentCar(String regNumber, long licenseId, LocalDate rentDate, int rentDays) {
 		Car car = getCar(regNumber);
 		if (car == null)
 			return CarsReturnCode.NO_CAR;
 		if (car.isFlRemoved())
 			return CarsReturnCode.CAR_REMOVED;
-		if (car.isUse())
+		if (car.isInUse())
 			return CarsReturnCode.CAR_IN_USE;
 		if (!drivers.containsKey(licenseId))
 			return CarsReturnCode.NO_DRIVER;
-
 		RentRecord record = new RentRecord(regNumber, licenseId, rentDate, rentDays);
 		addToCarRecords(record);
 		addToDriverRecords(record);
 		addToRecords(record);
-
-		car.setUse(true);
+		car.setInUse(true);
 		return CarsReturnCode.OK;
 	}
 
-	private void addToRecords(RentRecord record)
-	{
-		LocalDate date = record.getRentDate();
-		List<RentRecord> list = records.getOrDefault(date, new ArrayList<>());
-		list.add(record);
-		records.putIfAbsent(date, list);
+	private void addToRecords(RentRecord record) {
+		LocalDate rentDate = record.getRentDate();
+		List<RentRecord> listRecords = records.getOrDefault(rentDate, new ArrayList<>());
+		listRecords.add(record);
+		records.putIfAbsent(rentDate, listRecords);
 	}
 
-	private void addToDriverRecords(RentRecord record)
-	{
+	private void addToDriverRecords(RentRecord record) {
 		long licenseId = record.getLicenseId();
-		List<RentRecord> list = driverRecords.getOrDefault(licenseId, new ArrayList<>());
-		list.add(record);
-		driverRecords.putIfAbsent(licenseId, list);
+		List<RentRecord> listRecords = driverRecords.getOrDefault(licenseId, new ArrayList<>());
+		listRecords.add(record);
+		driverRecords.putIfAbsent(licenseId, listRecords);
 	}
 
-	private void addToCarRecords(RentRecord record)
-	{
+	private void addToCarRecords(RentRecord record) {
 		String regNumber = record.getRegNumber();
-		List<RentRecord> list = carRecords.getOrDefault(regNumber, new ArrayList<>());
-		list.add(record);
-		carRecords.putIfAbsent(regNumber, list);
+		List<RentRecord> listRecords = carRecords.getOrDefault(regNumber, new ArrayList<>());
+		listRecords.add(record);
+		carRecords.putIfAbsent(regNumber, listRecords);
+
 	}
 
 	@Override
-	public List<Car> getCarsByDriver(long licenseId)
-	{
-		List<RentRecord> list = driverRecords.getOrDefault(licenseId, new ArrayList<>());
-		return list.stream().map(rr -> getCar(rr.getRegNumber())).distinct().toList();
+	public List<Car> getDriverCars(long licenseId) {
+		List<RentRecord> listRecords = driverRecords.getOrDefault(licenseId, new ArrayList<>());
+		return listRecords.stream().map(r -> getCar(r.getRegNumber())).distinct().toList();
 	}
 
 	@Override
-	public List<Driver> getDriversByCar(String regNumber)
-	{
-		List<RentRecord> list = carRecords.getOrDefault(regNumber, new ArrayList<>());
-//		{rr1{li, rn, rd}, rr2{li, rn, rd}, rr3{li, rn, rd}, rr4{li, rn, rd}} -> {driver1, driver2, driver3}
-		List<Driver> res = list.stream().map(rr -> getDriver(rr.getLicenseId())).distinct().toList();
-//		rr = rr1{li, rn, rd} -> driver1
-		return res;
+	public List<Driver> getCarDrivers(String regNumber) {
+		List<RentRecord> listRecords = carRecords.getOrDefault(regNumber, new ArrayList<>());
+		return listRecords.stream().map(r -> getDriver(r.getLicenseId())).distinct().toList();
 	}
 
 	@Override
-	public List<Car> getCarsByModel(String modelName)
-	{
-		List<Car> list = modelCars.getOrDefault(modelName, new ArrayList<>());
-		return list.stream().filter(c -> !c.isFlRemoved() && !c.isUse()).toList();
+	public List<Car> getModelCars(String modelName) {
+		List<Car> carList = modelCars.getOrDefault(modelName, new ArrayList<>());
+		return carList.stream().filter(c -> !c.isFlRemoved() && !c.isInUse()).toList();
 	}
 
 	@Override
-	public List<RentRecord> getRentRecordsAtDates(LocalDate fromDate, LocalDate toDate)
-	{
-		Collection<List<RentRecord>> col = records.subMap(fromDate, toDate).values();
-		return col.stream().flatMap(l -> l.stream()).toList();
+	public List<RentRecord> getRentRecordsAtDates(LocalDate fromDate, LocalDate toDate) {
+		Collection<List<RentRecord>> collRecords = records.subMap(fromDate, toDate).values();
+		return collRecords.stream().flatMap(l -> l.stream()).toList();
 	}
 
 	@Override
-	public RemovedCarData removeCar(String regNumber)
-	{
+	public RemovedCarData removeCar(String regNumber) {
 		Car car = getCar(regNumber);
-		if (car == null)
+		if (car == null || car.isFlRemoved())
 			return null;
 		car.setFlRemoved(true);
-		return car.isUse() ? new RemovedCarData(car, null) : actualCarRemove(car);
+		return car.isInUse() ? new RemovedCarData(car, null) : actualCarRemoved(car);
+
 	}
 
-	private RemovedCarData actualCarRemove(Car car)
-	{
+	private RemovedCarData actualCarRemoved(Car car) {
 		String regNumber = car.getRegNumber();
-		List<RentRecord> list = carRecords.get(regNumber);
+		List<RentRecord> removedRecords = carRecords.getOrDefault(regNumber, new ArrayList<>());
+		removedFromDriverRecords(removedRecords);
+		removeFromRecords(removedRecords);
 		cars.remove(regNumber);
 		carRecords.remove(regNumber);
-		removeFromDriverRecords(list);
-		removeFromRecords(list);
-		removeFromModelCars(car);
-		return new RemovedCarData(car, list);
+		List<Car> mCars = modelCars.get(car.getModelName());
+		mCars.remove(car);
+		return new RemovedCarData(car, removedRecords);
 	}
 
-	private void removeFromModelCars(Car car)
-	{
-		modelCars.get(car.getModelName()).remove(car);
+	private void removedFromDriverRecords(List<RentRecord> removedRecords) {
+		removedRecords.forEach(r -> driverRecords.get(r.getLicenseId()).remove(r));
+
 	}
 
-	private void removeFromRecords(List<RentRecord> list)
-	{
-		list.forEach(rr -> records.get(rr.getRentDate()).remove(rr));
-	}
-
-	private void removeFromDriverRecords(List<RentRecord> list)
-	{
-		list.forEach(rr -> driverRecords.get(rr.getLicenseId()).remove(rr));
+	private void removeFromRecords(List<RentRecord> removedRecords) {
+		removedRecords.forEach(r -> records.get(r.getRentDate()).remove(r));
 	}
 
 	@Override
-	public List<RemovedCarData> removeCarsOfModel(String modelName)
-	{
-		List<Car> list = modelCars.get(modelName);
-		if (list != null)
-		{
-			return list.stream().map(c -> removeCar(c.getRegNumber())).toList();
-		}
-		return new ArrayList<>();
+	public List<RemovedCarData> removeModel(String modelName) {
+		List<Car> carsModel = modelCars.getOrDefault(modelName, new ArrayList<>());
+		return carsModel.stream().filter(c -> !c.isFlRemoved()).map(c -> removeCar(c.getRegNumber())).toList();
 	}
 
 	@Override
 	public RemovedCarData returnCar(String regNumber, long licenseId, LocalDate returnDate, int damages,
-			int tankPercent)
-	{
+			int tankPercent) {
 		RentRecord record = driverRecords.get(licenseId).stream()
 				.filter(rr -> rr.getRegNumber().equals(regNumber) && rr.getReturnDate() == null).findFirst()
 				.orElse(null);
@@ -255,110 +211,106 @@ public class RentCompanyEmbedded extends AbstractRentCompany implements Persista
 		updateRecord(record, returnDate, damages, tankPercent);
 		Car car = getCar(regNumber);
 		updateCar(car, damages);
-		return car.isFlRemoved() || damages > REMOVE_THRESHOLD ? actualCarRemove(car) : new RemovedCarData(car, null);
+		return car.isFlRemoved() || damages > REMOVE_THRESHOLD ? actualCarRemoved(car) : new RemovedCarData(car, null);
 	}
 
-	private void updateCar(Car car, int damages)
-	{
-		car.setUse(false);
-		if(damages >= BAD_THRESHOLD)
-			car.setState(State.BAD);
-		else if(damages >= GOOD_THRESHOLD)
-			car.setState(State.GOOD);
-	}
-
-	private void updateRecord(RentRecord record, LocalDate returnDate, int damages, int tankPercent)
-	{
+	private void updateRecord(RentRecord record, LocalDate returnDate, int damages, int tankPercent) {
 		record.setDamages(damages);
 		record.setReturnDate(returnDate);
 		record.setTankPercent(tankPercent);
-		double cost = computeCost(getRentPrice(record.getRegNumber()), record.getRentDays(), getDelay(record), tankPercent,
-				getTankVolume(record.getRegNumber()));
+		double cost = computeCost(getRentPrice(record.getRegNumber()), record.getRentDays(), getDelay(record),
+				tankPercent, getTankVolume(record.getRegNumber()));
 		record.setCost(cost);
 	}
-	
-	private int getTankVolume(String regNumber)
-	{
-		String modelName = cars.get(regNumber).getModelName();
-		return models.get(modelName).getGasTank();
+
+	private double computeCost(int rentPrice, int rentDays, int delay, int tankPercent, int tankVolume) {
+		double cost = rentPrice * rentDays;
+		if (delay > 0)
+			cost += delay * (rentPrice * (1 + finePercent / 100.));
+		if (tankPercent < 100)
+			cost += tankVolume * ((100 - tankPercent) / 100.) * gasPrice;
+		return cost;
 	}
 
-	private int getDelay(RentRecord record)
-	{
+	private int getRentPrice(String regNumber) {
+		String modelName = cars.get(regNumber).getModelName();
+		return models.get(modelName).getPriceDay();
+	}
+
+	private int getDelay(RentRecord record) {
 		long realDays = ChronoUnit.DAYS.between(record.getRentDate(), record.getReturnDate());
 		int delta = (int) (realDays - record.getRentDays());
 		return delta < 0 ? 0 : delta;
 	}
 
-//	double cost = priceDay * rentDays + delay(delayDays * delayPercent) + costTank
-
-	private int getRentPrice(String regNumber)
-	{
+	private int getTankVolume(String regNumber) {
 		String modelName = cars.get(regNumber).getModelName();
-		return models.get(modelName).getPriceDay();
+		return models.get(modelName).getGasTank();
+	}
+
+	private void updateCar(Car car, int damages) {
+		car.setInUse(false);
+		if (damages >= BAD_THRESHOLD)
+			car.setState(State.BAD);
+		else if (damages >= GOOD_THRESHOLD)
+			car.setState(State.GOOD);
 	}
 
 	@Override
-	public List<String> getMostPopularCarModels(LocalDate fromDate, LocalDate toDate, int fromAge, int toAge)
-	{
-		List<RentRecord> list = getRentRecordsAtDates(fromDate, toDate);
-		Map<String, Long> map = list.stream().filter(rr -> isProperAge(rr, fromAge, toAge))
-				.collect(Collectors.groupingBy(rr -> getCar(rr.getRegNumber()).getModelName(), //Map<modelName, List<RentRecord>>
-						Collectors.counting()));//List<RentRecord>>.stream().count()
-		long max = Collections.max(map.values());
-		List<String> models = new ArrayList<>();
-		map.forEach((k, v) ->
-		{
-			if(v == max)
-				models.add(k);
-		});
-		return models;
-	}
-
-	private boolean isProperAge(RentRecord rr, int fromAge, int toAge)
-	{
-		LocalDate rentDate = rr.getRentDate();
-		int birthYear= getDriver(rr.getLicenseId()).getBirthYear();
-		int age = rentDate.getYear() - birthYear;
-		return age >= fromAge && age < toAge;
-	}
-
-	@Override
-	public List<String> getMostProfitableCarModels(LocalDate fromDate, LocalDate toDate)
-	{
-		List<RentRecord> list = getRentRecordsAtDates(fromDate, toDate);
-		if(list.isEmpty())		
-			return new ArrayList<String>();
-		Map<String, Double> map = list.stream()
-				.collect(Collectors.groupingBy(rr -> getCar(rr.getRegNumber()).getModelName(),
-						Collectors.summingDouble(RentRecord::getCost)));
-		double max = map.values().stream().mapToDouble(c -> c).max().getAsDouble();
+	public List<String> getMostPopularCarModels(LocalDate fromDate, LocalDate toDate, int fromAge, int toAge) {
+		List<RentRecord> rRecords = getRentRecordsAtDates(fromDate, toDate);
+		Map<String, Long> mapOccurances = rRecords.stream().filter(r -> isProperAge(r, fromAge, toAge))
+				.collect(Collectors.groupingBy(r -> getCar(r.getRegNumber()).getModelName(), Collectors.counting()));
+		long maxOccurrances = Collections.max(mapOccurances.values());
 		List<String> res = new ArrayList<>();
-		map.forEach((k, v) ->
-		{
-			if(v == max)
+		mapOccurances.forEach((k, v) -> {
+			if (v == maxOccurrances)
+				res.add(k);
+		});
+
+		return res;
+	}
+
+	private boolean isProperAge(RentRecord r, int fromAge, int toAge) {
+		LocalDate rentDate = r.getRentDate();
+		Driver driver = getDriver(r.getLicenseId());
+		int driverAge = rentDate.getYear() - driver.getBirthYear();
+		return driverAge >= fromAge && driverAge < toAge;
+	}
+
+	@Override
+	public List<String> getMostProfitableCarModels(LocalDate fromDate, LocalDate toDate) {
+		List<RentRecord> rRecords = getRentRecordsAtDates(fromDate, toDate);
+		Map<String, Double> modelCost = rRecords.stream().collect(Collectors.groupingBy(
+				r -> getCar(r.getRegNumber()).getModelName(), Collectors.summingDouble(RentRecord::getCost)));
+		if (modelCost.isEmpty())
+			return new ArrayList<>();
+		double max = modelCost.values().stream().mapToDouble(x -> x).max().getAsDouble();
+		List<String> res = new ArrayList<>();
+		modelCost.forEach((k, v) -> {
+			if (v == max)
 				res.add(k);
 		});
 		return res;
 	}
 
 	@Override
-	public List<Driver> getMostActiveDriver()
-	{
-		long max = driverRecords.values().stream().mapToLong(l -> l.size()).max().getAsLong();
+	public List<Driver> getMostActiveDriver() {
+		long max = driverRecords.values().stream().mapToLong(x -> x.size()).max().getAsLong();
 		List<Driver> res = new ArrayList<>();
-		driverRecords.forEach((k, v) ->
-		{
-			if(v.size() == max)
+		driverRecords.forEach((k, v) -> {
+			if (v.size() == max)
 				res.add(getDriver(k));
 		});
 		return res;
 	}
 
-	@Override
-	public List<String> getModelNames()
-	{
+	public List<String> getModelNames() {
 		return new ArrayList<>(models.keySet());
+	}
+	
+	public List<Long> getLicenseDriver() {
+		return new ArrayList<>(drivers.keySet());
 	}
 
 }
