@@ -3,6 +3,7 @@ import java.util.Scanner;
 
 public class ScannerAppl {
 
+	@SuppressWarnings("unused")
 	public static void main(String[] args) {
 		try (Scanner scan = new Scanner(System.in)) {
 			String str;
