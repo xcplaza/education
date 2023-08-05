@@ -6,27 +6,24 @@ import telran.cars.cli.RentCompanyItem;
 import telran.cars.model.IRentCompany;
 import telran.view.InputOutput;
 
-public class RemoveModelItem extends RentCompanyItem
-{
-	public RemoveModelItem(InputOutput inputOutput, IRentCompany company)
-	{
-		super(inputOutput, company);
+public class RemoveModelItem extends RentCompanyItem {
+
+	public RemoveModelItem(InputOutput inOut, IRentCompany company) {
+		super(inOut, company);
 	}
 
 	@Override
-	public String displayedName()
-	{
+	public String displayName() {
 		return "Remove model";
 	}
 
 	@Override
-	public void perform()
-	{
+	public void perform() {
 		List<String> models = company.getModelNames();
-		String modelName = inOut.inputString("Enter model name", models);
+		String modelName = inOut.InputString("Enter model from" + models, models);
 		if (modelName == null)
 			return;
-		
-		company.removeCarsOfModel(modelName).forEach(inOut::outputLine);
+		inOut.outputLine(company.removeModel(modelName));
 	}
+
 }
