@@ -40,4 +40,7 @@ public interface ILibrary extends Serializable
 	List<Book> getMostPopularBooks(LocalDate fromDate,LocalDate toDate, int fromAge,int toAge);
 	List<String> getMostPopularAuthors();
 	List<Reader> getMostActiveReaders(LocalDate fromDate,LocalDate toDate);
+	
+//	sprint5
+	List<String> getAuthors();
 }
