@@ -14,6 +14,7 @@ import java.util.stream.Stream;
 
 public class StreamAppl {
 
+	@SuppressWarnings("unused")
 	public static void main(String[] args) {
 		Movie[] array = { new Movie("a", 2021, 4.), new Movie("b", 2022, 4.5), new Movie("c", 2021, 4.5),
 				new Movie("d", 2022, 3.5), new Movie("e", 2022, 5.) };
