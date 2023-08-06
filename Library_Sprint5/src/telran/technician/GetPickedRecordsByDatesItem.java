@@ -7,7 +7,6 @@ import telran.library.model.ILibrary;
 import telran.view.InputOutput;
 
 public class GetPickedRecordsByDatesItem extends LibraryItem {
-
 	public GetPickedRecordsByDatesItem(InputOutput inOut, ILibrary library) {
 		super(inOut, library);
 	}
@@ -19,14 +18,11 @@ public class GetPickedRecordsByDatesItem extends LibraryItem {
 
 	@Override
 	public void perform() {
-
-		LocalDate from = inOut.inputDate("Enter the date from which you want to request records in format yyyy-MM-dd",
-				"yyyy-MM-dd");
+		LocalDate from = inOut.inputDate("Enter from date in format yyyy-MM-dd", "yyyy-MM-dd");
 		if (from == null)
 			return;
 
-		LocalDate to = inOut.inputDate("Enter the date ин which you want to request records in format yyyy-MM-dd",
-				"yyyy-MM-dd");
+		LocalDate to = inOut.inputDate("Enter to date in format yyyy-MM-dd", "yyyy-MM-dd");
 		if (to == null)
 			return;
 		inOut.output(library.getPickedRecordsAtDates(from, to));
