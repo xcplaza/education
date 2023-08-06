@@ -21,8 +21,12 @@ public class GetPickedRecordsByDatesItem extends LibraryItem {
 		LocalDate from = inOut.inputDate("Enter from date in format yyyy-MM-dd", "yyyy-MM-dd");
 		if (from == null)
 			return;
-
-		LocalDate to = inOut.inputDate("Enter to date in format yyyy-MM-dd", "yyyy-MM-dd");
+		LocalDate nowDate = LocalDate.now();
+//	    String del = inOut.inputString("If you want enter date now? " 
+//		        + isbn +". Enter <<yes>>");
+//		      if (del.equalsIgnoreCase("yes"));
+		
+		LocalDate to = inOut.inputDate("Enter " + nowDate + " or in format yyyy-MM-dd", "yyyy-MM-dd");
 		if (to == null)
 			return;
 		inOut.output(library.getPickedRecordsAtDates(from, to));
