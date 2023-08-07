@@ -3,12 +3,9 @@ import telran.view.Item;
 
 public class ThreadsRaceItem implements Item {
 	protected InputOutput inOut;
-	protected ThreadsGame game;
 
-	public ThreadsRaceItem(InputOutput inOut, ThreadsGame game) {
-		super();
+	public ThreadsRaceItem(InputOutput inOut) {
 		this.inOut = inOut;
-		this.game = game;
 	}
 
 	@Override
@@ -18,12 +15,23 @@ public class ThreadsRaceItem implements Item {
 
 	@Override
 	public void perform() {
-		Integer distance = inOut.inputInteger("Enter distance ");
-		if (distance == null)
+		Integer distance = inOut.inputInteger("Enter distance");
+		if (distance == null || distance <= 0)
 			return;
+		Thread[] threads = new Thread[distance];
 
-//		game = new ThreadsGame(distance);
-		game.start();
-//		inOut.outputLine(game);
+		for (int i = 0; i < distance; i++) {
+			ThreadsGame game = new ThreadsGame(i + 1, distance);
+			threads[i] = new Thread(game);
+			threads[i].start();
+		}
+
+		try {
+			for (Thread thread : threads) {
+				thread.join();
+			}
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 }
