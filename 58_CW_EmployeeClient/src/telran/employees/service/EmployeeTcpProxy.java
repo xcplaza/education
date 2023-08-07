@@ -6,7 +6,7 @@ import telran.employees.dto.CompanySalary;
 import telran.employees.dto.Employee;
 import telran.net.TCPClientJava;
 
-public class EmployeeTcpProxy extends TCPClientJava implements IEMployees {
+public class EmployeeTcpProxy extends TCPClientJava implements IEmployees {
 
 	public EmployeeTcpProxy(String hostname, int port) throws Exception {
 		super(hostname, port);
@@ -14,12 +14,14 @@ public class EmployeeTcpProxy extends TCPClientJava implements IEMployees {
 
 	@Override
 	public boolean hireEmployee(Employee emp) {
+
 		return sendRequestGetResponse("hireEmployee", emp);
 	}
 
 	@Override
 	public boolean fireEmployee(int id) {
-		return sendRequestGetResponse("fireEmployee", id);
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 	@Override
