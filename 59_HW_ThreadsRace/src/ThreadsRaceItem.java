@@ -25,7 +25,6 @@ public class ThreadsRaceItem implements Item {
 			threads[i] = new Thread(game);
 			threads[i].start();
 		}
-
 		try {
 			for (Thread thread : threads) {
 				thread.join();
