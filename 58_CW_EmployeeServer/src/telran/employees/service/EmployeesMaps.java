@@ -8,12 +8,11 @@ import java.util.TreeMap;
 import telran.employees.dto.CompanySalary;
 import telran.employees.dto.Employee;
 
-public class EmployeesMaps implements IEMployees {
-
+public class EmployeesMaps implements IEmployees {
 	HashMap<Integer, Employee> employees;
 	HashMap<String, List<Employee>> companies;
 	TreeMap<Integer, List<Employee>> salaries;
-
+	
 	public EmployeesMaps() {
 		employees = new HashMap<>();
 		companies = new HashMap<>();
@@ -22,8 +21,8 @@ public class EmployeesMaps implements IEMployees {
 
 	@Override
 	public boolean hireEmployee(Employee emp) {
-		boolean res = employees.putIfAbsent(emp.getId(), emp) == null;
-		if (res) {
+		boolean res = employees.putIfAbsent(emp.getId(), emp)==null;
+		if(res) {
 			addCompanies(emp);
 			addSalaries(emp);
 		}
@@ -42,6 +41,7 @@ public class EmployeesMaps implements IEMployees {
 		List<Employee> empList = companies.getOrDefault(companyName, new ArrayList<>());
 		empList.add(emp);
 		companies.putIfAbsent(companyName, empList);
+		
 	}
 
 	@Override
@@ -79,5 +79,6 @@ public class EmployeesMaps implements IEMployees {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	
 
 }
