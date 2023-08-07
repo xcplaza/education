@@ -14,16 +14,14 @@ public class ThreadsGame implements Runnable {
 	@Override
 	public void run() {
 		Random random = new Random();
-		int progress = 0;
-		while (distance < 0) {
-			progress++;
-			System.out.println("Line " + id + ": " + progress + " meters");
+		for(int i = 0; i < distance; i++) {
+			System.out.println("Line " + id + ": " + i + " distance");
 			try {
 				Thread.sleep(random.nextInt(MAX_SLEEP - MIN_SLEEP + 1) + MIN_SLEEP);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 		}
-		System.err.println("Line " + id + " finished!");
+		System.err.println("Winner Line " + id + " is finished!");
 	}
 }
