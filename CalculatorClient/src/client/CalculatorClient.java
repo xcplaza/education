@@ -1,6 +1,5 @@
 package client;
 import telran.net.TCPClientJava;
-import java.io.Serializable;
 
 public class CalculatorClient extends TCPClientJava {
 
