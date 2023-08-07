@@ -7,9 +7,8 @@ import java.util.Objects;
 public class CompanySalary implements Serializable {
 	private String companyName;
 	private double avgSalary;
-
-	public CompanySalary() {
-	}
+	
+	public CompanySalary() {}
 
 	public CompanySalary(String companyName, double avgSalary) {
 		super();
@@ -52,5 +51,7 @@ public class CompanySalary implements Serializable {
 		CompanySalary other = (CompanySalary) obj;
 		return Objects.equals(companyName, other.companyName);
 	}
+	
+	
 
 }
