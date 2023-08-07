@@ -32,9 +32,9 @@ public class TCPClientJava implements Closeable {
 
 			ResponseJava response = (ResponseJava) input.readObject();
 			if (response.code != TCPResponseCode.OK)
-				throw new Exception(response.code.toString());
+				throw new Exception(response.code.toString() + ": " + response.responseData);
 			return (T) response.responseData;
-			
+
 		} catch (Exception e) {
 			throw new RuntimeException(e.getMessage());
 		}
