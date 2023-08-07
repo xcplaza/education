@@ -10,7 +10,7 @@ public class ThreadsRaceAppl {
 	public static void main(String[] args) {
 		InputOutput inOut = new ConsoleInputOutput();
 		Item[] items = { 
-				new ThreadsRaceItem(inOut, null),
+				new ThreadsRaceItem(inOut),
 				new ExitItem(),
 		};
 		Menu menu = new Menu(items, inOut);
