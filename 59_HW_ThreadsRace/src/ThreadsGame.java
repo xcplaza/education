@@ -1,41 +1,29 @@
-import java.time.Instant;
-import java.time.temporal.ChronoUnit;
 import java.util.Random;
 
-public class ThreadsGame extends Thread {
+public class ThreadsGame implements Runnable {
+	private final int id;
 	private int distance;
 	private static final int MIN_SLEEP = 2;
 	private static final int MAX_SLEEP = 5;
 
-	public ThreadsGame(int distance) {
-		super();
+	public ThreadsGame(int id, int distance) {
+		this.id = id;
 		this.distance = distance;
 	}
-
-	public int getDistance() {
-		return distance;
-	}
-
-	public void setDistance(int distance) {
-		this.distance = distance;
-	}
-
-	Random random = new Random();
-	int value = random.nextInt(MAX_SLEEP - MIN_SLEEP + 1) + MIN_SLEEP;
-
-	Instant start = Instant.now();
-	ThreadsGame game  = new ThreadsGame(distance);
 
 	@Override
 	public void run() {
-		for (int i = 0; i < distance; i++) {
+		Random random = new Random();
+		int progress = 0;
+		while (distance < 0) {
+			progress++;
+			System.out.println("Line " + id + ": " + progress + " meters");
 			try {
-				Thread.sleep(value);
+				Thread.sleep(random.nextInt(MAX_SLEEP - MIN_SLEEP + 1) + MIN_SLEEP);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			System.out.println("I'm threads " + i + " my time " + ChronoUnit.MILLIS.between(start, Instant.now()));
 		}
+		System.err.println("Line " + id + " finished!");
 	}
-
 }
