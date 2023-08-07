@@ -1,7 +1,7 @@
 import telran.view.InputOutput;
 import telran.view.Item;
 
-public abstract class ThreadsRaceItem implements Item {
+public class ThreadsRaceItem implements Item {
 	protected InputOutput inOut;
 	protected ThreadsGame threadsGame;
 
@@ -11,4 +11,19 @@ public abstract class ThreadsRaceItem implements Item {
 		this.threadsGame = threadsGame;
 	}
 
+	@Override
+	public String displayName() {
+		return "Game run";
+	}
+
+	@Override
+	public void perform() {
+		Integer distance = inOut.inputInteger("Enter distance ");
+		if (distance == null)
+			return;
+		
+		ThreadsGame game = new ThreadsGame(distance);
+		game.start();
+//		inOut.outputLine(game);
+	}
 }
