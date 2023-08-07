@@ -12,11 +12,19 @@ public class ThreadsGame extends Thread {
 		this.distance = distance;
 	}
 
+	public int getDistance() {
+		return distance;
+	}
+
+	public void setDistance(int distance) {
+		this.distance = distance;
+	}
+
 	Random random = new Random();
 	int value = random.nextInt(MAX_SLEEP - MIN_SLEEP + 1) + MIN_SLEEP;
 
 	Instant start = Instant.now();
-//	ThreadsGame game = new ThreadsGame(distance);
+	ThreadsGame game  = new ThreadsGame(distance);
 
 	@Override
 	public void run() {
@@ -26,8 +34,7 @@ public class ThreadsGame extends Thread {
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			System.out.println(
-					"I'm threads " + i + " my time " + ChronoUnit.MILLIS.between(start, Instant.now()));
+			System.out.println("I'm threads " + i + " my time " + ChronoUnit.MILLIS.between(start, Instant.now()));
 		}
 	}
 
