@@ -9,9 +9,8 @@ public class Employee implements Serializable {
 	private String name;
 	private String companyName;
 	private int salary;
-
-	public Employee() {
-	}
+	
+	public Employee() {}
 
 	public Employee(int id, String name, String companyName, int salary) {
 		super();
@@ -64,5 +63,6 @@ public class Employee implements Serializable {
 		Employee other = (Employee) obj;
 		return id == other.id;
 	}
-
+	
+	
 }
