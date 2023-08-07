@@ -52,8 +52,7 @@ public class EmployeesMaps implements IEmployees {
 
 	@Override
 	public Employee getEmployeeData(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		return employees.get(id);
 	}
 
 	@Override
