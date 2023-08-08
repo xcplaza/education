@@ -5,6 +5,7 @@ public class ThreadsGame implements Runnable {
 	private int distance;
 	private static final int MIN_SLEEP = 2;
 	private static final int MAX_SLEEP = 5;
+	private static int winner = 0;
 
 	public ThreadsGame(int id, int distance) {
 		this.id = id;
@@ -14,14 +15,18 @@ public class ThreadsGame implements Runnable {
 	@Override
 	public void run() {
 		Random random = new Random();
-		for(int i = 0; i < distance; i++) {
-			System.out.println("Line " + id + ": " + i + " distance");
+		for (int i = 0; i < distance; i++) {
 			try {
 				Thread.sleep(random.nextInt(MAX_SLEEP - MIN_SLEEP + 1) + MIN_SLEEP);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
+			System.out.println("Line " + id + ": " + i + " distance");
 		}
-		System.err.println("Winner Line " + id + " is finished!");
+		if (winner == 0) {
+			winner = id;
+			System.err.println("\nWinner Line " + winner + " is finished!\n");
+		}
+//		Thread.interrupted();
 	}
 }
