@@ -1,15 +1,23 @@
 import java.util.Collection;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 public class CollectionProcessingThread extends Thread {
 	private Collection<Integer> collection;
 	private int nRuns;
 	private int proUpdate;
 
-	private static Lock lock = new ReentrantLock();
+	private static ReentrantReadWriteLock lock;
+	private static Lock readLock;
+	private static Lock writeLock;
 	public static AtomicLong countLock = new AtomicLong();
+
+	static {
+		lock = new ReentrantReadWriteLock();
+		readLock = lock.readLock();
+		writeLock = lock.writeLock();
+	}
 
 	public CollectionProcessingThread(Collection<Integer> collection, int nRuns, int proUpdate) {
 		super();
@@ -29,28 +37,30 @@ public class CollectionProcessingThread extends Thread {
 	}
 
 	private void read() {
-		tryDoLock();
+		tryDoLock(readLock);
 		try {
 			collection.forEach(n -> getRandomNumber(1, n));
 		} finally {
-			lock.unlock();
+			readLock.unlock();
+			;
 		}
 	}
 
-	private void tryDoLock() {
+	private void tryDoLock(Lock lock) {
 		while (!lock.tryLock()) {
 			countLock.getAndIncrement();
 		}
 	}
 
 	private void update() {
-		tryDoLock();
+		tryDoLock(writeLock);
 		try {
 			int number = getRandomNumber(1, 100);
 			collection.add(number);
 			collection.remove(number);
 		} finally {
-			lock.unlock();
+			writeLock.unlock();
+			;
 		}
 	}
 
