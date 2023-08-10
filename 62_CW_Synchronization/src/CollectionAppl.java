@@ -4,7 +4,7 @@ import java.util.stream.Collectors;
 
 public class CollectionAppl {
 	private static final int N_THREADS = 10;
-	private static final int PROB_UPDATE = 50;
+	private static final int PROB_UPDATE = 1;
 	private static final int N_RUNS = 1000;
 	private static final int N_NUMBERS = 100;
 
