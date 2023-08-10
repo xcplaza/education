@@ -12,7 +12,7 @@ public class CollectionAppl {
 		var threads = new CollectionProcessingThread[N_THREADS];
 		startThreads(threads);
 		waitThreads(threads);
-
+		System.out.println(CollectionProcessingThread.countLock);
 	}
 
 	private static void waitThreads(CollectionProcessingThread[] threads) {
