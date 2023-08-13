@@ -7,6 +7,7 @@ public class GroupSumStream extends GroupSum {
 		super(number);
 	}
 
+
 	@Override
 	public long computeSum() {
 		return Arrays.stream(number).flatMapToLong(x -> Arrays.stream(x).asLongStream()).sum();
