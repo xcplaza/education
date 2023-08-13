@@ -15,7 +15,7 @@ public class GroupSumThreads extends GroupSum {
 	@Override
 	public long computeSum() {
 		OneGroupSum[] groups = makeGroups(nThreads);
-		waitThreads(groups);
+//		waitThreads(groups);
 		return computeGroup(groups);
 	}
 
