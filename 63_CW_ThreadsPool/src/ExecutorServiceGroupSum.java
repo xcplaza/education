@@ -13,6 +13,10 @@ public class ExecutorServiceGroupSum extends GroupSum {
 		System.out.println("Processors " + nThreads);
 	}
 
+	public void setnThreads(int nThreads) {
+		this.nThreads = nThreads;
+	}
+
 	@Override
 	public long computeSum() {
 		ExecutorService pool = Executors.newFixedThreadPool(nThreads);
@@ -27,7 +31,7 @@ public class ExecutorServiceGroupSum extends GroupSum {
 
 	private void waitThreads(ExecutorService pool) {
 		pool.shutdown(); // disable execute
-//		pool.isTerminated()
+//		pool.isTerminated(); // OR
 		try {
 			pool.awaitTermination(20, TimeUnit.SECONDS);
 		} catch (InterruptedException e) {
