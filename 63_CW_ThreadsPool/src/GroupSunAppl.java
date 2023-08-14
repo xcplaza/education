@@ -12,8 +12,8 @@ public class GroupSunAppl {
 		GroupSumStream streamSrv = new GroupSumStream(numbers);
 		GroupPerformanceTest stream = new GroupPerformanceTest(streamSrv);
 		
-		GroupSumThreads threadsSrv = new GroupSumThreads(numbers);
-		GroupPerformanceTest threads = new GroupPerformanceTest(threadsSrv);
+//		GroupSumThreads threadsSrv = new GroupSumThreads(numbers);
+//		GroupPerformanceTest threads = new GroupPerformanceTest(threadsSrv);
 		
 		GroupSumStreamParalels paralellsSrv = new GroupSumStreamParalels(numbers);
 		GroupPerformanceTest parallels = new GroupPerformanceTest(paralellsSrv);
@@ -29,8 +29,8 @@ public class GroupSunAppl {
 		System.out.println("=========================");
 		stream.runTest();
 		
-		System.out.println("=========================");
-		threads.runTest();
+//		System.out.println("=========================");
+//		threads.runTest();
 		
 		System.out.println("=========================");
 		parallels.runTest();
