@@ -1,0 +1,30 @@
+package telran.cars.cli.driver;
+
+import telran.cars.cli.RentCompanyItem;
+import telran.cars.model.IRentCompany;
+import telran.view.InputOutput;
+
+public class GetDriverItem extends RentCompanyItem
+{
+
+	public GetDriverItem(InputOutput inOut, IRentCompany company)
+	{
+		super(inOut, company);
+	}
+
+	@Override
+	public String displayName()
+	{
+		return "Get driver data";
+	}
+
+	@Override
+	public void perform()
+	{
+		Long id = getLicenseIdIfExists();
+		if(id == null)
+			return;
+		
+		inOut.outputLine(company.getDriver(id));
+	}
+}
