@@ -21,6 +21,7 @@ public class ThreadsGame implements Runnable {
 
 	List<Integer> list = new ArrayList<>();
 
+	@SuppressWarnings("unused")
 	@Override
 	synchronized public void run() {
 		Random random = new Random();
