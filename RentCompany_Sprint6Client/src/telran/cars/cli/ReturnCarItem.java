@@ -20,7 +20,7 @@ public class ReturnCarItem extends RentCompanyItem {
 
 	@Override
 	public void perform() {
-		String regNumber = getRegNumberIfNotExist();
+		String regNumber = getRegNumberIfNotExists();
 		if (regNumber == null)
 			return;
 		List<Long> license = company.getLicenseDriver();
