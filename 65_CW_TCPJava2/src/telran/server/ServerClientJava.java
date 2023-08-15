@@ -32,7 +32,7 @@ public class ServerClientJava implements Runnable {
 					ResponseJava response = protocol.getResponse(request);
 					output.writeObject(response);
 					output.reset();
-				} catch (SocketTimeoutException e) {
+				} catch (SocketTimeoutException e) { // ловим от input.readObject SocketTimeoutException
 				}
 			}
 		} catch (EOFException e) {
