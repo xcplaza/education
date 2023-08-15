@@ -1,46 +1,62 @@
+import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 public class MessageBox {
 	private String message;
-	private Object monitor = new Object();
+	Lock lock;
+	Condition producerWaitingCondition;
+	Condition consumerWaitingCondition;
+
+	public MessageBox() {
+		lock = new ReentrantLock();
+		producerWaitingCondition = lock.newCondition();
+		consumerWaitingCondition = lock.newCondition();
+	}
 
 //	producer
 	public void put(String message) {
-		synchronized (this) {
+		lock.lock();
+		try {
 			while (this.message != null) {
 				try {
-					this.wait();
+					producerWaitingCondition.await();
 				} catch (InterruptedException e) {
-
 					e.printStackTrace();
 				}
 			}
 			this.message = message;
-
-		}
-		synchronized (monitor) {
-			monitor.notify();
+			consumerWaitingCondition.signal();
+		} finally {
+			lock.unlock();
 		}
 	}
 
 //	consumer
 	public String take() throws InterruptedException {
 		String res;
-		synchronized (monitor) {
+		lock.lock();
+		try {
 			while (this.message == null) {
-				monitor.wait();
+				consumerWaitingCondition.await();
 			}
-			synchronized (this) {
-				res = this.message;
-				this.message = null;
-				this.notify();
-			}
+			res = this.message;
+			this.message = null;
+			producerWaitingCondition.signal();
+			return res;
+		} finally {
+			lock.unlock();
 		}
-		return res;
 	}
 
-	public synchronized String pull() {
-		String res = this.message;
-		this.message = null;
-		return res;
+	public String pull() {
+		lock.lock();
+		try {
+			String res = this.message;
+			this.message = null;
+			return res;
+		} finally {
+			lock.unlock();
+		}
 	}
 }
