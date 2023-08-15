@@ -1,0 +1,44 @@
+package telran.server;
+
+import java.io.EOFException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
+import java.net.SocketTimeoutException;
+
+import telran.net.RequestJava;
+import telran.net.ResponseJava;
+
+public class ServerClientJava implements Runnable {
+	ObjectInputStream input;
+	ObjectOutputStream output;
+	Socket socket;
+	ProtocolJava protocol;
+
+	public ServerClientJava(Socket socket, ProtocolJava protocol) throws Exception {
+		this.socket = socket;
+		this.protocol = protocol;
+		input = new ObjectInputStream(socket.getInputStream());
+		output = new ObjectOutputStream(socket.getOutputStream());
+
+	}
+
+	@Override
+	public void run() {
+		try {
+			while (!ServerJava.shutdown.get()) {
+				try {
+					RequestJava request = (RequestJava) input.readObject();
+					ResponseJava response = protocol.getResponse(request);
+					output.writeObject(response);
+					output.reset();
+				} catch (SocketTimeoutException e) {
+				}
+			}
+		} catch (EOFException e) {
+			System.out.println("Client close connection");
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+}
