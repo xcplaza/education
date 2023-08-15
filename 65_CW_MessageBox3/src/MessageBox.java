@@ -44,6 +44,7 @@ public class MessageBox {
 			this.message = null;
 			producerWaitingCondition.signal();
 			return res;
+
 		} finally {
 			lock.unlock();
 		}
