@@ -12,13 +12,11 @@ public class MessageAppl {
 		launchConsumers(consumers, box);
 
 		waitProducers(producers);
-//		Thread.sleep(100);
 		stopConsumers(consumers);
 	}
 
 	private static void stopConsumers(Consumer[] consumers) {
 		for (int i = 0; i < consumers.length; i++) {
-//			consumers[i].running = false;
 			consumers[i].interrupt();
 		}
 	}
