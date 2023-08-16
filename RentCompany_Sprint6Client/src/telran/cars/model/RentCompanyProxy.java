@@ -30,7 +30,6 @@ public class RentCompanyProxy extends TCPClientJava implements IRentCompany {
 	@Override
 	public void setGasPrice(int price) {
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override
@@ -42,7 +41,6 @@ public class RentCompanyProxy extends TCPClientJava implements IRentCompany {
 	@Override
 	public void setFinePercent(int percent) {
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override
