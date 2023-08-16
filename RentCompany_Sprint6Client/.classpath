@@ -6,8 +6,8 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/55_CW_CLiView"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/65_CW_TCPJava2"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/55_CW_CLiView"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/RentCompany_Sprint6API"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
