@@ -51,11 +51,11 @@ public class RentCompanyProtocol implements ProtocolJava {
 			case GET_MODEL_CARS:
 				return _get_model_cars(data);
 			case GET_RECORDS:
-				return null;
+				return _get_records(data);
 			case REMOVE_CAR:
-				return null;
+				return _remove_car(data);
 			case REMOVE_MODEL:
-				return null;
+				return _remove_model(data);
 //			RemovedCarData
 //		case RETURN_CAR:
 //			return null;
@@ -77,9 +77,28 @@ public class RentCompanyProtocol implements ProtocolJava {
 		}
 	}
 
+	private ResponseJava _remove_model(Serializable data) {
+		String model = (String) data;
+		List<RemovedCarData> res = service.removeModel(model);
+		return new ResponseJava(TCPResponseCode.OK, (Serializable) res);
+	}
+
+	private ResponseJava _remove_car(Serializable data) {
+		String regNumber = (String) data;
+		RemovedCarData res = service.removeCar(regNumber);
+		return new ResponseJava(TCPResponseCode.OK, res);
+	}
+
+	private ResponseJava _get_records(Serializable data) {
+		StatisticsData sd = (StatisticsData) data;
+		List<RentRecord> res = service.getRentRecordsAtDates(sd.getFromDate(), sd.getToDate());
+		return new ResponseJava(TCPResponseCode.OK, (Serializable) res);
+	}
+
 	private ResponseJava _get_model_cars(Serializable data) {
-		// TODO Auto-generated method stub
-		return null;
+		String modelName = (String) data;
+		List<Car> res = service.getModelCars(modelName);
+		return new ResponseJava(TCPResponseCode.OK, (Serializable) res);
 	}
 
 	private ResponseJava _get_car_drivers(Serializable data) {
