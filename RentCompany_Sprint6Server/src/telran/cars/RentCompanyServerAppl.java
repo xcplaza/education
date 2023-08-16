@@ -13,7 +13,7 @@ import telran.server.ServerJava;
 import telran.util.Persistable;
 
 public class RentCompanyServerAppl {
-	private static final String FILE_NAME = "compant.data";
+	private static final String FILE_NAME = "company.data";
 	private static final int PORT = 2000;
 	private static final int TIMEOUT = 10_000;
 //	private static final int N_THREADS = 10;
