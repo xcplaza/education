@@ -3,7 +3,7 @@ package telran.cars.model;
 import java.time.LocalDate;
 import java.util.List;
 
-import telran.cars.api.ApiConstants;
+import static telran.cars.api.ApiConstants.*;
 import telran.cars.dto.Car;
 import telran.cars.dto.CarsReturnCode;
 import telran.cars.dto.Driver;
@@ -45,102 +45,100 @@ public class RentCompanyProxy extends TCPClientJava implements IRentCompany {
 
 	@Override
 	public CarsReturnCode addModel(Model model) {
-		return sendRequestGetResponse(ApiConstants.ADD_MODEL, model);
+		return sendRequestGetResponse(ADD_MODEL, model);
 	}
 
 	@Override
 	public Model getModel(String modelName) {
-		return sendRequestGetResponse(ApiConstants.GET_MODEL, modelName);
+		return sendRequestGetResponse(GET_MODEL, modelName);
 	}
 
 	@Override
 	public CarsReturnCode addCar(Car car) {
-		return sendRequestGetResponse(ApiConstants.ADD_CAR, car);
+		return sendRequestGetResponse(ADD_CAR, car);
 	}
 
 	@Override
 	public Car getCar(String regNumber) {
-		return sendRequestGetResponse(ApiConstants.GET_CAR, regNumber);
+		return sendRequestGetResponse(GET_CAR, regNumber);
 	}
 
 	@Override
 	public CarsReturnCode addDriver(Driver driver) {
-		return sendRequestGetResponse(ApiConstants.ADD_DRIVER, driver);
+		return sendRequestGetResponse(ADD_DRIVER, driver);
 	}
 
 	@Override
 	public Driver getDriver(long licenseId) {
-		return sendRequestGetResponse(ApiConstants.GET_DRIVER, licenseId);
+		return sendRequestGetResponse(GET_DRIVER, licenseId);
 	}
 
 	@Override
 	public CarsReturnCode rentCar(String regNumber, long licenseId, LocalDate rentDate, int rentDays) {
-		return sendRequestGetResponse(ApiConstants.RETURN_CAR,
-				new RentCarData(regNumber, licenseId, rentDate, rentDays));
+		return sendRequestGetResponse(RETURN_CAR, new RentCarData(regNumber, licenseId, rentDate, rentDays));
 	}
 
 	@Override
 	public List<Car> getDriverCars(long licenseId) {
-		return sendRequestGetResponse(ApiConstants.GET_DRIVER_CARS, licenseId);
+		return sendRequestGetResponse(GET_DRIVER_CARS, licenseId);
 	}
 
 	@Override
 	public List<Driver> getCarDrivers(String regNumber) {
-		return sendRequestGetResponse(ApiConstants.GET_CAR_DRIVERS, regNumber);
+		return sendRequestGetResponse(GET_CAR_DRIVERS, regNumber);
 	}
 
 	@Override
 	public List<Car> getModelCars(String modelName) {
-		return sendRequestGetResponse(ApiConstants.GET_MODEL_CARS, modelName);
+		return sendRequestGetResponse(GET_MODEL_CARS, modelName);
 	}
 
 	@Override
 	public List<RentRecord> getRentRecordsAtDates(LocalDate fromDate, LocalDate toDate) {
 		LocalDate[] ld = { fromDate, toDate };
-		return sendRequestGetResponse(ApiConstants.GET_RECORDS, ld);
+		return sendRequestGetResponse(GET_RECORDS, ld);
 	}
 
 	@Override
 	public RemovedCarData removeCar(String regNumber) {
-		return sendRequestGetResponse(ApiConstants.REMOVE_CAR, regNumber);
+		return sendRequestGetResponse(REMOVE_CAR, regNumber);
 	}
 
 	@Override
 	public List<RemovedCarData> removeModel(String modelName) {
-		return sendRequestGetResponse(ApiConstants.REMOVE_MODEL, modelName);
+		return sendRequestGetResponse(REMOVE_MODEL, modelName);
 	}
 
 	@Override
 	public RemovedCarData returnCar(String regNumber, long licenseId, LocalDate returnDate, int damages,
 			int tankPercent) {
-		return sendRequestGetResponse(ApiConstants.RETURN_CAR, new ReturnCarData());
+		return sendRequestGetResponse(RETURN_CAR, new ReturnCarData());
 	}
 
 	@Override
 	public List<String> getMostPopularCarModels(LocalDate fromDate, LocalDate toDate, int fromAge, int toAge) {
-		return sendRequestGetResponse(ApiConstants.GET_MOST_POPULAR_MODELS,
-				new StatisticsData(fromDate, toDate, fromAge, toAge));
+		return sendRequestGetResponse(GET_MOST_POPULAR_MODELS, new StatisticsData(fromDate, toDate, fromAge, toAge));
 	}
 
 	@Override
 	public List<String> getMostProfitableCarModels(LocalDate fromDate, LocalDate toDate) {
 		LocalDate[] ld = { fromDate, toDate };
-		return sendRequestGetResponse(ApiConstants.GET_MOST_PROFITABLE_MODELS, ld);
+		return sendRequestGetResponse(GET_MOST_PROFITABLE_MODELS, ld);
 	}
 
 	@Override
 	public List<Driver> getMostActiveDriver() {
-		return sendRequestGetResponse(ApiConstants.GET_MOST_ACTIVE_DRIVERS, null);
+		return sendRequestGetResponse(GET_MOST_ACTIVE_DRIVERS, null);
 	}
 
 	@Override
 	public List<String> getModelNames() {
-		return sendRequestGetResponse(ApiConstants.GET_CAR_MODELS, null);
+		return sendRequestGetResponse(GET_CAR_MODELS, null);
 	}
 
 	@Override
 	public List<Long> getLicenseDriver() {
-		return sendRequestGetResponse(ApiConstants.GET_DRIVER, null);
+		return sendRequestGetResponse(GET_DRIVER, null);
 	}
 
 }
