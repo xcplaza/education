@@ -17,20 +17,22 @@ import java.util.stream.Collectors;
 
 import telran.cars.dto.*;
 import telran.util.Persistable;
+import static telran.cars.model.RentCompanyLocks.*;
 
 @SuppressWarnings("serial")
 public class RentCompanyEmbedded extends AbstractRentCompany implements Persistable {
 	private static final int REMOVE_THRESHOLD = 60;
 	private static final int GOOD_THRESHOLD = 10;
 	private static final int BAD_THRESHOLD = 30;
+//	Sprint1
 	HashMap<String, Car> cars = new HashMap<>();
 	HashMap<Long, Driver> drivers = new HashMap<>();
 	HashMap<String, Model> models = new HashMap<>();
-	// Sprint2
-	HashMap<String, List<Car>> modelCars = new HashMap<>();
+//	Sprint2
+	TreeMap<LocalDate, List<RentRecord>> records = new TreeMap<>();
 	HashMap<Long, List<RentRecord>> driverRecords = new HashMap<>();
 	HashMap<String, List<RentRecord>> carRecords = new HashMap<>();
-	TreeMap<LocalDate, List<RentRecord>> records = new TreeMap<>();
+	HashMap<String, List<Car>> modelCars = new HashMap<>();
 
 	@Override
 	public CarsReturnCode addModel(Model model) {
@@ -45,14 +47,18 @@ public class RentCompanyEmbedded extends AbstractRentCompany implements Persista
 
 	@Override
 	public CarsReturnCode addCar(Car car) {
-		if (!models.containsKey(car.getModelName()))
-			return CarsReturnCode.NO_MODEL;
-		boolean res = cars.putIfAbsent(car.getRegNumber(), car) == null;
-		if (!res)
-			return CarsReturnCode.CAR_EXISTS;
-		addModelCars(car);
-
-		return CarsReturnCode.OK;
+		LockUnlock_addCar(true);
+		try {
+			if (!models.containsKey(car.getModelName()))
+				return CarsReturnCode.NO_MODEL;
+			boolean res = cars.putIfAbsent(car.getRegNumber(), car) == null;
+			if (!res)
+				return CarsReturnCode.CAR_EXISTS;
+			addModelCars(car);
+			return CarsReturnCode.OK;
+		} finally {
+			LockUnlock_addCar(false);
+		}
 	}
 
 	private void addModelCars(Car car) {
@@ -82,10 +88,15 @@ public class RentCompanyEmbedded extends AbstractRentCompany implements Persista
 
 	@Override
 	public void save(String fileName) {
-		try (ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream(fileName))) {
-			output.writeObject(this);
-		} catch (Exception e) {
-			System.out.println("Error int method save " + e.getMessage());
+		lockUnlock_save(true);
+		try {
+			try (ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream(fileName))) {
+				output.writeObject(this);
+			} catch (Exception e) {
+				System.out.println("Error int method save " + e.getMessage());
+			} 
+		} finally {
+			lockUnlock_save(false);
 		}
 	}
 
@@ -100,21 +111,26 @@ public class RentCompanyEmbedded extends AbstractRentCompany implements Persista
 
 	@Override
 	public CarsReturnCode rentCar(String regNumber, long licenseId, LocalDate rentDate, int rentDays) {
-		Car car = getCar(regNumber);
-		if (car == null)
-			return CarsReturnCode.NO_CAR;
-		if (car.isFlRemoved())
-			return CarsReturnCode.CAR_REMOVED;
-		if (car.isInUse())
-			return CarsReturnCode.CAR_IN_USE;
-		if (!drivers.containsKey(licenseId))
-			return CarsReturnCode.NO_DRIVER;
-		RentRecord record = new RentRecord(regNumber, licenseId, rentDate, rentDays);
-		addToCarRecords(record);
-		addToDriverRecords(record);
-		addToRecords(record);
-		car.setInUse(true);
-		return CarsReturnCode.OK;
+		lockUnlock_rentCar(true);
+		try {
+			Car car = getCar(regNumber);
+			if (car == null)
+				return CarsReturnCode.NO_CAR;
+			if (car.isFlRemoved())
+				return CarsReturnCode.CAR_REMOVED;
+			if (car.isInUse())
+				return CarsReturnCode.CAR_IN_USE;
+			if (!drivers.containsKey(licenseId))
+				return CarsReturnCode.NO_DRIVER;
+			RentRecord record = new RentRecord(regNumber, licenseId, rentDate, rentDays);
+			addToCarRecords(record);
+			addToDriverRecords(record);
+			addToRecords(record);
+			car.setInUse(true);
+			return CarsReturnCode.OK;
+		} finally {
+			lockUnlock_rentCar(false);
+		}
 	}
 
 	private void addToRecords(RentRecord record) {
@@ -165,12 +181,16 @@ public class RentCompanyEmbedded extends AbstractRentCompany implements Persista
 
 	@Override
 	public RemovedCarData removeCar(String regNumber) {
-		Car car = getCar(regNumber);
-		if (car == null || car.isFlRemoved())
-			return null;
-		car.setFlRemoved(true);
-		return car.isInUse() ? new RemovedCarData(car, null) : actualCarRemoved(car);
-
+		lockUnlock_removeCar(true);
+		try {
+			Car car = getCar(regNumber);
+			if (car == null || car.isFlRemoved())
+				return null;
+			car.setFlRemoved(true);
+			return car.isInUse() ? new RemovedCarData(car, null) : actualCarRemoved(car);
+		} finally {
+			lockUnlock_removeCar(false);
+		}
 	}
 
 	private RemovedCarData actualCarRemoved(Car car) {
@@ -308,7 +328,7 @@ public class RentCompanyEmbedded extends AbstractRentCompany implements Persista
 	public List<String> getModelNames() {
 		return new ArrayList<>(models.keySet());
 	}
-	
+
 	public List<Long> getLicenseDriver() {
 		return new ArrayList<>(drivers.keySet());
 	}
