@@ -23,6 +23,7 @@ public class GroupSumThreads extends GroupSum {
 		return Arrays.stream(groups).mapToLong(e -> e.getSum()).sum();
 	}
 
+	@SuppressWarnings("unused")
 	private void waitThreads(OneGroupSum[] groups) {
 		for (OneGroupSum oneGroupSum : groups) {
 			try {
