@@ -1,23 +1,11 @@
 package telran.cars;
 
 import telran.cars.cli.*;
-import telran.cars.cli.clerk.AddDriverItem;
-import telran.cars.cli.clerk.GetCarsByModelItel;
-import telran.cars.cli.clerk.RentCarItem;
-import telran.cars.cli.manager.AddCarItem;
-import telran.cars.cli.manager.AddModelItem;
-import telran.cars.cli.manager.RemoveCarItem;
-import telran.cars.cli.manager.RemoveModelItem;
-import telran.cars.cli.statist.MostActiveDriversItem;
-import telran.cars.cli.statist.MostPopularModelsItem;
-import telran.cars.model.IRentCompany;
-import telran.cars.model.RentCompanyProxy;
-import telran.view.ConsoleInputOutput;
-import telran.view.ExitItem;
-import telran.view.InputOutput;
-import telran.view.Item;
-import telran.view.Menu;
-import telran.view.SubMenu;
+import telran.cars.cli.clerk.*;
+import telran.cars.cli.manager.*;
+import telran.cars.cli.statist.*;
+import telran.cars.model.*;
+import telran.view.*;
 
 public class RentCompanyClientAppl {
 	static IRentCompany company; // прокси компании для обмена из клиента
