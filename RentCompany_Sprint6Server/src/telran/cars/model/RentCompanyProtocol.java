@@ -1,8 +1,10 @@
 package telran.cars.model;
 
 import java.io.Serializable;
+import java.lang.reflect.Method;
 import java.util.List;
 
+import telran.cars.api.ApiConstants;
 import telran.cars.dto.*;
 import static telran.cars.api.ApiConstants.*;
 import telran.net.RequestJava;
@@ -10,6 +12,7 @@ import telran.net.ResponseJava;
 import telran.net.TCPResponseCode;
 import telran.server.ProtocolJava;
 
+@SuppressWarnings("unused")
 public class RentCompanyProtocol implements ProtocolJava {
 	IRentCompany service;
 
@@ -18,60 +21,17 @@ public class RentCompanyProtocol implements ProtocolJava {
 		this.service = service;
 	}
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
 	public ResponseJava getResponse(RequestJava request) {
 		String type = request.requestType;
 		Serializable data = request.requestData;
 
 		try {
-			switch (type) {
-			case ADD_CAR:
-				return _car_add(data);
-			case ADD_MODEL:
-				return _model_add(data);
-			case RENT_CAR:
-				return _car_rent(data);
-			case GET_MOST_POPULAR_MODELS:
-				return _models_popular(data);
-			case GET_MODEL:
-				return _model_car(data);
-			case GET_CAR:
-				return _get_car(data);
-			case ADD_DRIVER:
-				return _add_driver(data);
-			case GET_DRIVER:
-				return _get_driver(data);
-//			CarsReturnCode rentCar
-			case RETURN_CAR:
-				return _return_car(data);
-			case GET_DRIVER_CARS:
-				return _get_driver_cars(data);
-			case GET_CAR_DRIVERS:
-				return _get_car_drivers(data);
-			case GET_MODEL_CARS:
-				return _get_model_cars(data);
-			case GET_RECORDS:
-				return _get_records(data);
-			case REMOVE_CAR:
-				return _remove_car(data);
-			case REMOVE_MODEL:
-				return _remove_model(data);
-//			RemovedCarData
-//		case RETURN_CAR:
-//			return null;
-			case GET_MOST_PROFITABLE_MODELS:
-				return null;
-			case GET_MOST_ACTIVE_DRIVERS:
-				return null;
-			case GET_CAR_MODELS:
-				return null;
-//			List<Long> getLicenseDriver
-//		case GET_DRIVER:
-//			return null;
-
-			default:
-				return new ResponseJava(TCPResponseCode.UNKNOWN, null);
-			}
+			Class clazz = RentCompanyProtocol.class;
+			String typeS = type.replaceAll("_", "/");
+			Method m = clazz.getDeclaredMethod(typeS, Serializable.class);
+			return (ResponseJava) m.invoke(this, data);
 		} catch (Exception e) {
 			return new ResponseJava(TCPResponseCode.WRONG_REQUEST, null);
 		}
