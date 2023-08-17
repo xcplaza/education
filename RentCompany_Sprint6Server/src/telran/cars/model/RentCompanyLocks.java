@@ -71,8 +71,7 @@ public class RentCompanyLocks {
 	}
 
 	public static void LockUnlock_addModel(boolean flag) {
-		// TODO Auto-generated method stub
-
+		lockUnlock(flag, WRITE_INDEX, CARS_INDEX, MODELS_INDEX, RECORDS_INDEX);
 	}
 
 	public static void LockUnlock_getModel(boolean flag) {
