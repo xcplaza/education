@@ -70,33 +70,29 @@ public class RentCompanyLocks {
 
 	}
 
-	public void addModel(Model model) {
+	public static void LockUnlock_addModel(boolean flag) {
 		// TODO Auto-generated method stub
 
 	}
 
-	@Override
-	public Model getModel(String modelName) {
+	public static void LockUnlock_getModel(boolean flag) {
 		// TODO Auto-generated method stub
-		return null;
+
 	}
 
-	@Override
-	public Car getCar(String regNumber) {
+	public static void LockUnlock_getCar(boolean flag) {
 		// TODO Auto-generated method stub
-		return null;
+
 	}
 
-	@Override
-	public CarsReturnCode addDriver(Driver driver) {
+	public static void LockUnlock_addDriver(boolean flag) {
 		// TODO Auto-generated method stub
-		return null;
+
 	}
 
-	@Override
-	public Driver getDriver(long licenseId) {
+	public static void getDriver(boolean flag) {
 		// TODO Auto-generated method stub
-		return null;
+
 	}
 
 	public static void lockUnlock_rentCar(boolean flag) {
@@ -104,75 +100,52 @@ public class RentCompanyLocks {
 		lockUnlock(flag, WRITE_INDEX, CARS_INDEX, RECORDS_INDEX);
 	}
 
-	@Override
-	public List<Car> getDriverCars(long licenseId) {
+	public static void lockUnlock_getDriverCars(boolean flag) {
 		// TODO Auto-generated method stub
-		return null;
 	}
 
-	@Override
-	public List<Driver> getCarDrivers(String regNumber) {
+	public static void lockUnlock_getCarDrivers(boolean flag) {
 		// TODO Auto-generated method stub
-		return null;
 	}
 
-	@Override
-	public List<Car> getModelCars(String modelName) {
+	public static void lockUnlock_getModelCars(boolean flag) {
 		// TODO Auto-generated method stub
-		return null;
 	}
 
-	@Override
-	public List<RentRecord> getRentRecordsAtDates(LocalDate fromDate, LocalDate toDate) {
+	public static void lockUnlock_getRentRecordsAtDates(boolean flag) {
 		// TODO Auto-generated method stub
-		return null;
 	}
 
 	public static void lockUnlock_removeCar(boolean flag) {
 		lockUnlock(flag, WRITE_INDEX, CARS_INDEX, RECORDS_INDEX);
 	}
 
-	@Override
-	public List<RemovedCarData> removeModel(String modelName) {
+	public static void lockUnlock_removeModel(boolean flag) {
 		// TODO Auto-generated method stub
-		return null;
 	}
 
-	@Override
-	public RemovedCarData returnCar(String regNumber, long licenseId, LocalDate returnDate, int damages,
-			int tankPercent) {
+	public static void lockUnlock_returnCar(boolean flag) {
 		// TODO Auto-generated method stub
-		return null;
 	}
 
-	@Override
-	public List<String> getMostPopularCarModels(LocalDate fromDate, LocalDate toDate, int fromAge, int toAge) {
+	public static void lockUnlock_getMostPopularCarModels(boolean flag) {
 		// TODO Auto-generated method stub
-		return null;
 	}
 
-	@Override
-	public List<String> getMostProfitableCarModels(LocalDate fromDate, LocalDate toDate) {
+	public static void lockUnlock_getMostProfitableCarModels(boolean flag) {
 		// TODO Auto-generated method stub
-		return null;
 	}
 
-	@Override
-	public List<Driver> getMostActiveDriver() {
+	public static void lockUnlock_getMostActiveDriver(boolean flag) {
 		// TODO Auto-generated method stub
-		return null;
 	}
 
-	@Override
-	public List<String> getModelNames() {
+	public static void lockUnlock_getModelNames(boolean flag) {
 		// TODO Auto-generated method stub
-		return null;
 	}
 
-	@Override
-	public List<Long> getLicenseDriver() {
+	public static void lockUnlock_getLicenseDriver(boolean flag) {
 		// TODO Auto-generated method stub
-		return null;
 	}
 
 	public static void lockUnlock_save(boolean flag) {
