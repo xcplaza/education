@@ -6,6 +6,7 @@ import java.util.Arrays;
 
 public class XYZAppl {
 
+	@SuppressWarnings({ "unused", "rawtypes", "unchecked" })
 	public static void main(String[] args) throws ClassNotFoundException, InstantiationException,
 			IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 //		1й способ - получаем ссылку через обычный объект
