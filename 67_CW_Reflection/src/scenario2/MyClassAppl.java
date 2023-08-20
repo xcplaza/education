@@ -4,6 +4,7 @@ import java.lang.reflect.Method;
 
 public class MyClassAppl {
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public static void main(String[] args) { // method4 hellomethod1 bye
 		Class clazz = MyClass.class;
 		for (Method m : clazz.getMethods()) {
