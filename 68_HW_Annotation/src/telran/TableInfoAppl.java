@@ -1,3 +1,4 @@
+package telran;
 
 public class TableInfoAppl
 {
