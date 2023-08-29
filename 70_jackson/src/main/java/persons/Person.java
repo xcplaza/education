@@ -3,15 +3,22 @@ package persons;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 @Getter
 @SuppressWarnings("serial")
+@JsonTypeInfo(use = Id.CLASS)
 public class Person implements Serializable {
 	int id;
 	String name;
+
+	@JsonFormat(pattern = "dd/MM/yyyy")
 	LocalDate birthDate;
 //	transient boolean bool; // transient  -  запрет на serialization
 	Address address;
