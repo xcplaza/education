@@ -10,6 +10,7 @@ import java.util.stream.Stream;
 import com.fasterxml.jackson.core.exc.StreamWriteException;
 import com.fasterxml.jackson.databind.DatabindException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 public class PersonCreateAppl {
 	private static final int N_PERSONS = 100;
@@ -29,8 +30,9 @@ public class PersonCreateAppl {
 	public static void main(String[] args) throws StreamWriteException, DatabindException, IOException {
 		List<Person> list = getRandomPersons();
 		ObjectMapper mapper = new ObjectMapper();
-		mapper.writeValue(new File(FILE_NAME), list.toArray(new Person[0]));
-		
+		mapper.registerModule(new JavaTimeModule());
+		mapper.writerWithDefaultPrettyPrinter().writeValue(new File(FILE_NAME), list.toArray(new Person[0]));
+
 	}
 
 	private static List<Person> getRandomPersons() {
