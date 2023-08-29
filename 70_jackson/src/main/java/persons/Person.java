@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
 
@@ -13,7 +16,14 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Getter
 @SuppressWarnings("serial")
-@JsonTypeInfo(use = Id.CLASS)
+
+// type:child
+@JsonTypeInfo(use = Id.NAME, property = "type")
+@JsonSubTypes({ @Type(value = Person.class, name = "person"), @Type(value = Child.class, name = "child"),
+		@Type(value = Employee.class, name = "employee") })
+@JsonIgnoreProperties(ignoreUnknown = true)
+
+//@JsonTypeInfo(use = Id.CLASS) // "@class" : "persons.Employee" - JSON
 public class Person implements Serializable {
 	int id;
 	String name;
