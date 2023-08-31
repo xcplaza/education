@@ -2,21 +2,25 @@ package imagga;
 
 import java.util.Map;
 
-public class TagApiResult {
+public class TagApiResult
+{
 	public Result result;
 	public Status status;
 }
 
-class Result {
+class Result
+{
 	public Tag[] tags;
 }
 
-class Tag {
+class Tag
+{
 	public double confidence;
 	public Map<String, String> tag;
 }
 
-class Status {
+class Status
+{
 	public String text;
 	public String type;
 }
