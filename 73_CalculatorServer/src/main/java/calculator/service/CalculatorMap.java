@@ -5,6 +5,9 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.BinaryOperator;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class CalculatorMap implements ICalculator {
 	static Map<String, BinaryOperator<Double>> mapOperations;
 	static {
