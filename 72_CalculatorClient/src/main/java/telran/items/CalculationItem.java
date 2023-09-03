@@ -14,7 +14,7 @@ public class CalculationItem extends CalculatorItem {
 
 	@Override
 	public String displayName() {
-		return "Integer numbers calculator";
+		return "Numbers calculator";
 	}
 
 	@Override
