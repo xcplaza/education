@@ -1,4 +1,4 @@
-package main.java.currencyconverter;
+package currencyconverter;
 
 public interface CurrencyConstantsApi 
 {

@@ -1,4 +1,4 @@
-package main.java.currencyconverter;
+package currencyconverter;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

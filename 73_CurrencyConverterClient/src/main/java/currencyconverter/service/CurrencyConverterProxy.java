@@ -11,8 +11,9 @@ import currencyconverter.ConvertData;
 import static currencyconverter.CurrencyConstantsApi.*;
 import currencyconverter.ICurrencyConverter;
 
-public class CurrencyConverterProxy implements ICurrencyConverter {
-	String url = "http://localhost:8080";
+public class CurrencyConverterProxy implements ICurrencyConverter
+{
+	String url = "http://localhost:8181";
 	RestTemplate restTemplate = new RestTemplate();
 
 	public String lastDateTimePresentation()

@@ -25,7 +25,7 @@ public class CurrencyConverterAppl
 					new ConvertCurrencyItem(inputOutput, convertor), 
 					new ExitItem() 
 			};
-		Menu menu = new Menu(items, inputOutput);
+		Menu menu = new Menu(inputOutput, items);
 		menu.runMenu();
 	}
 }

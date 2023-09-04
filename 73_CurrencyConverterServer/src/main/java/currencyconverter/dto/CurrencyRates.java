@@ -6,7 +6,7 @@ import java.util.Map;
 public class CurrencyRates
 {
 	public int timestamp;
-	public Map<String, Double> rates = new HashMap<>();
+	public Map<String, Double> rates = new HashMap<String, Double>();
 
 	@Override
 	public String toString()

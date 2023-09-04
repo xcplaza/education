@@ -28,8 +28,8 @@
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>
-			<groupId>55_CW_CLiView2</groupId>
-			<artifactId>55_CW_CLiView2</artifactId>
+			<groupId>karmiel</groupId>
+			<artifactId>Cli-view</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
