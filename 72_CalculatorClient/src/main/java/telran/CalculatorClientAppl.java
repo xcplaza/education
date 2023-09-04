@@ -10,16 +10,20 @@ import telran.view.InputOutput;
 import telran.view.Item;
 import telran.view.Menu;
 
-public class CalculatorClientAppl {
+public class CalculatorClientAppl
+{
 	static InputOutput inputOutput = new ConsoleInputOutput();
 	static ICalculator calculator = new CalculatorProxy();
 
-	public static void main(String[] args) {
-		Item items[] = { 
+	public static void main(String[] args)
+	{
+		Item[] items = {
 				new DisplayOperationsItem(inputOutput, calculator),
 				new CalculationItem(inputOutput, calculator), 
-				new ExitItem() };
+				new ExitItem() 
+				};
 		Menu menu = new Menu(items, inputOutput);
 		menu.runMenu();
 	}
+
 }
