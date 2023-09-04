@@ -14,7 +14,7 @@ public class DisplayCurrencyCodeItem extends CurrencyItem
 		super(inputOutput, converter);
 	}
 
-	public String displayedName()
+	public String displayName()
 	{
 		return "Display currency code";
 	}

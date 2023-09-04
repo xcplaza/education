@@ -11,7 +11,7 @@ public class DisplayLatestRequestTimeItem extends CurrencyItem
 		super(inputOutput, converter);
 	}
 
-	public String displayedName()
+	public String displayName()
 	{
 		return "Display  time of latest request";
 	}

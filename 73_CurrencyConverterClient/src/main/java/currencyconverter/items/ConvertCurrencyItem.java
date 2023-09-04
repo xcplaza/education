@@ -12,7 +12,7 @@ public class ConvertCurrencyItem extends CurrencyItem
 		super(inputOutput, converter);
 	}
 
-	public String displayedName()
+	public String displayName()
 	{
 		return "Convert Currency";
 	}
@@ -20,12 +20,12 @@ public class ConvertCurrencyItem extends CurrencyItem
 	public void perform()
 	{
 		ArrayList<String> codesList = new ArrayList<String>(converter.getCodes());
-		
-		String fromCurrency = inputOutput.inputString("Please enter currency From", codesList);
+
+		String fromCurrency = inputOutput.inputString("Please enter currency From");
 		if(fromCurrency == null)
 			return;
 		
-		String toCurrency = inputOutput.inputString("Please enter currency To", codesList);
+		String toCurrency = inputOutput.inputString("Please enter currency To");
 		if(toCurrency == null)
 			return;
 		

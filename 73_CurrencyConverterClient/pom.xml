@@ -3,8 +3,12 @@
 	<groupId>karmiel</groupId>
 	<artifactId>CurrencyConverterClient</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+    </properties>
 
-	<dependencies>
+    <dependencies>
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
@@ -28,9 +32,14 @@
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>
-			<groupId>karmiel</groupId>
-			<artifactId>Cli-view</artifactId>
+			<groupId>55_CW_CLiView2</groupId>
+			<artifactId>55_CW_CLiView2</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
-	</dependencies>
+        <dependency>
+            <groupId>55_CW_CLiView2</groupId>
+            <artifactId>55_CW_CLiView2</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
 </project>

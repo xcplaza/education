@@ -13,7 +13,7 @@ import currencyconverter.ICurrencyConverter;
 
 public class CurrencyConverterProxy implements ICurrencyConverter
 {
-	String url = "http://localhost:8181";
+	String url = "http://localhost:8080";
 	RestTemplate restTemplate = new RestTemplate();
 
 	public String lastDateTimePresentation()
