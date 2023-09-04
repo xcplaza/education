@@ -1,15 +1,15 @@
-package calculator;
+package currencyconverter;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class CalculatorServerAppl
+public class CurrencyConverterServer
 {
 
 	public static void main(String[] args)
 	{
-		SpringApplication.run(CalculatorServerAppl.class, args);
+		SpringApplication.run(CurrencyConverterServer.class, args);
 	}
 
 }

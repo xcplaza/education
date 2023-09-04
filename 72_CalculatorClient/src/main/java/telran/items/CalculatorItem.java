@@ -6,7 +6,8 @@ import telran.view.InputOutput;
 import telran.view.Item;
 
 @AllArgsConstructor
-public abstract class CalculatorItem implements Item {
+public abstract class CalculatorItem implements Item
+{
 	protected InputOutput inOut;
 	protected ICalculator calculator;
 }
