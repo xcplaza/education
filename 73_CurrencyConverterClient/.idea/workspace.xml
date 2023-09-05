@@ -4,17 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ecca329b-1be2-441a-916b-793cf9174aa6" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../72_CalculatorClient/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../72_CalculatorClient/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../72_Cli-view/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../72_Cli-view/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../73_CurrencyConverterAPI/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../73_CurrencyConverterAPI/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../73_CurrencyConverterAPI/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../73_CurrencyConverterAPI/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../73_CurrencyConverterAPI/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/../73_CurrencyConverterAPI/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-    </list>
+    <list default="true" id="ecca329b-1be2-441a-916b-793cf9174aa6" name="Changes" comment="update" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -63,11 +53,35 @@
       <workItem from="1693896101010" duration="523000" />
       <workItem from="1693903809399" duration="1186000" />
       <workItem from="1693909079503" duration="5000" />
-      <workItem from="1693939439309" duration="1601000" />
+      <workItem from="1693939439309" duration="1768000" />
     </task>
+    <task id="LOCAL-00001" summary="update">
+      <option name="closed" value="true" />
+      <created>1693942303737</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1693942303737</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="update" />
+    <option name="LAST_COMMIT_MESSAGE" value="update" />
   </component>
 </project>
