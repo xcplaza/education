@@ -52,4 +52,9 @@ public class CalculatorMap implements ICalculator
 			return Double.MAX_VALUE;
 		}
 	}
+
+	@Override
+	public int numberLength(int number) {
+		return Integer.toString(number).length();
+	}
 }

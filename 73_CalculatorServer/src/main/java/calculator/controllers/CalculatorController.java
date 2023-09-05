@@ -3,10 +3,8 @@ package calculator.controllers;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.web.bind.annotation.*;
 
 import calculator.dto.CalculatorData;
 import calculator.service.ICalculator;
@@ -16,7 +14,8 @@ import calculator.service.ICalculator;
 public class CalculatorController
 {
 //	Solution 1 -> above field
-	@Autowired
+//	@Autowired
+	@Qualifier(value = "service1")
 	ICalculator service;
 
 //	Solution 2 -> above constructor
@@ -49,6 +48,18 @@ public class CalculatorController
 	{
 		return service.calculate(data.getOp1(), data.getOp2(), data.getOperator());
 	}
+//	host:port/mapping/number  -  path variable
+	@GetMapping("/length/{number}")
+	public int getDigitAmountFromPath(@PathVariable int number){
+		return service.numberLength(number);
+
+//	host:port/mapping?num=value  -   request params
+	}
+	@GetMapping("/length")
+	public int getDigitAmountFromParams(@RequestParam("num") int number){
+		return service.numberLength(number);
+	}
+
 }
 
 //dn/post/add

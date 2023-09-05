@@ -25,7 +25,7 @@ import currencyconverter.dto.CurrencyRates;
 @EnableMBeanExport
 public class CurrencyConverterImpl implements ICurrencyConverter
 {
-	static String url = "http://data.fixer.io/api/latest?access_key=826f2d71469efa55f0cf793cd6cf8014";
+	static String url = "https://api.apilayer.com/fixer/latest?apikey=PgCpCuH9FXIvqGr3OAG8DqqNi58d40Nv";
 	static RestTemplate restTemplate = new RestTemplate();
 	static LocalDateTime lastUpdate = LocalDateTime.now();
 	static private CurrencyRates currencyRates = getRates();

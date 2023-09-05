@@ -5,24 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ecca329b-1be2-441a-916b-793cf9174aa6" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../73_CurrencyConverterAPI/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../73_CurrencyConverterAPI/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../73_CurrencyConverterAPI/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../73_CurrencyConverterAPI/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../73_CurrencyConverterAPI/src/main/java/currencyconverter/ConvertData.java" beforeDir="false" afterPath="$PROJECT_DIR$/../73_CurrencyConverterAPI/src/main/java/currencyconverter/ConvertData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../73_CurrencyConverterAPI/src/main/java/currencyconverter/CurrencyConstantsApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/../73_CurrencyConverterAPI/src/main/java/currencyconverter/CurrencyConstantsApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../73_CurrencyConverterAPI/src/main/java/currencyconverter/ICurrencyConverter.java" beforeDir="false" afterPath="$PROJECT_DIR$/../73_CurrencyConverterAPI/src/main/java/currencyconverter/ICurrencyConverter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../73_CurrencyConverterAPI/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../73_CurrencyConverterAPI/target/maven-archiver/pom.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/currencyconverter/CurrencyConverterAppl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/currencyconverter/CurrencyConverterAppl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/currencyconverter/items/ConvertCurrencyItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/currencyconverter/items/ConvertCurrencyItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/currencyconverter/items/DisplayCurrencyCodeItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/currencyconverter/items/DisplayCurrencyCodeItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/currencyconverter/service/CurrencyConverterProxy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/currencyconverter/service/CurrencyConverterProxy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../73_CurrencyConverterServer/src/main/java/currencyconverter/controllers/ConverterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../73_CurrencyConverterServer/src/main/java/currencyconverter/controllers/ConverterController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../73_CurrencyConverterServer/src/main/java/currencyconverter/dto/CurrencyRates.java" beforeDir="false" afterPath="$PROJECT_DIR$/../73_CurrencyConverterServer/src/main/java/currencyconverter/dto/CurrencyRates.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../73_CurrencyConverterAPI/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../73_CurrencyConverterAPI/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../73_CurrencyConverterServer/src/main/java/currencyconverter/service/CurrencyConverterImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../73_CurrencyConverterServer/src/main/java/currencyconverter/service/CurrencyConverterImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../73_CurrencyConverterServer/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../73_CurrencyConverterServer/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,10 +17,10 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 7
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 7
+}</component>
   <component name="ProjectId" id="2UwgnNuZXzybdu1BeYEffK5BcJu" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -47,9 +32,14 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "main",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0",
+    "spring.configuration.checksum": "145520903d572f9da7dd1ec881e08b65",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -61,7 +51,9 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1693856224217</updated>
-      <workItem from="1693856225331" duration="28000" />
+      <workItem from="1693856225331" duration="209000" />
+      <workItem from="1693895046496" duration="236000" />
+      <workItem from="1693896101010" duration="523000" />
     </task>
     <servers />
   </component>
