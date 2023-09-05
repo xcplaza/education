@@ -2,6 +2,8 @@ package calculator.controllers;
 
 import java.util.Set;
 
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.info.Info;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import calculator.dto.CalculatorData;
 import calculator.service.ICalculator;
+
 
 @RestController
 //@RequestMapping("/calculator")
