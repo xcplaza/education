@@ -2,6 +2,7 @@ package calculator.controllers;
 
 import java.util.Set;
 
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
@@ -37,6 +38,7 @@ public class CalculatorController
 //		return service;
 //	}
 
+	@ApiResponse(description = "My operation code")
 	@GetMapping(value = "/operations")
 	public Set<String> getOperationCodes()
 	{
