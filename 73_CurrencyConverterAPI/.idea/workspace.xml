@@ -4,17 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0218abcc-6778-4926-8d63-643ec97726f5" name="Changes" comment="update">
-      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../72_CalculatorClient/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../72_CalculatorClient/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../72_Cli-view/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../72_Cli-view/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../73_CurrencyConverterClient/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../73_CurrencyConverterClient/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../73_CurrencyConverterClient/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../73_CurrencyConverterClient/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../73_CurrencyConverterClient/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../73_CurrencyConverterClient/pom.xml" afterDir="false" />
-    </list>
+    <list default="true" id="0218abcc-6778-4926-8d63-643ec97726f5" name="Changes" comment="update" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -59,7 +49,7 @@
       <workItem from="1693895050633" duration="228000" />
       <workItem from="1693901453272" duration="3579000" />
       <workItem from="1693909090048" duration="36000" />
-      <workItem from="1693939276642" duration="1356000" />
+      <workItem from="1693939276642" duration="2117000" />
     </task>
     <task id="LOCAL-00001" summary="works">
       <option name="closed" value="true" />
@@ -77,7 +67,15 @@
       <option name="project" value="LOCAL" />
       <updated>1693909118664</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="update">
+      <option name="closed" value="true" />
+      <created>1693945461636</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1693945461636</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
