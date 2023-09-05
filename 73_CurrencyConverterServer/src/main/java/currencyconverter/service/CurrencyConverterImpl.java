@@ -15,6 +15,9 @@ import org.springframework.jmx.export.annotation.ManagedAttribute;
 import org.springframework.jmx.export.annotation.ManagedOperation;
 import org.springframework.jmx.export.annotation.ManagedResource;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 
 import currencyconverter.ICurrencyConverter;
@@ -93,5 +96,14 @@ public class CurrencyConverterImpl implements ICurrencyConverter
 			throw new IllegalArgumentException("Enter correct currency");
 		
 		return (toCur / fromCur * amount);
+	}
+
+	@Override
+	public double euroValue(@PathVariable String code) {
+		if(code == null || !getCodes().contains(code))
+			return -1;
+		double from = currencyRates.rates.get(code);
+		double to = currencyRates.rates.get("EUR");
+		return to / from;
 	}
 }

@@ -14,8 +14,8 @@ import calculator.service.ICalculator;
 public class CalculatorController
 {
 //	Solution 1 -> above field
-//	@Autowired
-	@Qualifier(value = "service1")
+	@Autowired
+	@Qualifier(value = "service2")
 	ICalculator service;
 
 //	Solution 2 -> above constructor
@@ -54,9 +54,11 @@ public class CalculatorController
 		return service.numberLength(number);
 
 //	host:port/mapping?num=value  -   request params
+//	required = true  -  bad request (при пустой сткроке и не переданных параметрах)
+//	defaultValue = "0" - либо default значение
 	}
 	@GetMapping("/length")
-	public int getDigitAmountFromParams(@RequestParam("num") int number){
+	public int getDigitAmountFromParams(@RequestParam(value = "num", required = true) int number){
 		return service.numberLength(number);
 	}
 

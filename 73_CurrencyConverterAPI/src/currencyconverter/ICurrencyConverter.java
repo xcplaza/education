@@ -7,4 +7,5 @@ public interface ICurrencyConverter
 	String lastDateTimePresentation();
 	Set<String> getCodes();
 	double convert(String from, String to, double amount);
+	double euroValue( String code);
 }

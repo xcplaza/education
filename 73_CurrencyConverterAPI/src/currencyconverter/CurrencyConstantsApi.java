@@ -5,4 +5,5 @@ public interface CurrencyConstantsApi
 	String CURRENCIES = "/currencies";
 	String TIMESTAMP = "/datetime";
 	String CONVERT = "/convert";
+	String EURO = "/euro";
 }

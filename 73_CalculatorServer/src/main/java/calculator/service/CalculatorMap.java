@@ -11,7 +11,7 @@ import org.springframework.jmx.export.annotation.ManagedOperation;
 import org.springframework.jmx.export.annotation.ManagedResource;
 import org.springframework.stereotype.Service;
 
-//@Service(service1)
+@Service("service2")
 @ManagedResource
 @EnableMBeanExport
 public class CalculatorMap implements ICalculator

@@ -2,11 +2,7 @@ package currencyconverter.controllers;
 
 import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import currencyconverter.ConvertData;
 import static currencyconverter.CurrencyConstantsApi.*;
@@ -35,5 +31,15 @@ public class ConverterController
 	double convert(@RequestBody ConvertData data) 
 	{
 		return convertor.convert(data.getCurrencyFrom(), data.getCurrencyTo(), data.getAmount());
+	}
+
+	@GetMapping(EURO + "/{cur}")
+	double getEuroValuePath(@PathVariable String cur){
+		return convertor.euroValue(cur);
+	}
+
+	@GetMapping(EURO)
+	double getEuroValueParams(@RequestParam String cur){
+		return convertor.euroValue(cur);
 	}
 }
