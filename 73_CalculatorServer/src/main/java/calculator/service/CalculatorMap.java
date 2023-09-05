@@ -20,7 +20,7 @@ public class CalculatorMap implements ICalculator
 	static
 	{
 		mapOperations = new HashMap<>();
-		mapOperations.put("+", (o1, o2) -> o1+o2);
+		mapOperations.put("+", Double::sum);
 		mapOperations.put("-", (op1, op2) -> op1-op2);
 		mapOperations.put("*", (op1, op2) -> op1*op2);
 		mapOperations.put("/", (op1, op2) -> op2==0 ? null : op1/op2);
