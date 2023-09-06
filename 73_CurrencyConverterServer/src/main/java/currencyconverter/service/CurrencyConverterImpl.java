@@ -136,6 +136,6 @@ public class CurrencyConverterImpl implements ICurrencyConverter
 
 	@PreDestroy
 	public void footerMessage(){
-		System.out.println("Count converter " + count);
+		logger.info("Count converter " + count);
 	}
 }
