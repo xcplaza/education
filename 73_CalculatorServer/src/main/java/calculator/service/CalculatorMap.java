@@ -7,6 +7,8 @@ import java.util.function.BinaryOperator;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.EnableMBeanExport;
 import org.springframework.jmx.export.annotation.ManagedAttribute;
@@ -29,17 +31,19 @@ public class CalculatorMap implements ICalculator
 		mapOperations.put("/", (op1, op2) -> op2==0 ? null : op1/op2);
 	}
 
+	Logger logger = LoggerFactory.getLogger(CalculatorMap.class);
+
 	@Value("${wrongValue:-10000}")
 	double value;
 
 	@PostConstruct
 	public void welcomeMessage(){
-		System.out.println("Welcome " + value);
+		logger.info("Welcome " + value);
 	}
 
 	@PreDestroy
 	public void footerMessage(){
-		System.out.println("Footer message " + value);
+		logger.info("Footer message " + value);
 	}
 
 	@ManagedAttribute
