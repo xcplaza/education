@@ -5,28 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5aff193d-8fd5-452b-9e82-f55883bb9a45" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../RentCompanyServer/src/main/java/telran/cars/configuration/RentCompanyConfiguration.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../RentCompanyServer/src/main/java/telran/cars/controllers/AdministartorController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../RentCompanyServer/src/main/java/telran/cars/controllers/ClerkController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../RentCompanyServer/src/main/java/telran/cars/controllers/StatisticController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../RentCompanyServer/src/main/java/telran/cars/model/AbstractRentCompany.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../RentCompanyServer/src/main/java/telran/cars/model/RentCompanyEmbedded.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../RentCompanyServer/src/main/java/telran/cars/model/RentCompanyLocks.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../RentCompanyServer/src/main/java/telran/cars/utils/Persistable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../RentCompanyAPI_Sprint8/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../RentCompanyAPI_Sprint8/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../RentCompanyAPI_Sprint8/src/site/telran/cars/api/ApiConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/../RentCompanyAPI_Sprint8/src/main/java/telran.cars/api/ApiConstants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../RentCompanyAPI_Sprint8/src/site/telran/cars/dto/Car.java" beforeDir="false" afterPath="$PROJECT_DIR$/../RentCompanyAPI_Sprint8/src/main/java/telran.cars/dto/Car.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../RentCompanyAPI_Sprint8/src/site/telran/cars/dto/CarsReturnCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/../RentCompanyAPI_Sprint8/src/main/java/telran.cars/dto/CarsReturnCode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../RentCompanyAPI_Sprint8/src/site/telran/cars/dto/Driver.java" beforeDir="false" afterPath="$PROJECT_DIR$/../RentCompanyAPI_Sprint8/src/main/java/telran.cars/dto/Driver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../RentCompanyAPI_Sprint8/src/site/telran/cars/dto/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/../RentCompanyAPI_Sprint8/src/main/java/telran.cars/dto/Model.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../RentCompanyAPI_Sprint8/src/site/telran/cars/dto/RemovedCarData.java" beforeDir="false" afterPath="$PROJECT_DIR$/../RentCompanyAPI_Sprint8/src/main/java/telran.cars/dto/RemovedCarData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../RentCompanyAPI_Sprint8/src/site/telran/cars/dto/RentCarData.java" beforeDir="false" afterPath="$PROJECT_DIR$/../RentCompanyAPI_Sprint8/src/main/java/telran.cars/dto/RentCarData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../RentCompanyAPI_Sprint8/src/site/telran/cars/dto/RentRecord.java" beforeDir="false" afterPath="$PROJECT_DIR$/../RentCompanyAPI_Sprint8/src/main/java/telran.cars/dto/RentRecord.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../RentCompanyAPI_Sprint8/src/site/telran/cars/dto/ReturnCarData.java" beforeDir="false" afterPath="$PROJECT_DIR$/../RentCompanyAPI_Sprint8/src/main/java/telran.cars/dto/ReturnCarData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../RentCompanyAPI_Sprint8/src/site/telran/cars/dto/State.java" beforeDir="false" afterPath="$PROJECT_DIR$/../RentCompanyAPI_Sprint8/src/main/java/telran.cars/dto/State.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../RentCompanyAPI_Sprint8/src/site/telran/cars/dto/StatisticsData.java" beforeDir="false" afterPath="$PROJECT_DIR$/../RentCompanyAPI_Sprint8/src/main/java/telran.cars/dto/StatisticsData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../RentCompanyAPI_Sprint8/src/site/telran/cars/model/IRentCompany.java" beforeDir="false" afterPath="$PROJECT_DIR$/../RentCompanyAPI_Sprint8/src/main/java/telran.cars/model/IRentCompany.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RentCompanyAPI_Sprint8/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../RentCompanyAPI_Sprint8/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RentCompanyServer/src/main/java/telran/cars/controllers/ClerkController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../RentCompanyServer/src/main/java/telran/cars/controllers/ClerkController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RentCompanyServer/src/main/java/telran/cars/controllers/StatisticController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../RentCompanyServer/src/main/java/telran/cars/controllers/StatisticController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,20 +26,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "/Users/xcplaza/idea/RentCompanyServer_Sprint7",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/xcplaza/idea/RentCompanyServer_Sprint7&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -69,6 +51,7 @@
       <workItem from="1693990987497" duration="21000" />
       <workItem from="1693991240019" duration="170000" />
       <workItem from="1693991950378" duration="4803000" />
+      <workItem from="1694009200256" duration="58000" />
     </task>
     <servers />
   </component>

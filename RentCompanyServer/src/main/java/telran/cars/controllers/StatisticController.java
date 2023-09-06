@@ -25,15 +25,20 @@ public class StatisticController {
         return service.getRentRecordsAtDates(fromDate, toDate);
     }
 
-//    @GetMapping("/models/popular/{dateFrom}/{dateTo}/{ageFrom}/{ageTo}")
-//    List<String> getMostPopularCarModels(LocalDate fromDate, LocalDate toDate, int fromAge, int toAge){
-//        return null;
-//    }
-//
-//    @GetMapping("/models/profitable/{dateFrom}/{dateTo}")
-//    List<String> getMostProfitableCarModels(LocalDate fromDate, LocalDate toDate){
-//        return null;
-//    }
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    @GetMapping("/models/popular/{dateFrom}/{dateTo}/{ageFrom}/{ageTo}")
+    List<String> getMostPopularCarModels(@PathVariable String dateFrom, @PathVariable String dateTo, @PathVariable int ageFrom, @PathVariable int ageTo){
+        LocalDate fromD = LocalDate.parse(dateFrom);
+        LocalDate toD = LocalDate.parse(dateTo);
+        return service.getMostPopularCarModels(fromD, toD, ageFrom, ageTo);
+    }
+
+    @GetMapping("/models/profitable/{dateFrom}/{dateTo}")
+    List<String> getMostProfitableCarModels(@PathVariable String dateFrom, @PathVariable String dateTo){
+        LocalDate fromDate = LocalDate.parse(dateFrom);
+        LocalDate toDate = LocalDate.parse(dateTo);
+        return service.getMostProfitableCarModels(fromDate, toDate);
+    }
 
     @GetMapping("/drivers/active")
     List<Driver> getMostActiveDriver(){
