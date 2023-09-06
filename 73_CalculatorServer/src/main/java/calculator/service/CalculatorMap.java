@@ -30,7 +30,6 @@ public class CalculatorMap implements ICalculator
 		mapOperations.put("*", (op1, op2) -> op1*op2);
 		mapOperations.put("/", (op1, op2) -> op2==0 ? null : op1/op2);
 	}
-
 	Logger logger = LoggerFactory.getLogger(CalculatorMap.class);
 
 	@Value("${wrongValue:-10000}")
