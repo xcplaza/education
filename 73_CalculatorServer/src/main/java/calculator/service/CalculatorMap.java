@@ -5,6 +5,9 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.BinaryOperator;
 
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.EnableMBeanExport;
 import org.springframework.jmx.export.annotation.ManagedAttribute;
 import org.springframework.jmx.export.annotation.ManagedOperation;
@@ -24,6 +27,24 @@ public class CalculatorMap implements ICalculator
 		mapOperations.put("-", (op1, op2) -> op1-op2);
 		mapOperations.put("*", (op1, op2) -> op1*op2);
 		mapOperations.put("/", (op1, op2) -> op2==0 ? null : op1/op2);
+	}
+
+	@Value("${wrongValue:-10000}")
+	double value;
+
+	@PostConstruct
+	public void welcomeMessage(){
+		System.out.println("Welcome " + value);
+	}
+
+	@PreDestroy
+	public void footerMessage(){
+		System.out.println("Footer message " + value);
+	}
+
+	@ManagedAttribute
+	public double getValue(){
+		return value;
 	}
 
 	@ManagedAttribute
