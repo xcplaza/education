@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ecca329b-1be2-441a-916b-793cf9174aa6" name="Changes" comment="update" />
+    <list default="true" id="ecca329b-1be2-441a-916b-793cf9174aa6" name="Changes" comment="update">
+      <change beforePath="$PROJECT_DIR$/../73_CalculatorServer/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../73_CalculatorServer/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../73_CalculatorServer/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../73_CalculatorServer/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../73_CurrencyConverterServer/src/main/java/currencyconverter/service/CurrencyConverterImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../73_CurrencyConverterServer/src/main/java/currencyconverter/service/CurrencyConverterImpl.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -22,24 +26,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "/Users/xcplaza/idea/73_CurrencyConverterClient",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.0",
-    "spring.configuration.checksum": "145520903d572f9da7dd1ec881e08b65",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/xcplaza/idea/73_CurrencyConverterClient&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;145520903d572f9da7dd1ec881e08b65&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -54,6 +58,7 @@
       <workItem from="1693903809399" duration="1186000" />
       <workItem from="1693909079503" duration="5000" />
       <workItem from="1693939439309" duration="1768000" />
+      <workItem from="1693987675123" duration="359000" />
     </task>
     <task id="LOCAL-00001" summary="update">
       <option name="closed" value="true" />

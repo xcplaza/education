@@ -7,6 +7,8 @@ import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.Set;
 
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.EnableMBeanExport;
 import org.springframework.http.HttpMethod;
@@ -32,6 +34,7 @@ public class CurrencyConverterImpl implements ICurrencyConverter
 	static RestTemplate restTemplate = new RestTemplate();
 	static LocalDateTime lastUpdate = LocalDateTime.now();
 	static private CurrencyRates currencyRates = getRates();
+	static private int count = 0;
 	
 	@Value("${refreshPeriod:2000}")
 	int period;
@@ -76,13 +79,14 @@ public class CurrencyConverterImpl implements ICurrencyConverter
 	{
 		if(refreshRequered())
 			currencyRates = getRates();
-		
+
 		return currencyRates.rates.keySet();
 	}
 
 	@ManagedOperation
 	public double convert(String from, String to, double amount)
 	{
+		count++;
 		if (from == null || to == null)
 			throw new IllegalArgumentException("Enter currency");
 		
@@ -105,5 +109,28 @@ public class CurrencyConverterImpl implements ICurrencyConverter
 		double from = currencyRates.rates.get(code);
 		double to = currencyRates.rates.get("EUR");
 		return to / from;
+	}
+
+	@PostConstruct
+	public void welcomeMessage(){
+		Set<String> codes = getCodes();
+		int counter = 0;
+		StringBuilder line = new StringBuilder();
+		for (String code : codes)
+		{
+			line.append(code).append(" ");
+			if (++counter % 20 == 0)
+			{
+				System.out.println(line.toString());
+				line.setLength(0);
+			}
+		}
+		if (line.length() > 0)
+			System.out.println(line.toString());
+	}
+
+	@PreDestroy
+	public void footerMessage(){
+		System.out.println("Count converter " + count);
 	}
 }
