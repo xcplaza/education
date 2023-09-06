@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5296c7f5-f540-40ea-a68f-ac2b09a2ae6c" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../RentCompanyServer_Sprint7/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../RentCompanyServer_Sprint7/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../73_CurrencyConverterClient/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../73_CurrencyConverterClient/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,6 +40,7 @@
       <updated>1693990908843</updated>
       <workItem from="1693990909943" duration="55000" />
       <workItem from="1693991249211" duration="167000" />
+      <workItem from="1693991963110" duration="8000" />
     </task>
     <servers />
   </component>
