@@ -25,6 +25,9 @@ import org.springframework.web.client.RestTemplate;
 import currencyconverter.ICurrencyConverter;
 import currencyconverter.dto.CurrencyRates;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 @Service
 @ManagedResource
 @EnableMBeanExport
@@ -35,6 +38,8 @@ public class CurrencyConverterImpl implements ICurrencyConverter
 	static LocalDateTime lastUpdate = LocalDateTime.now();
 	static private CurrencyRates currencyRates = getRates();
 	static private int count = 0;
+
+	Logger logger = LoggerFactory.getLogger(CurrencyConverterImpl.class);
 	
 	@Value("${refreshPeriod:2000}")
 	int period;
@@ -121,12 +126,12 @@ public class CurrencyConverterImpl implements ICurrencyConverter
 			line.append(code).append(" ");
 			if (++counter % 20 == 0)
 			{
-				System.out.println(line.toString());
+				logger.info(line.toString());
 				line.setLength(0);
 			}
 		}
 		if (line.length() > 0)
-			System.out.println(line.toString());
+			logger.info(line.toString());
 	}
 
 	@PreDestroy
