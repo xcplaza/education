@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ecca329b-1be2-441a-916b-793cf9174aa6" name="Changes" comment="update">
-      <change beforePath="$PROJECT_DIR$/../73_CalculatorServer/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../73_CalculatorServer/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../73_CalculatorServer/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../73_CalculatorServer/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../73_CurrencyConverterServer/src/main/java/currencyconverter/service/CurrencyConverterImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../73_CurrencyConverterServer/src/main/java/currencyconverter/service/CurrencyConverterImpl.java" afterDir="false" />
-    </list>
+    <list default="true" id="ecca329b-1be2-441a-916b-793cf9174aa6" name="Changes" comment="update" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -58,7 +54,7 @@
       <workItem from="1693903809399" duration="1186000" />
       <workItem from="1693909079503" duration="5000" />
       <workItem from="1693939439309" duration="1768000" />
-      <workItem from="1693987675123" duration="359000" />
+      <workItem from="1693987675123" duration="626000" />
     </task>
     <task id="LOCAL-00001" summary="update">
       <option name="closed" value="true" />
