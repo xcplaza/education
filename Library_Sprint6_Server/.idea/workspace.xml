@@ -5,14 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7b2b5c50-5cbc-4835-ba91-c6d5ca9bf2b9" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../55_CW_CLiView2/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../55_CW_CLiView2/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../72_CalculatorClient/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../72_CalculatorClient/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../73_CalculatorServer/src/main/java/calculator/service/CalculatorMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/../73_CalculatorServer/src/main/java/calculator/service/CalculatorMap.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../73_CurrencyConverterAPI/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../73_CurrencyConverterAPI/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../73_CurrencyConverterAPI/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/../73_CurrencyConverterAPI/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../73_CurrencyConverterAPI/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/../73_CurrencyConverterAPI/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../73_CurrencyConverterClient/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../73_CurrencyConverterClient/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../73_CurrencyConverterClient/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../72_CalculatorClient/src/main/java/telran/CalculatorClientAppl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../72_CalculatorClient/src/main/java/telran/CalculatorClientAppl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RentCompanyAPI_Sprint8/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../RentCompanyAPI_Sprint8/.idea/misc.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,28 +17,28 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 1
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
   <component name="ProjectId" id="2UwbICj3xoDzlpUjOQST3NYTX9a" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "/Users/xcplaza/idea/Library_Sprint6_Server",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/xcplaza/idea/Library_Sprint6_Server&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -53,6 +48,7 @@
       <option name="presentableId" value="Default" />
       <updated>1693853507931</updated>
       <workItem from="1693853509118" duration="323000" />
+      <workItem from="1694006849515" duration="3000" />
     </task>
     <servers />
   </component>

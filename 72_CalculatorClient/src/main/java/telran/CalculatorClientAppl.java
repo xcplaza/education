@@ -22,7 +22,7 @@ public class CalculatorClientAppl
 				new CalculationItem(inputOutput, calculator), 
 				new ExitItem() 
 				};
-		Menu menu = new Menu(items, inputOutput);
+		Menu menu = new Menu(inputOutput, items);
 		menu.runMenu();
 	}
 
