@@ -1,7 +1,10 @@
-package persons;
+package person;
 
-import java.io.FileOutputStream;
-import java.io.ObjectOutputStream;
+import person.dto.Address;
+import person.dto.Child;
+import person.dto.Employee;
+import person.dto.Person;
+
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Random;
@@ -20,18 +23,10 @@ public class PersonCreateAppl {
 	private static final int MIN_SALARY = 5000;
 	private static final int MAX_SALARY = 100000;
 	private static final String[] TITLES = new String[] { "programmer", "manager", "cleaner", "qa" };
+//	private static final String FILE_NAME = "persons.data";
 
 	public static void main(String[] args) {
-		new Person(1, "name", LocalDate.now(), new Address("city", "street", 0, 0));
-		new Child(2, "nameC", LocalDate.now(), new Address("city", "street", 0, 0), "garten");
-		new Employee(3, "nameE", LocalDate.now(), new Address("city", "street", 0, 0), "company", 10000,
-				"title");
 		List<Person> list = getRandomPersons();
-		try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("persons.data"))) {
-			out.writeObject(list);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 	}
 
 	private static List<Person> getRandomPersons() {

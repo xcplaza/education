@@ -1,12 +1,17 @@
-package persons;
+package person.dto;
+
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
+@NoArgsConstructor
+@Getter
 @SuppressWarnings("serial")
 public class Employee extends Person {
-	String company;
-	int salary;
-	String title;
+	public String company;
+	public int salary;
+	public String title;
 
 	public Employee(int id, String name, LocalDate birthDate, Address address, String company, int salary,
 			String title) {

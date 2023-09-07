@@ -1,7 +1,12 @@
-package persons;
+package person.dto;
+
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
+@NoArgsConstructor
+@Getter
 @SuppressWarnings("serial")
 public class Address implements Serializable {
 	String city;
