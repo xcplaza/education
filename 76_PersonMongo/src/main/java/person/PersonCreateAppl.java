@@ -1,15 +1,17 @@
 package person;
 
-import person.dto.Address;
-import person.dto.Child;
-import person.dto.Employee;
-import person.dto.Person;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
+import person.dto.*;
 
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Stream;
 
+@SpringBootApplication
 public class PersonCreateAppl {
 	private static final int N_PERSONS = 100;
 	private static final int EMP_PROBOBILITY = 50;
@@ -27,6 +29,13 @@ public class PersonCreateAppl {
 
 	public static void main(String[] args) {
 		List<Person> list = getRandomPersons();
+		//		@Autowired
+		//		PersonRepository;
+		//		OR
+
+		ConfigurableApplicationContext cac = SpringApplication.run(PersonCreateAppl.class, args);
+		PersonRepository repo = cac.getBean(PersonRepository.class);
+		repo.saveAll(list);
 	}
 
 	private static List<Person> getRandomPersons() {
