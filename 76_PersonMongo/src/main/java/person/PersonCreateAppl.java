@@ -1,10 +1,10 @@
 package person;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 import person.dto.*;
+import person.repository.PersonRepository;
 
 import java.time.LocalDate;
 import java.util.List;
