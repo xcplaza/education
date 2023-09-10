@@ -9,6 +9,9 @@ import java.util.List;
 @Repository
 public interface PersonRepository extends MongoRepository<Person, Integer> {
     List<Person> findByAddressCity(String string);
-    List<Person> findByAddressCityAndBirthDateBetween(String rehovot, LocalDate localDate, LocalDate now);
+    List<Person> findByAddressCityIgnoreCaseAndBirthDateBetween(String rehovot, LocalDate localDate, LocalDate now);
     List<Person> findByAddressCityIn(String[] strings);
+    List<Person> findByNameLikeOrIdGreaterThan(String number, int i);
+    List<Person> findByNameLikeOrderByIdDesc(String number);
+    List<Person> findBySalaryBetween(int i, int i1);
 }
