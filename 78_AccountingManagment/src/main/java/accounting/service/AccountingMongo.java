@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.LinkedList;
+import java.util.Set;
 
 @Service
 public class AccountingMongo implements IAccounting {
@@ -65,6 +66,7 @@ public class AccountingMongo implements IAccounting {
     @Override
     public UserAccountResponseDTO editUser(String login, UserUpdateDTO account) {
         UserAccount user = repository.findById(login).orElseThrow(() -> new UserNotFoundExeption(login));
+        repository.save(user);
         return null;
     }
 
@@ -99,12 +101,15 @@ public class AccountingMongo implements IAccounting {
 
     @Override
     public boolean revokeAccount(String login) {
+//        return repository.findById(login).orElseThrow(() -> new UserNotFoundExeption(login));
         return false;
     }
 
+
     @Override
     public boolean activateAccount(String login) {
-        return false;
+        UserAccount user = repository.findById(login).orElseThrow(() -> new UserNotFoundExeption(login));
+        return user.isRevoked();
     }
 
     @Override
@@ -115,12 +120,16 @@ public class AccountingMongo implements IAccounting {
 
     @Override
     public RolesResponseDTO removeRole(String login, String role) {
+        UserAccount user = repository.findById(login).orElseThrow(() -> new UserNotFoundExeption(login));
+        Set<String> userRoles = user.getRoles();
         return null;
     }
 
     @Override
     public RolesResponseDTO getRoles(String login) {
-        return null;
+        UserAccount user = repository.findById(login).orElseThrow(() -> new UserNotFoundExeption(login));
+        Set<String> userRoles = user.getRoles();
+        return new RolesResponseDTO(login, userRoles);
     }
 
     @Override
