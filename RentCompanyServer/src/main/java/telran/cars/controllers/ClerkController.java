@@ -37,16 +37,16 @@ public class ClerkController {
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     @PostMapping("/car/rent")
-    CarsReturnCode rentCar(@RequestBody String regNumber, @RequestBody long licenseId, @RequestBody String rentDate, @RequestBody int rentDays){
-        LocalDate rentD = LocalDate.parse(rentDate);
-        return service.rentCar(regNumber, licenseId, rentD, rentDays);
+    CarsReturnCode rentCar(@RequestBody String regNumber, @RequestBody long licenseId, @RequestBody LocalDate rentDate, @RequestBody int rentDays){
+//        LocalDate rentD = LocalDate.parse(rentDate);
+        return service.rentCar(regNumber, licenseId, rentDate, rentDays);
     }
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     @PostMapping("/car/return")
-    RemovedCarData returnCar(@RequestBody String regNumber, @RequestBody long licenseId, @RequestBody String returnDate, @RequestBody int damages, @RequestBody int tankPercent){
-        LocalDate retD = LocalDate.parse(returnDate);
-        return service.returnCar(regNumber, licenseId, retD, damages, tankPercent);
+    RemovedCarData returnCar(@RequestBody String regNumber, @RequestBody long licenseId, @RequestBody LocalDate returnDate, @RequestBody int damages, @RequestBody int tankPercent){
+//        LocalDate retD = LocalDate.parse(returnDate);
+        return service.returnCar(regNumber, licenseId, returnDate, damages, tankPercent);
     }
 
     @GetMapping("/models")
