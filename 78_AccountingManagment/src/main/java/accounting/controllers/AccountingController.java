@@ -8,6 +8,7 @@ import accounting.service.IAccounting;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.time.LocalDateTime;
 import java.util.Base64;
 
@@ -17,7 +18,7 @@ public class AccountingController {
     @Autowired
     IAccounting service;
 
-    @PostMapping("/register")
+    @PostMapping({"/register", "/register/"})
     public UserAccountResponseDTO registration(@RequestBody UserRegisterDTO account) {
         return service.registration(account);
     }
@@ -28,26 +29,31 @@ public class AccountingController {
     }
 
     @PostMapping("/login")
-    public UserAccountResponseDTO loginUser(@RequestHeader("Authorization") String token) {
-        String[] credentials = getGredentials(token);
-        return service.getUser(credentials[0]); // only login!
+    public UserAccountResponseDTO loginUser(Principal principal) {
+//        String[] credentials = getGredentials(token);
+        return service.getUser(principal.getName());
     }
 
-    private String[] getGredentials(String token) {
-        String[] base = token.split(" "); // split BASIC from - login:password
-        String decode = new String(Base64.getDecoder().decode(base[1])); // decode token
-        return decode.split(":"); // split login:password
-    }
+//    private String[] getGredentials(String token) {
+//        String[] base = token.split(" "); // split BASIC from - login:password
+//        String decode = new String(Base64.getDecoder().decode(base[1])); // decode token
+//        return decode.split(":"); // split login:password
+//    }
 
     @PutMapping("/user/{login}")
     public UserAccountResponseDTO editUser(@PathVariable String login, @RequestBody UserUpdateDTO account) {
         return service.editUser(login, account);
     }
 
-    @PutMapping("/password/{login}")
-    public boolean updatePassword(@PathVariable String login, @RequestHeader("X-New-Password") String password) {
-        return service.updatePassword(login, password);
+    @PutMapping("/password")
+    public boolean updatePassword(Principal pr, @RequestHeader("X-New-Password") String password) {
+        return service.updatePassword(pr.getName(), password);
     }
+
+//    @PutMapping("/password/{login}")
+//    public boolean updatePassword(@PathVariable String login, @RequestHeader("X-New-Password") String password) {
+//        return service.updatePassword(login, password);
+//    }
 
     @PutMapping("/revoke/{login}")
     public boolean revokeAccount(@PathVariable String login) {
