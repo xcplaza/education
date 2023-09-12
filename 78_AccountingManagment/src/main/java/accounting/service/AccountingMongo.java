@@ -12,9 +12,13 @@ import accounting.repo.UserAccountRepository;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Set;
 
@@ -54,7 +58,9 @@ public class AccountingMongo implements IAccounting {
 
     @Override
     public UserAccountResponseDTO removeUser(String login) {
-        return null;
+        UserAccount user = repository.findById(login).orElseThrow(() -> new UserNotFoundExeption(login));
+        repository.delete(user);
+        return new UserAccountResponseDTO(login, user.getFirstName(), user.getLastName(), user.getRoles());
     }
 
     @Override
@@ -66,8 +72,12 @@ public class AccountingMongo implements IAccounting {
     @Override
     public UserAccountResponseDTO editUser(String login, UserUpdateDTO account) {
         UserAccount user = repository.findById(login).orElseThrow(() -> new UserNotFoundExeption(login));
+        if (user.getFirstName() != null)
+            user.setFirstName(user.getFirstName());
+        if (user.getLastName() != null)
+            user.setLastName(user.getLastName());
         repository.save(user);
-        return null;
+        return new UserAccountResponseDTO(login, user.getFirstName(), user.getLastName(), user.getRoles());
     }
 
     @Override
@@ -101,35 +111,55 @@ public class AccountingMongo implements IAccounting {
 
     @Override
     public boolean revokeAccount(String login) {
-//        return repository.findById(login).orElseThrow(() -> new UserNotFoundExeption(login));
-        return false;
+        UserAccount user = repository.findById(login).orElseThrow(() -> new UserNotFoundExeption(login));
+        if (user.isRevoked() == true)
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "Account " + login + " is revoked");
+        user.setRevoked(true);
+        repository.save(user);
+        return true;
     }
 
 
     @Override
     public boolean activateAccount(String login) {
         UserAccount user = repository.findById(login).orElseThrow(() -> new UserNotFoundExeption(login));
-        return user.isRevoked();
+        if (!user.isRevoked())
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "Account " + login + " already revoked");
+        user.setRevoked(false);
+        user.setActivationDate(LocalDateTime.now());
+        repository.save(user);
+        return true;
     }
 
     @Override
     public RolesResponseDTO addRole(String login, String role) {
         //USER, ADMIN
-        return null;
+        UserAccount user = repository.findById(login).orElseThrow(() -> new UserNotFoundExeption(login));
+
+        HashSet<String> roles = user.getRoles();
+        if (roles.contains(role))
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "Role " + role + " already exists");
+        roles.add(role);
+        repository.save(user);
+        return new RolesResponseDTO(login, user.getRoles());
     }
 
     @Override
     public RolesResponseDTO removeRole(String login, String role) {
         UserAccount user = repository.findById(login).orElseThrow(() -> new UserNotFoundExeption(login));
-        Set<String> userRoles = user.getRoles();
-        return null;
+        HashSet<String> roles = user.getRoles();
+        if (!roles.contains(role))
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "Role " + role + " not exists");
+        roles.remove(role);
+        repository.save(user);
+        return new RolesResponseDTO(login, user.getRoles());
     }
 
     @Override
     public RolesResponseDTO getRoles(String login) {
         UserAccount user = repository.findById(login).orElseThrow(() -> new UserNotFoundExeption(login));
-        Set<String> userRoles = user.getRoles();
-        return new RolesResponseDTO(login, userRoles);
+        HashSet<String> roles = user.getRoles();
+        return user.isRevoked() ? null : new RolesResponseDTO(login, user.getRoles());
     }
 
     @Override
