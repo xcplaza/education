@@ -9,12 +9,13 @@ import accounting.dto.exceptions.UserNotFoundExeption;
 import accounting.dto.exceptions.WrongPasswordException;
 import accounting.entities.UserAccount;
 import accounting.repo.UserAccountRepository;
-import org.mindrot.jbcrypt.BCrypt;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
+
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -22,12 +23,15 @@ import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.LinkedList;
-import java.util.Set;
+
 
 @Service
 public class AccountingMongo implements IAccounting, CommandLineRunner {
     @Autowired
     UserAccountRepository repository;
+
+    @Autowired
+    PasswordEncoder encoder;
 
     @Value("${password_leght:5}")
     private int passwordLenght;
@@ -51,7 +55,7 @@ public class AccountingMongo implements IAccounting, CommandLineRunner {
     }
 
     private String getHashCode(String password) {
-        return BCrypt.hashpw(password, BCrypt.gensalt());
+        return encoder.encode(password);
     }
 
     private boolean isPasswordValid(String password) {
@@ -89,7 +93,7 @@ public class AccountingMongo implements IAccounting, CommandLineRunner {
 
         UserAccount user = repository.findById(login).orElseThrow(() -> new UserNotFoundExeption(login));
 
-        if (BCrypt.checkpw(password, user.getHash()))
+        if (encoder.matches(password, user.getHash()))
             throw new WrongPasswordException(password);
 
         LinkedList<String> lastHashs = user.getLastHashCodes();
@@ -101,14 +105,14 @@ public class AccountingMongo implements IAccounting, CommandLineRunner {
             lastHashs.removeFirst();
         lastHashs.add(user.getHash());
 
-        user.setHash(BCrypt.hashpw(password, BCrypt.gensalt()));
+        user.setHash(encoder.encode(password));
         user.setActivationDate(LocalDateTime.now());
         repository.save(user);
         return true;
     }
 
     private boolean isPasswordFromLast(String password, LinkedList<String> lastHashs) {
-        return lastHashs.stream().anyMatch(hash -> BCrypt.checkpw(password, hash));
+        return lastHashs.stream().anyMatch(hash -> encoder.matches(password, hash));
     }
 
     @Override
@@ -177,7 +181,7 @@ public class AccountingMongo implements IAccounting, CommandLineRunner {
     @Override
     public void run(final String... args) throws Exception {
         if (!repository.existsById("admin")) {
-            UserAccount user = new UserAccount("admin", BCrypt.hashpw("admin", BCrypt.gensalt()), "", "");
+            UserAccount user = new UserAccount("admin", encoder.encode("admin"), "", "");
             user.setRoles(new HashSet<>(Arrays.asList("ADMIN")));
             repository.save(user);
         }
