@@ -6,6 +6,8 @@ import accounting.dto.UserRegisterDTO;
 import accounting.dto.UserUpdateDTO;
 import accounting.service.IAccounting;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
@@ -14,6 +16,7 @@ import java.util.Base64;
 
 @RestController
 @RequestMapping("/account")
+@EnableMethodSecurity(prePostEnabled = true) //приоритет над нашими spring security firewall
 public class AccountingController {
     @Autowired
     IAccounting service;
@@ -24,6 +27,7 @@ public class AccountingController {
     }
 
     @DeleteMapping("/user/{login}")
+    @PreAuthorize("hasRole('ADMIN')") // сначала сделать это, до requestMatchers
     public UserAccountResponseDTO removeUser(@PathVariable String login) {
         return service.removeUser(login);
     }
