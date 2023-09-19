@@ -22,7 +22,7 @@ public class AuthorizationConfiguration {
 
         http.authorizeHttpRequests(autorize -> autorize
 //                preAuthorize
-                .requestMatchers("/operations","/account/register", "/account/register/").permitAll()
+                .requestMatchers("/account/register", "/account/register/", "/operations").permitAll()
                 .requestMatchers("/account/user/*/role/*", "/account/revoke/*", "/account/activate/*", "/length", "/length/*").hasRole("ADMIN")
                 .requestMatchers(HttpMethod.PUT, "/account/user/{login}").access(new WebExpressionAuthorizationManager("#login == authentication.name"))
 //                .requestMatchers(HttpMethod.PUT, "/account/user/{login}").access(new WebExpressionAuthorizationManager("@customWebSecurity.checkOwner(#login)"))

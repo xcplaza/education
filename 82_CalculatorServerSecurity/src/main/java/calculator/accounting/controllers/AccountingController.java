@@ -21,7 +21,7 @@ public class AccountingController {
     @Autowired
     IAccounting service;
 
-    @PostMapping({"/register", "/register/"})
+    @PostMapping({"/register", "/register/", "/operations"})
     public UserAccountResponseDTO registration(@RequestBody UserRegisterDTO account) {
         return service.registration(account);
     }
