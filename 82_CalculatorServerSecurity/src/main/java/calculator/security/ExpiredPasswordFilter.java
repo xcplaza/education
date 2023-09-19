@@ -1,4 +1,4 @@
-package calculator.accounting.security;
+package calculator.security;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

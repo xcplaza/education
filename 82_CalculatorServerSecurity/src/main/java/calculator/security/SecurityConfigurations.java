@@ -1,4 +1,4 @@
-package calculator.accounting.security;
+package calculator.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

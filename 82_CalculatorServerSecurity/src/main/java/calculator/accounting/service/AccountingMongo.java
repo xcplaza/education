@@ -179,7 +179,7 @@ public class AccountingMongo implements IAccounting, CommandLineRunner {
     @Override
     public void run(final String... args) throws Exception {
         if (!repository.existsById("admin")) {
-            UserAccount user = new UserAccount("admin", encoder.encode("admin"), "admin", "admin");
+            UserAccount user = new UserAccount("admin", encoder.encode("Admink@123"), "admin", "admin");
             user.setRoles(new HashSet<>(Arrays.asList("ADMIN")));
             repository.save(user);
         }

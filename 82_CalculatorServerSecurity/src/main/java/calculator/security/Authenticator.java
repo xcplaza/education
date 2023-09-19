@@ -1,4 +1,4 @@
-package calculator.accounting.security;
+package calculator.security;
 
 import calculator.accounting.entities.UserAccount;
 import calculator.accounting.repo.UserAccountRepository;
