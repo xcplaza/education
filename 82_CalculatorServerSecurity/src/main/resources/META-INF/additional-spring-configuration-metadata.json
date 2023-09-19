@@ -1,0 +1,5 @@
+{"properties": [{
+  "name": "wrongValue",
+  "type": "java.lang.Double",
+  "description": "Wrong value for exceptions"
+}]}
