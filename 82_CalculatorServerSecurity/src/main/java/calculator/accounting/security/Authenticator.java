@@ -20,7 +20,7 @@ public class Authenticator implements UserDetailsService {
     @Autowired
     UserAccountRepository repository;
 
-    @Value("${activation_period}:3000")
+    @Value("${activation_period:3000}")
     int activationPeriod;
 
     @Override
