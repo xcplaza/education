@@ -5,12 +5,17 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.BinaryOperator;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.EnableMBeanExport;
 import org.springframework.jmx.export.annotation.ManagedAttribute;
 import org.springframework.jmx.export.annotation.ManagedOperation;
 import org.springframework.jmx.export.annotation.ManagedResource;
 import org.springframework.stereotype.Service;
+
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
 
 @Service(value="service1")
 @ManagedResource
@@ -27,8 +32,22 @@ public class CalculatorMap implements ICalculator
 		mapOperations.put("/", (op1, op2) -> op2==0 ? null : op1/op2);
 	}
 	
+	Logger logger = LoggerFactory.getLogger(CalculatorMap.class);
+	
 	@Value("${wrongValue:-10000}")
 	double value;
+	
+	@PostConstruct
+	public void welcomeMessage()
+	{
+		logger.info("Welcome with wrong value = " + value);
+	}
+	
+	@PreDestroy
+	public void footerMessage()
+	{
+		logger.info("Bye with wrong value = " + value);
+	}
 	
 	@ManagedAttribute
 	public double getValue()
@@ -42,7 +61,6 @@ public class CalculatorMap implements ICalculator
 		this.value = value;
 	}
 
-	@Override
 	public Set<String> getOperationCodes()
 	{
 		return mapOperations.keySet();
@@ -58,5 +76,10 @@ public class CalculatorMap implements ICalculator
 		{
 			return value;
 		}
+	}
+
+	public int numberLength(int number)
+	{
+		return Integer.toString(number).length();
 	}
 }

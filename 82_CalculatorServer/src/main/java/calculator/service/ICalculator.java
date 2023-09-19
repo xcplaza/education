@@ -6,4 +6,5 @@ public interface ICalculator
 {
 	Set<String> getOperationCodes();
 	double calculate(double op1, double op2, String operation);
+	int numberLength(int number);
 }

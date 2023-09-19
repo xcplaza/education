@@ -9,7 +9,8 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-public class RolesResponseDTO {
-    private String login;
-    private Set<String> roles;
+public class RolesResponseDto
+{
+	private String login;
+	private Set<String> roles;
 }

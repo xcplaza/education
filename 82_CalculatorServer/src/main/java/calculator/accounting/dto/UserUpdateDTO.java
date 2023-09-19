@@ -7,7 +7,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-public class UserUpdateDTO {
-    private String firstName;
-    private String lastName;
+public class UserUpdateDto
+{
+	private String firstName;
+	private String lastName;
 }

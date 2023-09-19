@@ -24,7 +24,7 @@ public class Authenticator implements UserDetailsService {
     int activationPeriod;
 
     @Override
-    public UserDetails loadUserByUsername(final String username) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         UserAccount user = repository.findById(username).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
         String password = user.getHash();
         String[] roles = user.getRoles().stream().map(r -> "ROLE_" + r).toArray(String[]::new);
