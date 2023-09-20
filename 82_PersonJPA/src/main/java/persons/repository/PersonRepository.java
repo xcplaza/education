@@ -9,6 +9,8 @@ import java.util.List;
 public interface PersonRepository extends JpaRepository<Person, Integer> {
 
     List<Person> findByAddressCity(String city);
-
     List<Person> findByBirthDateBetween(LocalDate from, LocalDate to);
+
+    List<Person> findPersonsBetweenAges(int minAge, int maxAge);
+    List<Person> findByName(String name);
 }

@@ -14,4 +14,8 @@ public interface IPerson {
     List<Person> getPersonByBirthDates(LocalDate from, LocalDate to);
     Person getPersonById(int id);
     boolean updateAddress(int id, Address address);
+
+    Person updatePersonName(int id, String name);
+	List<Person> findPersonsByName(String name);
+    List<Person> findPersonsBetweenAges(int minAge, int maxAge);
 }
