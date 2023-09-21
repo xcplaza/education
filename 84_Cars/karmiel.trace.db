@@ -1,8 +1,0 @@
-2023-09-20 14:18:53 jdbc[13]: exception
-org.h2.jdbc.JdbcSQLSyntaxErrorException: Синтаксическая ошибка в выражении SQL "SELECT * FROM CHILD EMPLOYEE [*]PERSON"
-Syntax error in SQL statement "SELECT * FROM CHILD EMPLOYEE [*]PERSON"; SQL statement:
-SELECT * FROM CHILD EMPLOYEE PERSON [42000-214]
-2023-09-20 14:18:58 jdbc[13]: exception
-org.h2.jdbc.JdbcSQLSyntaxErrorException: Синтаксическая ошибка в выражении SQL "[*]EMPLOYEE"; ожидалось "EXPLAIN, EXECUTE"
-Syntax error in SQL statement "[*]EMPLOYEE"; expected "EXPLAIN, EXECUTE"; SQL statement:
-EMPLOYEE [42001-214]
