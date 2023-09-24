@@ -10,6 +10,7 @@ import cars.dto.CarDTO;
 import cars.dto.ModelDTO;
 import cars.dto.OwnerDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cglib.core.Local;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,18 +19,19 @@ import org.springframework.web.server.ResponseStatusException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
 public class CarsJPA implements ICars {
     CarsRepository carsRepo;
-    OwnersRepository ownerRepo;
+    OwnersRepository ownersRepo;
     ModelsRepository modelsRepo;
 
     @Autowired
-    public CarsJPA(CarsRepository carsRepo, OwnersRepository ownerRepo, ModelsRepository modelsRepo) {
+    public CarsJPA(CarsRepository carsRepo, OwnersRepository ownersRepo, ModelsRepository modelsRepo) {
         this.carsRepo = carsRepo;
-        this.ownerRepo = ownerRepo;
+        this.ownersRepo = ownersRepo;
         this.modelsRepo = modelsRepo;
     }
 
@@ -41,7 +43,7 @@ public class CarsJPA implements ICars {
         if (carsRepo.existsById(carDTO.getRegNumber()))
             throw new ResponseStatusException(HttpStatus.CONFLICT, "Car is already exists");
         Model model = modelsRepo.findById(carDTO.getModelName()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Model isn't exists"));
-        Owner owner = ownerRepo.findById(carDTO.getOwnerId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Owner isn't exists"));
+        Owner owner = ownersRepo.findById(carDTO.getOwnerId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Owner isn't exists"));
         Car car = new Car(carDTO.getRegNumber(), carDTO.getColor(), carDTO.getPurchaseDate(), model, owner);
         carsRepo.save(car);
         return true;
@@ -49,12 +51,20 @@ public class CarsJPA implements ICars {
 
     @Override
     public boolean addModel(ModelDTO modelDTO) {
-        return false;
+        if (modelDTO == null || modelsRepo.existsById(modelDTO.getModelName()))
+            return false;
+        Model model = new Model(modelDTO.getModelName(), modelDTO.getVolume(), modelDTO.getCompany());
+        modelsRepo.save(model);
+        return true;
     }
 
     @Override
     public boolean addOwner(OwnerDTO ownerDTO) {
-        return false;
+        if (ownerDTO == null || modelsRepo.existsById(ownerDTO.getName()))
+            return false;
+        Owner owner = new Owner(ownerDTO.getId(), ownerDTO.getName(), ownerDTO.getBirthYear(), new ArrayList<>());
+        ownersRepo.save(owner);
+        return true;
     }
 
     @Override
@@ -72,12 +82,24 @@ public class CarsJPA implements ICars {
 
     @Override
     public ModelDTO getModel(String modelName) {
-        return null;
+        return toModelDTO(getModelEntities(modelName));
+    }
+
+    private Model getModelEntities(final String modelName) {
+        return modelsRepo.findById(modelName).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Model isn't exists"));
+    }
+
+    private ModelDTO toModelDTO(Model model) {
+        return new ModelDTO(model.modelName, model.volume, model.company);
     }
 
     @Override
     public OwnerDTO getOwner(int ownerId) {
-        return null;
+        return toOwnerDTO(getOwnerEntities(ownerId));
+    }
+
+    private Owner getOwnerEntities(final int ownerId) {
+        return ownersRepo.findById(ownerId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Owner isn't exists"));
     }
 
     @Override
@@ -93,7 +115,7 @@ public class CarsJPA implements ICars {
     @Override
 //    @Transactional(readOnly = true) // Transactional - от spring!!! или fetch = FetchType.EAGER в Owner
     public List<CarDTO> getCarsByOwner(int ownerId) {
-        Owner owner = ownerRepo.findById(ownerId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Owner isn't exists"));
+        Owner owner = ownersRepo.findById(ownerId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Owner isn't exists"));
         List<Car> list = owner.cars;
         if (list == null || list.isEmpty())
             return new ArrayList<>();
@@ -106,7 +128,10 @@ public class CarsJPA implements ICars {
 
     @Override
     public List<CarDTO> getCarsByModel(String modelName) {
-        return null;
+        if (!modelsRepo.existsById(modelName))
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Model isn't exists");
+        List<Car> list = carsRepo.findByModelModelName(modelName);
+        return toListCarDTO(list);
     }
 
     @Override
@@ -119,6 +144,74 @@ public class CarsJPA implements ICars {
         list.forEach(c -> carsRepo.delete(c)); // удаляем авто из листа
 //
         modelsRepo.deleteById(modelName); // удаляем модель всех этих авто
+        return true;
+    }
+
+    @Override
+    public List<CarDTO> getCarsByYear(final int year) {
+        if (year > LocalDate.now().getYear())
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "Year isn't correct");
+        Car car = getCarEntities(year);
+        List<Car> list = car.owner.cars;
+        return toListCarDTO(list);
+    }
+
+    @Override
+    @Transactional
+    public List<CarDTO> getCarsByOwnerAges(final int ageFrom, final int ageTo) {
+        if (ageTo > LocalDate.now().getYear() || ageFrom > ageTo || ageFrom < 0)
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "Date is wrong");
+        LocalDate from = LocalDate.now().minusYears(ageFrom);
+        LocalDate to = LocalDate.now().minusYears(ageTo);
+        Owner owner = ownersRepo.findByBirthDateBetween(from, to);
+        List<Car> list = owner.cars;
+        return toListCarDTO(list);
+    }
+
+    @Override
+    @Transactional
+    public List<OwnerDTO> getOwnersByModel(final String modelName) {
+        if (!modelsRepo.existsById(modelName))
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Model isn't exists");
+//        Model model = modelsRepo.findById(modelName).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Model isn't exists"));
+        List<Car> cars = carsRepo.findByModelModelName(modelName);
+        List<Owner> list = cars.stream().map(c -> c.owner).collect(Collectors.toList());
+        return list.stream().map(this::toOwnerDTO).collect(Collectors.toList());
+
+    }
+
+    @Override
+    @Transactional
+    public boolean removeOwner(final int ownerId) {
+        if (!ownersRepo.existsById(ownerId))
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Owner isn't exists");
+        ownersRepo.deleteById(ownerId);
+        return true;
+    }
+
+    @Override
+    public int removeCarsOlderThanYearsFromDate(final int years, final LocalDate current) {
+        if (years > LocalDate.now().getYear() || current == null)
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "Year isn't correct");
+        LocalDate line = current.minusYears(years);
+        List<Car> cars = carsRepo.findByPurchaseDateBetween(LocalDate.of(1990, 1, 1), line);
+        long count = cars.stream().count();
+        carsRepo.deleteAll(cars);
+        return (int) count;
+    }
+
+    @Override
+    public boolean purchaseCar(long regNumber, int ownerId, LocalDate purchaseDate) {
+        if (regNumber < 0)
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "Wrong registration number");
+        if (!carsRepo.existsById(regNumber))
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "Car is already exists");
+        if (purchaseDate.isBefore(LocalDate.now()))
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "Wrong purchase date");
+        Car car = getCarEntities(regNumber);
+        Owner owner = ownersRepo.findById(ownerId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Owner isn't exists"));
+        car.setOwner(owner);
+        car.setPurchaseDate(purchaseDate);
         return true;
     }
 }

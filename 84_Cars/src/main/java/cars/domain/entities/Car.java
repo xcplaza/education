@@ -1,9 +1,7 @@
 package cars.domain.entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import java.time.LocalDate;
 
@@ -16,11 +14,15 @@ public class Car {
     @Id
     public long regNumber;
     public String color;
+    @Setter
+    @Getter
     public LocalDate purchaseDate;
 
     @ManyToOne
 //    @ManyToOne(cascade = CascadeType.ALL) // включаем каскад удаления авто при удалении модели
     public Model model;
     @ManyToOne
+    @Setter
+    @Getter
     public Owner owner;
 }
