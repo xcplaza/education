@@ -9,9 +9,11 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @ToString
 @Entity
-@Table(name = "cars")
+//@Table(name = "cars", indexes = @Index(columnList = "color"))
+@Table(name = "cars", indexes = {@Index(columnList = "color, purchaseDate")})
 public class Car {
     @Id
+    @Column(name = "reg_number", length = 10, unique = true, nullable = false)
     public long regNumber;
     public String color;
     @Setter

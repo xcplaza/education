@@ -6,11 +6,11 @@ import cars.domain.entities.Owner;
 import cars.domain.repo.CarsRepository;
 import cars.domain.repo.ModelsRepository;
 import cars.domain.repo.OwnersRepository;
+import cars.domain.view.ModelCount;
 import cars.dto.CarDTO;
 import cars.dto.ModelDTO;
 import cars.dto.OwnerDTO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cglib.core.Local;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,7 +19,6 @@ import org.springframework.web.server.ResponseStatusException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -156,26 +155,40 @@ public class CarsJPA implements ICars {
         return toListCarDTO(list);
     }
 
+    //    @Override
+//    @Transactional(readOnly = true)
+//    public List<CarDTO> getCarsByOwnerAges(final int ageFrom, final int ageTo) {
+//        if (ageTo > LocalDate.now().getYear() || ageFrom > ageTo || ageFrom < 0)
+//            throw new ResponseStatusException(HttpStatus.CONFLICT, "Date is wrong");
+//        LocalDate from = LocalDate.now().minusYears(ageFrom);
+//        LocalDate to = LocalDate.now().minusYears(ageTo);
+//        Owner owner = ownersRepo.findByBirthYearBetween(from, to);
+//        List<Car> list = owner.cars;
+//        if (list == null || list.isEmpty())
+//            return new ArrayList<>();
+//        return toListCarDTO(list);
     @Override
-    @Transactional
-    public List<CarDTO> getCarsByOwnerAges(final int ageFrom, final int ageTo) {
-        if (ageTo > LocalDate.now().getYear() || ageFrom > ageTo || ageFrom < 0)
-            throw new ResponseStatusException(HttpStatus.CONFLICT, "Date is wrong");
-        LocalDate from = LocalDate.now().minusYears(ageFrom);
-        LocalDate to = LocalDate.now().minusYears(ageTo);
-        Owner owner = ownersRepo.findByBirthDateBetween(from, to);
-        List<Car> list = owner.cars;
+    @Transactional(readOnly = true)
+    public List<CarDTO> getCarsByOwnerAges(int ageFrom, int ageTo) {
+        int birthYearFrom = LocalDate.now().minusYears(ageTo).getYear();
+        int birthYearTo = LocalDate.now().minusYears(ageFrom).getYear();
+        List<Owner> owners = ownersRepo.findByBirthYearBetween(birthYearFrom, birthYearTo);
+        List<Car> list = owners.stream().map(o -> o.cars).flatMap(l -> l.stream()).toList();
+        if (list == null || list.isEmpty())
+            return new ArrayList<>();
         return toListCarDTO(list);
     }
 
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     public List<OwnerDTO> getOwnersByModel(final String modelName) {
         if (!modelsRepo.existsById(modelName))
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Model isn't exists");
 //        Model model = modelsRepo.findById(modelName).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Model isn't exists"));
         List<Car> cars = carsRepo.findByModelModelName(modelName);
-        List<Owner> list = cars.stream().map(c -> c.owner).collect(Collectors.toList());
+        List<Owner> list = cars.stream().map(c -> c.owner).distinct().collect(Collectors.toList());
+        if (list == null || list.isEmpty())
+            return new ArrayList<>();
         return list.stream().map(this::toOwnerDTO).collect(Collectors.toList());
 
     }
@@ -185,13 +198,17 @@ public class CarsJPA implements ICars {
     public boolean removeOwner(final int ownerId) {
         if (!ownersRepo.existsById(ownerId))
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Owner isn't exists");
+        carsRepo.deleteAllByOwnerId(ownerId);
         ownersRepo.deleteById(ownerId);
         return true;
     }
 
     @Override
-    public int removeCarsOlderThanYearsFromDate(final int years, final LocalDate current) {
-        if (years > LocalDate.now().getYear() || current == null)
+    @Transactional
+    public int removeCarsOlderThanYearsFromDate(int years, LocalDate current) {
+        if (current == null)
+            current = LocalDate.now();
+        if (years > LocalDate.now().getYear())
             throw new ResponseStatusException(HttpStatus.CONFLICT, "Year isn't correct");
         LocalDate line = current.minusYears(years);
         List<Car> cars = carsRepo.findByPurchaseDateBetween(LocalDate.of(1990, 1, 1), line);
@@ -201,6 +218,7 @@ public class CarsJPA implements ICars {
     }
 
     @Override
+    @Transactional
     public boolean purchaseCar(long regNumber, int ownerId, LocalDate purchaseDate) {
         if (regNumber < 0)
             throw new ResponseStatusException(HttpStatus.CONFLICT, "Wrong registration number");
@@ -210,8 +228,34 @@ public class CarsJPA implements ICars {
             throw new ResponseStatusException(HttpStatus.CONFLICT, "Wrong purchase date");
         Car car = getCarEntities(regNumber);
         Owner owner = ownersRepo.findById(ownerId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Owner isn't exists"));
-        car.setOwner(owner);
-        car.setPurchaseDate(purchaseDate);
+        car.owner = owner;
+        car.purchaseDate = purchaseDate;
         return true;
     }
+
+    //    агрегатные методы
+    @Override
+    public List<ModelCount> getModelsCount() {
+        return carsRepo.getModelsCount();
+    }
+
+    @Override
+    public List<OwnerDTO> getOwnersCarsAmount(int amount) {
+        List<Owner> list = ownersRepo.getOwnersCarsAmount(amount);
+        return list.stream().map(this::toOwnerDTO).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<ModelDTO> getMostPopularModels() {
+        List<Model> list = modelsRepo.getMostPopularModels();
+        return list.stream().map(this::toModelDTO).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<String> getMostPopularModelNamesPurchasedDateBetweenOwnersAgeBetween(LocalDate fromDate, LocalDate toDate, int fromAge, int toAge) {
+        int birthYearFrom = LocalDate.now().getYear() - toAge;
+        int birthYearTo = LocalDate.now().getYear() - fromAge;
+        return carsRepo.getModelDateAge(fromDate, toDate, birthYearFrom, birthYearTo);
+    }
+
 }
