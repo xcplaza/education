@@ -5,9 +5,12 @@ import java.util.List;
 
 import cars.dto.CarDTO;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -19,6 +22,7 @@ import cars.service.ICars;
 
 
 @RestController
+@Validated
 public class CarsController
 {
 	@Autowired
@@ -31,7 +35,7 @@ public class CarsController
 	}
 
 	@GetMapping("/car/{regNumber}")
-	public CarDTO getCar(@PathVariable long regNumber)
+	public CarDTO getCar(@Min(1) @Max(1_000_000) @PathVariable long regNumber)
 	{
 		return service.getCar(regNumber);
 	}
