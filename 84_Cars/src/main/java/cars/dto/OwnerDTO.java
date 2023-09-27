@@ -1,13 +1,11 @@
 package cars.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
+@ToString
 @EqualsAndHashCode(of = "id")
 public class OwnerDTO {
     private int id;

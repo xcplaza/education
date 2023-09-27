@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 import cars.dto.CarDTO;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
@@ -24,7 +25,7 @@ public class CarsController
 	ICars service;
 
 	@PostMapping("/car")
-	public boolean addCar(@RequestBody CarDTO carDto)
+	public boolean addCar(@Valid @RequestBody CarDTO carDto)
 	{
 		return service.addCar(carDto);
 	}

@@ -30,6 +30,7 @@ public class Application {
         mr.save(model);
         cr.save(new Car(1, "color", LocalDate.now(), model, owner));
 
-        System.out.println(service.getCarsByOwner(1));
+        System.out.println(service.getCar(1));
+        System.out.println(service.getCarOwner(1));
     }
 }

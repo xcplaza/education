@@ -12,6 +12,7 @@ import cars.domain.view.ModelCount;
 import cars.dto.CarDTO;
 import cars.dto.ModelDTO;
 import cars.dto.OwnerDTO;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -28,12 +29,14 @@ public class CarsJPA implements ICars {
     CarsRepository carsRepo;
     OwnersRepository ownersRepo;
     ModelsRepository modelsRepo;
+    ModelMapper mapper; // mapper - entity to DTO
 
     @Autowired
-    public CarsJPA(CarsRepository carsRepo, OwnersRepository ownersRepo, ModelsRepository modelsRepo) {
+    public CarsJPA(CarsRepository carsRepo, OwnersRepository ownersRepo, ModelsRepository modelsRepo, ModelMapper mapper) {
         this.carsRepo = carsRepo;
         this.ownersRepo = ownersRepo;
         this.modelsRepo = modelsRepo;
+        this.mapper = mapper;
     }
 
     @Override
@@ -71,6 +74,7 @@ public class CarsJPA implements ICars {
     @Override
     public CarDTO getCar(long regNumber) {
         return toCarDTO(getCarEntities(regNumber));
+//        return mapper.map(getCarEntities(regNumber), CarDTO.class); // с использованием mapper
     }
 
     private CarDTO toCarDTO(Car car) {
@@ -107,6 +111,7 @@ public class CarsJPA implements ICars {
     public OwnerDTO getCarOwner(long regNumber) {
         Car car = getCarEntities(regNumber);
         return toOwnerDTO(car.owner);
+//        return mapper.map(car.owner, OwnerDTO.class); // с использованием mapper
     }
 
     private OwnerDTO toOwnerDTO(Owner owner) {
