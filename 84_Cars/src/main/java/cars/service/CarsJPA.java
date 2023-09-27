@@ -6,6 +6,8 @@ import cars.domain.entities.Owner;
 import cars.domain.repo.CarsRepository;
 import cars.domain.repo.ModelsRepository;
 import cars.domain.repo.OwnersRepository;
+import cars.domain.view.ColorCount;
+import cars.domain.view.ModelAge;
 import cars.domain.view.ModelCount;
 import cars.dto.CarDTO;
 import cars.dto.ModelDTO;
@@ -257,5 +259,21 @@ public class CarsJPA implements ICars {
         int birthYearTo = LocalDate.now().getYear() - fromAge;
         return carsRepo.getModelDateAge(fromDate, toDate, birthYearFrom, birthYearTo);
     }
+
+    @Override
+    public List<ColorCount> getColorCounts() {
+        return carsRepo.getColorCounts();
+    }
+
+    @Override
+    public List<ModelAge> getModelsAvgAge() {
+        return carsRepo.getModelsAvgAge();
+    }
+
+    @Override
+    public List<OwnerDTO> getOldestOwner(List<Owner> owners) {
+        return owners.stream().map(this::toOwnerDTO).toList();
+    }
+
 
 }

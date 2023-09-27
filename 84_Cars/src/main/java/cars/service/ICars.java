@@ -1,5 +1,8 @@
 package cars.service;
 
+import cars.domain.entities.Owner;
+import cars.domain.view.ColorCount;
+import cars.domain.view.ModelAge;
 import cars.domain.view.ModelCount;
 import cars.dto.CarDTO;
 import cars.dto.ModelDTO;
@@ -36,10 +39,7 @@ public interface ICars {
     List<ModelDTO> getMostPopularModels();
     List<String> getMostPopularModelNamesPurchasedDateBetweenOwnersAgeBetween(LocalDate fromDate, LocalDate toDate, int fromAge, int toAge);
 
-////    how many cars with each color
-//    List<ColorCount> getColorCounts();
-////    avarage age of owners
-//    List<ModelAge> getModelsAvgAge();
-////    get owners with greater than average age of all owners
-//    List<OwnerDTO> getOldestOwner();
+    List<ColorCount> getColorCounts(); //    how many cars with each color
+    List<ModelAge> getModelsAvgAge(); //    average age of owner of each model name (Mersedes-35, bmw-20)
+    List<OwnerDTO> getOldestOwner(List<Owner> owners); //    get owners with greater than average age of all owners
 }

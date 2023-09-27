@@ -20,4 +20,7 @@ public interface OwnersRepository extends JpaRepository<Owner, Integer> {
 //    2 option (1 - порядковый номер параметров -  int amount)
 //    @Query("SELECT own FROM Owner own WHERE size(own.cars)>=?1")
 //    List<Owner> getOwnersCarsAmount(int amount);
+
+    @Query("SELECT o FROM Owner o WHERE birthYear < (SELECT AVG(birthYear) FROM Owner )")
+    List<Owner>findOlderOwners();
 }
