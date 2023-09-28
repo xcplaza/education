@@ -21,7 +21,7 @@ public class DelayMeasure {
             }
             System.out.printf("Serial number: %d, Patient id: %d, Delay: %d\n", sensor.serNumber, sensor.id, System.currentTimeMillis() - sensor.timestamp);
             try {
-                Thread.sleep(3000);
+                Thread.sleep(1000);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
