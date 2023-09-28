@@ -4,10 +4,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 import sensor.dto.Sensor;
+
 import java.util.function.Consumer;
 
 @Service
-public class DelayMeasure {
+public class DisplayValue {
     ObjectMapper mapper = new ObjectMapper(); // function for create JSON
 
     @Bean
@@ -19,7 +20,7 @@ public class DelayMeasure {
             } catch (Exception e) {
                 System.out.println(e);
             }
-            System.out.printf("Serial number: %d, Patient id: %d, Delay: %d\n", sensor.serNumber, sensor.id, System.currentTimeMillis() - sensor.timestamp);
+            System.out.printf("Serial number: %d, Patient id: %d, value: %d\n", sensor.serNumber, sensor.id, sensor.value);
             try {
                 Thread.sleep(3000);
             } catch (InterruptedException e) {
