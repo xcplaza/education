@@ -5,12 +5,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
 @SpringBootApplication
-public class SensorApplication {
+public class DelayApplication {
 
     public static void main(String[] args) throws InterruptedException {
-        ConfigurableApplicationContext cac = SpringApplication.run(SensorApplication.class, args);
-        Thread.sleep(30000);
-        cac.close();
+        SpringApplication.run(DelayApplication.class, args);
     }
 
 }
