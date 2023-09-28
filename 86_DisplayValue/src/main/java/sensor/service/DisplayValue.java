@@ -22,7 +22,7 @@ public class DisplayValue {
             }
             System.out.printf("Serial number: %d, Patient id: %d, value: %d\n", sensor.serNumber, sensor.id, sensor.value);
             try {
-                Thread.sleep(3000);
+                Thread.sleep(1000);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
