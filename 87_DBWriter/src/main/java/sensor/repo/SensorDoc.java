@@ -6,7 +6,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @NoArgsConstructor
 @AllArgsConstructor
-@Document(collation = "sensors")
+@Document(collection = "sensors")
 public class SensorDoc {
     public int patientId;
     public int avgValue;

@@ -54,7 +54,7 @@ public class AvgProcessor {
     private String getPlayload(final Integer k, final List<Integer> v) {
         Sensor sensor = new Sensor(System.currentTimeMillis(), k, (int) (v.stream().collect(Collectors.averagingInt(x -> x)) + 0.5));
         try {
-            return mapper.writeValueAsString(v);
+            return mapper.writeValueAsString(sensor);
         } catch (Exception e) {
             return null;
         }
