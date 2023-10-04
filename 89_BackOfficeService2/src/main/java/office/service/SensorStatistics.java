@@ -11,7 +11,4 @@ public class SensorStatistics {
     private double averageValue;
     private int maxValue;
     private int minValue;
-
-//    public SensorStatistics(final double averageValue, final int maxValue, final int minValue) {
-//    }
 }
