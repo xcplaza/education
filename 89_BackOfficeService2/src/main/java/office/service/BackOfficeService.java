@@ -90,7 +90,7 @@ public class BackOfficeService implements IBackOffice {
         );
 
         if (sensorDocs.isEmpty()) {
-            return null; // Если не найдено данных, можно вернуть null или другое значение по умолчанию
+            return null; // Если не найдено данных
         }
 
         double sumValue = 0;
