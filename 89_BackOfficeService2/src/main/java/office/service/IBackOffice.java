@@ -8,5 +8,5 @@ public interface IBackOffice {
     List<Integer> getIdSmallValues(LocalDateTime from, LocalDateTime to, int normalValue);
     List<LocalDateTime> getDatesBigValues(int sensorId, int normalValue, LocalDateTime from, LocalDateTime to);
     List<LocalDateTime> getDatesSmallValues(int sensorId, int normalValue, LocalDateTime from, LocalDateTime to);
-//    SensorStatistics getSensorStatistics(int sensorId, LocalDateTime from, LocalDateTime to);
+    SensorStatistics getSensorStatistics(int sensorId, LocalDateTime from, LocalDateTime to);
 }

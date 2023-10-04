@@ -4,6 +4,7 @@ import office.entity.SensorDocRepository;
 import office.repos.Repos;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
@@ -11,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@RestController
 public class BackOfficeService implements IBackOffice {
 
     private final Repos sensorDocRepository;
@@ -32,7 +34,6 @@ public class BackOfficeService implements IBackOffice {
         for (SensorDocRepository sensorDoc : sensorDocs) {
             result.add(Integer.parseInt(sensorDoc.getPatientId()));
         }
-
         return result;
     }
 
@@ -44,11 +45,9 @@ public class BackOfficeService implements IBackOffice {
                 to.toEpochSecond(ZoneOffset.UTC) * 1000,
                 normalValue
         );
-
         for (SensorDocRepository sensorDoc : sensorDocs) {
             result.add(Integer.parseInt(sensorDoc.getPatientId()));
         }
-
         return result;
     }
 
@@ -61,11 +60,9 @@ public class BackOfficeService implements IBackOffice {
                 to.toEpochSecond(ZoneOffset.UTC) * 1000,
                 normalValue
         );
-
         for (SensorDocRepository sensorDoc : sensorDocs) {
             result.add(LocalDateTime.ofEpochSecond(sensorDoc.getTimestamp() / 1000, 0, ZoneOffset.UTC));
         }
-
         return result;
     }
 
@@ -78,14 +75,42 @@ public class BackOfficeService implements IBackOffice {
                 to.toEpochSecond(ZoneOffset.UTC) * 1000,
                 normalValue
         );
-
         for (SensorDocRepository sensorDoc : sensorDocs) {
             result.add(LocalDateTime.ofEpochSecond(sensorDoc.getTimestamp() / 1000, 0, ZoneOffset.UTC));
         }
-
         return result;
     }
 
-    // Метод для получения статистики датчика можно добавить здесь
+    @Override
+    public SensorStatistics getSensorStatistics(int sensorId, LocalDateTime from, LocalDateTime to) {
+        List<SensorDocRepository> sensorDocs = sensorDocRepository.findByPatientIdAndTimestampBetween(
+                String.valueOf(sensorId),
+                from.toEpochSecond(ZoneOffset.UTC) * 1000,
+                to.toEpochSecond(ZoneOffset.UTC) * 1000
+        );
 
+        if (sensorDocs.isEmpty()) {
+            return null; // Если не найдено данных, можно вернуть null или другое значение по умолчанию
+        }
+
+        double sumValue = 0;
+        int maxValue = Integer.MIN_VALUE;
+        int minValue = Integer.MAX_VALUE;
+
+        for (SensorDocRepository sensorDoc : sensorDocs) {
+            int avgValue = sensorDoc.getAvgValue();
+            sumValue += avgValue;
+
+            if (avgValue > maxValue) {
+                maxValue = avgValue;
+            }
+
+            if (avgValue < minValue) {
+                minValue = avgValue;
+            }
+        }
+
+        double averageValue = sumValue / sensorDocs.size();
+        return new SensorStatistics(averageValue, maxValue, minValue);
+    }
 }
