@@ -12,7 +12,7 @@ public class SensorApplication {
     public static void main(String[] args) throws InterruptedException {
         ConfigurableApplicationContext cac = SpringApplication.run(SensorApplication.class, args);
 //        SpringApplication.run(SensorApplication.class, args);
-        Thread.sleep(30000);
+        Thread.sleep(100000);
         cac.close();
     }
 }
