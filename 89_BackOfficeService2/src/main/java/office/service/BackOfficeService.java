@@ -14,7 +14,6 @@ import java.util.List;
 @Service
 @RestController
 public class BackOfficeService implements IBackOffice {
-
     private final Repos sensorDocRepository;
 
     @Autowired
@@ -25,14 +24,12 @@ public class BackOfficeService implements IBackOffice {
     @Override
     public List<Integer> getIdBigValues(LocalDateTime from, LocalDateTime to, int normalValue) {
         List<Integer> result = new ArrayList<>();
-        List<SensorDocRepository> sensorDocs = sensorDocRepository.findByTimestampBetweenAndAvgValueGreaterThanEqual(
+        List<SensorDocRepository> sensorDocs = sensorDocRepository.findByTimestampBetweenAndAvgValueGreaterThan(
                 from.toEpochSecond(ZoneOffset.UTC) * 1000,
                 to.toEpochSecond(ZoneOffset.UTC) * 1000,
-                normalValue
-        );
-
+                normalValue);
         for (SensorDocRepository sensorDoc : sensorDocs) {
-            result.add(Integer.parseInt(sensorDoc.getPatientId()));
+            result.add(sensorDoc.getPatientId());
         }
         return result;
     }
@@ -43,10 +40,9 @@ public class BackOfficeService implements IBackOffice {
         List<SensorDocRepository> sensorDocs = sensorDocRepository.findByTimestampBetweenAndAvgValueLessThan(
                 from.toEpochSecond(ZoneOffset.UTC) * 1000,
                 to.toEpochSecond(ZoneOffset.UTC) * 1000,
-                normalValue
-        );
+                normalValue);
         for (SensorDocRepository sensorDoc : sensorDocs) {
-            result.add(Integer.parseInt(sensorDoc.getPatientId()));
+            result.add(sensorDoc.getPatientId());
         }
         return result;
     }
@@ -54,12 +50,11 @@ public class BackOfficeService implements IBackOffice {
     @Override
     public List<LocalDateTime> getDatesBigValues(int sensorId, int normalValue, LocalDateTime from, LocalDateTime to) {
         List<LocalDateTime> result = new ArrayList<>();
-        List<SensorDocRepository> sensorDocs = sensorDocRepository.findByPatientIdAndTimestampBetweenAndAvgValueGreaterThanEqual(
+        List<SensorDocRepository> sensorDocs = sensorDocRepository.findByPatientIdAndTimestampBetweenAndAvgValueGreaterThan(
                 String.valueOf(sensorId),
                 from.toEpochSecond(ZoneOffset.UTC) * 1000,
                 to.toEpochSecond(ZoneOffset.UTC) * 1000,
-                normalValue
-        );
+                normalValue);
         for (SensorDocRepository sensorDoc : sensorDocs) {
             result.add(LocalDateTime.ofEpochSecond(sensorDoc.getTimestamp() / 1000, 0, ZoneOffset.UTC));
         }
@@ -73,8 +68,7 @@ public class BackOfficeService implements IBackOffice {
                 String.valueOf(sensorId),
                 from.toEpochSecond(ZoneOffset.UTC) * 1000,
                 to.toEpochSecond(ZoneOffset.UTC) * 1000,
-                normalValue
-        );
+                normalValue);
         for (SensorDocRepository sensorDoc : sensorDocs) {
             result.add(LocalDateTime.ofEpochSecond(sensorDoc.getTimestamp() / 1000, 0, ZoneOffset.UTC));
         }
@@ -86,9 +80,7 @@ public class BackOfficeService implements IBackOffice {
         List<SensorDocRepository> sensorDocs = sensorDocRepository.findByPatientIdAndTimestampBetween(
                 String.valueOf(sensorId),
                 from.toEpochSecond(ZoneOffset.UTC) * 1000,
-                to.toEpochSecond(ZoneOffset.UTC) * 1000
-        );
-
+                to.toEpochSecond(ZoneOffset.UTC) * 1000);
         if (sensorDocs.isEmpty()) {
             return null; // Если не найдено данных
         }
@@ -100,16 +92,13 @@ public class BackOfficeService implements IBackOffice {
         for (SensorDocRepository sensorDoc : sensorDocs) {
             int avgValue = sensorDoc.getAvgValue();
             sumValue += avgValue;
-
             if (avgValue > maxValue) {
                 maxValue = avgValue;
             }
-
             if (avgValue < minValue) {
                 minValue = avgValue;
             }
         }
-
         double averageValue = sumValue / sensorDocs.size();
         return new SensorStatistics(averageValue, maxValue, minValue);
     }

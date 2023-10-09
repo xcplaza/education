@@ -1,9 +1,11 @@
 package office.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @RestController
@@ -19,48 +21,43 @@ public class BackOfficeController {
 
     @GetMapping("/idBigValues")
     public List<Integer> getIdBigValues(
-            @RequestParam LocalDateTime from,
-            @RequestParam LocalDateTime to,
-            @RequestParam int normalValue
-    ) {
+            @RequestParam("from") @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime from,
+            @RequestParam("to") @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime to,
+            @RequestParam("normalValue") int normalValue) {
         return backOfficeService.getIdBigValues(from, to, normalValue);
     }
 
     @GetMapping("/idSmallValues")
     public List<Integer> getIdSmallValues(
-            @RequestParam LocalDateTime from,
-            @RequestParam LocalDateTime to,
-            @RequestParam int normalValue
-    ) {
+            @RequestParam("from") @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime from,
+            @RequestParam("to") @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime to,
+            @RequestParam("normalValue") int normalValue) {
         return backOfficeService.getIdSmallValues(from, to, normalValue);
     }
 
     @GetMapping("/datesBigValues")
     public List<LocalDateTime> getDatesBigValues(
-            @RequestParam int sensorId,
-            @RequestParam int normalValue,
-            @RequestParam LocalDateTime from,
-            @RequestParam LocalDateTime to
-    ) {
+            @RequestParam("sensorId") int sensorId,
+            @RequestParam("normalValue") int normalValue,
+            @RequestParam("from") @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime from,
+            @RequestParam("to") @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime to) {
         return backOfficeService.getDatesBigValues(sensorId, normalValue, from, to);
     }
 
     @GetMapping("/datesSmallValues")
     public List<LocalDateTime> getDatesSmallValues(
-            @RequestParam int sensorId,
-            @RequestParam int normalValue,
-            @RequestParam LocalDateTime from,
-            @RequestParam LocalDateTime to
-    ) {
+            @RequestParam("sensorId") int sensorId,
+            @RequestParam("normalValue") int normalValue,
+            @RequestParam("from") @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime from,
+            @RequestParam("to") @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime to) {
         return backOfficeService.getDatesSmallValues(sensorId, normalValue, from, to);
     }
 
     @GetMapping("/sensorStatistics")
     public SensorStatistics getSensorStatistics(
-            @RequestParam int sensorId,
-            @RequestParam LocalDateTime from,
-            @RequestParam LocalDateTime to
-    ) {
+            @RequestParam("sensorId") int sensorId,
+            @RequestParam("from") @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime from,
+            @RequestParam("to") @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime to) {
         return backOfficeService.getSensorStatistics(sensorId, from, to);
     }
 }

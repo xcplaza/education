@@ -8,7 +8,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection = "sensors")
 public class SensorDocRepository {
     @Id
-    private String patientId;
+    private String id;
+    private int patientId;
     @Getter
     @Setter
     private int avgValue;
@@ -16,7 +17,7 @@ public class SensorDocRepository {
     @Setter
     private long timestamp;
 
-    public String getPatientId() {
+    public int getPatientId() {
         return patientId;
     }
 }
