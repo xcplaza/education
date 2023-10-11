@@ -1,0 +1,46 @@
+p {
+    font-family: "Baskerville O", sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: normal;
+}
+table {
+    background-color: lightblue;
+    border: 0px blue dotted;
+    border-collapse: collapse;
+    border-radius: 20% 40% 30% 70%;
+}
+form {
+    background-image: url("favicon.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+span {
+    color: lightcyan;
+    text-decoration: underline;
+}
+td {
+    border-bottom: greenyellow 0px solid;
+}
+img {
+    width: 300px;
+    height: 200px;
+}
+.border {
+    border: 1px solid firebrick;
+}
+#first {
+    width: 250px;
+    height: 200px;
+    border: 2px dotted darkblue;
+}
+[type="text"] {
+    color: blueviolet;
+}
+ul li {
+    font-family: "Arial Black";
+    font-style: italic;
+}
+ul>li {
+color: green;
+}

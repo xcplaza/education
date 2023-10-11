@@ -1,0 +1,87 @@
+@font-face {
+    font-family: airstream;
+    src: url("fonts/Airstream-webfont.svg") format("svg");
+    src: url("fonts/Airstream-webfont.woff") format("woff");
+}
+
+/*font-family: 'Comic Neue', cursive;*/
+/*font-family: 'Young Serif', serif;*/
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: floralwhite;
+    margin: 0;
+}
+
+.header {
+    height: 400px;
+    background-image: url("images/coffee-bgnd.jpeg");
+    background-position: center;
+    padding-top: 1px;
+}
+
+/*h1*/
+/*header h1*/
+.header h1 {
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: white;
+    margin: 100px 0 0 0;
+    text-align: center;
+    font-size: 100px;
+    font-family: 'Comic Neue', cursive;
+    color: #612f08;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: none; /* delete  dot */
+}
+
+li {
+    margin: 50px 0;
+    border-bottom: 1px solid dodgerblue;
+    padding-bottom: 50px;
+}
+
+h2 {
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+    font-family: airstream;
+    font-weight: 600;
+    font-size: 3em;
+    text-transform: uppercase;
+    text-align: center;
+    color: maroon;
+}
+
+p {
+    color: #612f08;
+    font-family: 'Young Serif', serif;
+    text-align: justify;
+    text-indent: 3em;
+    padding: 0 30px;
+}
+
+a {
+    font-family: airstream;
+    color: black;
+    text-transform: uppercase;
+    text-decoration: none;
+    letter-spacing: 2px;
+    padding: 0 30px;
+}
+
+p:hover {
+    background-color: #fcd6ba;
+}
+a:active {
+    color: #005000;
+}
+a:visited {
+    color: #43c03e;
+}
+

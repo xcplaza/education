@@ -1,37 +1,47 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
+    <link rel="stylesheet" href="normalize.min.css" />
+    <link rel="icon" href="favicon.png">
+    <link rel="stylesheet" href="slyles.css">
     <meta charset="UTF-8">
     <title>Elephants</title>
 </head>
 <body>
 <h1>Elephantidae</h1>
-<h2>Elephantidae</h2>
+<h2 class="border">Elephantidae</h2>
 <h3>Elephantidae</h3>
-<h4>Elephantidae</h4>
+<h4 class="border">Elephantidae</h4>
 <h5>Elephantidae</h5>
+<a href="#myform">go to form</a>
 <h6>Elephantidae</h6>
 
-<p align="justify">Elephantidae is a family of large, herbivorous proboscidean mammals collectively called elephants and
+<p align="justify"><b>Elephantidae</b> is a family of large, herbivorous proboscidean mammals collectively called
+    elephants and
     mammoths.
     These are large terrestrial <a href="https://en.wikipedia.org/wiki/Mammal" target="_blank">mammals</a> with a snout
     modified into a trunk and teeth modified into tusks.
-    Most genera and species in the family are extinct. Only two genera, Loxodonta (African elephants) and Elephas (Asian
+    Most genera and species in the family are extinct. Only two genera, <span><em>Loxodonta</em></span> <u>(African elephants)</u>
+    and
+    <s>Elephas</s> (Asian
     elephants), are living.
     <br><br/>
-    The family was first described by John Edward Gray in 1821,[4] and later assigned to taxonomic ranks within the
-    order Proboscidea.
+    The family &nbsp;&nbsp;&nbsp; was &lt; &gt; first described by &copy; <i> John Edward Gray</i> in 1821,[4] and later assigned to taxonomic ranks within
+    the
+    order <strong>Proboscidea</strong>.
     Elephantidae has been revised by various authors to include or exclude other extinct proboscidean genera. </p>
+<pre>hello     bye      hello </pre>
+
 <a href="https://google.com">Go to Google</a>
 <br>
 <a href="https://en.wikipedia.org/wiki/Asian_elephant" target="_blank">
-    <img border="1" src="Elephas_maximus_(Bandipur).jpg" width="440" height="293">
+    <img border="1" src="Elephas_maximus_(Bandipur).jpg" width="440" height="293" id="first">
 </a>
 <p align="left"><img border="1" title="This is elephant" alt="Elephantidae"
                      src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Comparative_view_of_the_human_and_elephant_frame%2C_Benjamin_Waterhouse_Hawkins%2C_1860.jpg/440px-Comparative_view_of_the_human_and_elephant_frame%2C_Benjamin_Waterhouse_Hawkins%2C_1860.jpg"
                      width="440" height="293"></p>
 
-<ol type="1" start="40" reversed>
+<ol type="1" start="40" reversed class="border">
     <li>proboscidean</li>
     <li>Loxodonta</li>
     <li>terrestrial mammals</li>
@@ -82,6 +92,11 @@
     </tbody>
 </table>
 <br>
+<h3>index</h3>
+<p>H<sub>2</sub>O - x<sup>2</sup></p>
+<hr>
+
+<a name="#myform"></a>
 <h2>Tell us about you</h2>
 <form action="#" method="post">
     <p>
@@ -105,10 +120,10 @@
     </p>
     <p>
         <label for="color">Enter color</label>
-        <input type="color" name="color" id="color">
-        <input type="date" name="date">
-        <input type="time" name="time">
-        <input type="search" name="search">
+        <input type="color" name="color" id="color" class="color">
+        <input type="date" name="date" class="color">
+        <input type="time" name="time" class="color">
+        <input type="search" name="search" class="color">
     </p>
     <p>
         <label>Education</label>
@@ -130,7 +145,7 @@
         <label><input type="checkbox" name="beer">beer</label>
         <label><input type="checkbox" name="juice">juice</label>
     </p>
-    <p>
+    <div>
         <label>0<input type="range" name="range" min="0" max="50" value="10" step="10" list="listmark">50</label>
         <datalist id="listmark">
             <option value="0"></option>
@@ -140,18 +155,25 @@
             <option value="40"></option>
             <option value="50"></option>
         </datalist>
-    </p>
-    <p>
+    </div>
+    <div>
         <textarea placeholder="Enter your message" cols="50" rows="10"></textarea>
-    </p>
-    <p>
+    </div>
+    <div>
         <button>Button</button>
         <input type="submit" value="Send">
         <input type="reset" value="Reset">
         <input type="file">
         <label>Select image <input type="image" placeholder="Select image"></label>
-    </p>
+    </div>
 </form>
-
+<br>
+<div>
+    <iframe width="873" height="447" src="https://www.youtube.com/embed/T5QLsVtJ9R0"
+            title="Считалочка про слоников - Развивающие мультики" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen></iframe>
+</div>
+</br>
 </body>
 </html>
