@@ -5,6 +5,7 @@
 }
 
 .header {
+    align-items: center; /* Вертикальное центрирование */
     display: flex;
     height: 80px;
     justify-content: left;
@@ -12,12 +13,92 @@
     text-decoration: white;
 }
 
-nav > ul {
-
-    margin-top: 5px;
-    position: fixed;
-    top: 5px;
+h1 {
+    margin-left: 30px;
+    text-decoration: up;
+    font-size: 3em;
+    color: white;
 }
+
+.main-container {
+    margin-top: 50px;
+    display: flex;
+    width: 100%;
+}
+
+.left {
+    flex: 1; /* Занимает 50% ширины, так как у flex-контейнера два дочерних элемента */
+    padding: 20px; /* Пространство вокруг текстовой секции */
+    margin: 15px 15px 5px 15px;
+}
+
+.right {
+    flex: 1; /* Занимает 50% ширины */
+    display: flex;
+    flex-direction: column;
+    margin: 5px 5px 0 0;
+    border: 2px solid whitesmoke;
+    border-radius: 0 0 15px 15px;
+}
+
+.image-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.small-images {
+    margin: 15px 0 0 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* NAV */
+.navmenu_3 {
+    position: relative;
+    padding: 10px 20px;
+    font-family: 'Roboto', sans-serif;
+    text-transform: uppercase;
+    margin: 20px 0 40px 0;
+    display: flex;
+    justify-content: center;
+}
+
+.navmenu_3 .line {
+    height: 2px;
+    position: absolute;
+    bottom: 0;
+    margin: 10px 0 0 0;
+    background: #337AB7;
+}
+
+.navmenu_3 ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: flex;
+}
+
+.navmenu_3 ul li {
+    margin: 0 40px 0 0;
+    transition: all 0.4s ease;
+}
+
+.navmenu_3 ul li:last-child {
+    margin: 0;
+}
+
+.navmenu_3 ul li a {
+    color: #ffffff;
+    display: block;
+    font-size: 20px;
+}
+
+.navmenu_3 ul li:hover a,
+.navmenu_3 ul li.active a {
+    color: #000;
+}
+
 
 nav li {
     display: inline;
@@ -25,7 +106,42 @@ nav li {
     padding: 5px;
 }
 
-h1 {
-    font-size: 3em;
-    padding: -15px 10px;
+
+/*STARS*/
+.full-stars {
+    text-align: left;
+}
+
+.full-stars .rating-group {
+    display: inline-flex;
+}
+
+.full-stars input {
+    position: absolute;
+    left: -9999px;
+}
+
+.full-stars label {
+    margin: 0;
+    cursor: pointer;
+}
+
+.full-stars label svg {
+    margin: 2px;
+    height: 30px;
+    width: 30px;
+    fill: #ffad6c;
+    transition: fill 0.3s;
+}
+
+.full-stars input:checked ~ label svg {
+    fill: #BFE2FF;
+}
+
+.full-stars .rating-group:hover label svg {
+    fill: #ffad6c;
+}
+
+.full-stars .rating-group input:hover ~ label svg {
+    fill: #BFE2FF;
 }
