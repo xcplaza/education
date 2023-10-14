@@ -11,3 +11,21 @@
     background-color: dimgrey;
     text-decoration: white;
 }
+
+nav > ul {
+
+    margin-top: 5px;
+    position: fixed;
+    top: 5px;
+}
+
+nav li {
+    display: inline;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+h1 {
+    font-size: 3em;
+    padding: -15px 10px;
+}
