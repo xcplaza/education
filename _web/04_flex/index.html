@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        .row {
+            width: 70%;
+            margin: 100px auto;
+            border: 1px solid black;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            /*flex-flow: -> flex-direction + flex-wrap;*/
+        }
+
+        .row1 {
+            display: flex;
+            /*flex-wrap: wrap;*/
+            width: 70%;
+            margin: 100px auto;
+            border: 1px solid black;
+        }
+
+        .item {
+            /*height: 100px;*/
+            border: 1px solid green;
+            background-color: #d6ffd6;
+            padding: 15px;
+            color: #4f4f4f;
+        }
+
+        #first {
+            margin-top: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-self: start;
+        }
+
+        /* pseudo class - item 4 down */
+        .item:last-child {
+            align-self: end;
+        }
+
+        .first {
+            /*flex-grow: 1;*/
+            flex-shrink: 10;
+            order: 3;
+        }
+
+        .second {
+            /*flex-grow: 3;*/
+            flex-shrink: 5;
+            order: 1;
+        }
+
+        .third {
+            flex-shrink: 0;
+            order: 2;
+        }
+
+    </style>
+</head>
+<body>
+<div class="row1">
+    <div class="item first">Item 1 Item 1 Item 1 Item 1 Item 1 Item 1 Item 1</div>
+    <div class="item second">Item 2 Item 2 Item 2 Item 2 Item 2 Item 2</div>
+    <div class="item third">Item 3 Item 3 Item 3 Item 3 Item 3 Item 3 Item 3</div>
+</div>
+<div class="row">
+    <div class="item" id="first">
+        <p>item 1</p>
+        <p>item 1</p>
+        <p>item 1</p>
+    </div>
+    <div class="item">
+        <p>Item 2</p>
+        <p>Item 2</p>
+        <p>Item 2</p>
+        <p>Item 2</p>
+        <p>Item 2</p>
+        <p>Item 2</p>
+    </div>
+    <div class="item">
+        <p>Item 3</p>
+    </div>
+    <div class="item">
+        <p>Item 4</p>
+    </div>
+    <div class="item">
+        <p>Item 3</p>
+    </div>
+    <div class="item">
+        <p>Item 3</p>
+    </div>
+    <div class="item">
+        <p>Item 3</p>
+    </div>
+    <div class="item">
+        <p>Item 3</p>
+    </div>
+    <div class="item">
+        <p>Item 3</p>
+    </div>
+    <div class="item">
+        <p>Item 3</p>
+    </div>
+    <div class="item">
+        <p>Item 3</p>
+    </div>
+    <div class="item">
+        <p>Item 3</p>
+    </div>
+    <div class="item">
+        <p>Item 3</p>
+    </div>
+    <div class="item">
+        <p>Item 3</p>
+    </div>
+    <div class="item">
+        <p>Item 3</p>
+    </div>
+
+</div>
+</body>
+</html>

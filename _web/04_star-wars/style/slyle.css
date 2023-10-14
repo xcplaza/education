@@ -51,20 +51,35 @@ h1 {
     float: right;
     width: 50%;
     margin: 5px 5px 0 0;
+    border: 2px solid whitesmoke;
+    border-radius: 0 0 15px 15px;
+}
+
+.right div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+
 }
 
 img {
-    width: 100%;
+    /*width: 100%;*/
     box-shadow: 12px 12px 15px rgba(60, 69, 67, 0.9);
 }
 
 .right img {
     box-shadow: none;
+    width: calc(100% / 3);
 }
 
 .right table {
     border: 1px solid whitesmoke;
     border-radius: 0 0 15px 15px;
+}
+
+.right h3 {
+    text-transform: uppercase;
+    text-align: center;
 }
 
 th {
