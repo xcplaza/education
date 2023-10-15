@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Animation</title>
+    <style>
+        .box {
+            height: 500px;
+            width: 500px;
+            border: 1px solid black;
+            position: relative;
+        }
+
+        .btn {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background-color: lightgreen;
+            animation-name: moving;
+            animation-duration: 5s;
+            animation-delay: 1s;
+            animation-timing-function: ease-in-out;
+            animation-iteration-count: infinite;
+            animation-direction: alternate;
+            /*animation-play-state: paused;*/
+            animation-fill-mode: both;
+        }
+
+        .btn:hover {
+            /*animation-play-state: running;*/
+        }
+
+        @keyframes moving {
+            0% {
+                left: 0;
+                top: 0;
+            }
+            25% {
+                left: 200px;
+                top: 300px;
+                background-color: lightcoral;
+            }
+            50% {
+                top: 100px;
+                transform: rotate(30deg);
+            }
+            100% {
+                left: 400px;
+                top: 0;
+            }
+        }
+
+        @keyframes mykey {
+            0% {
+                background-color: aquamarine;
+            }
+            50% {
+                background-color: aqua;
+            }
+            70% {
+                background-color: blue;
+            }
+            100 % {
+                background-color: darkblue;
+            }
+        }
+
+    </style>
+</head>
+<body>
+<div class="box">
+    <div class="btn">
+
+    </div>
+</div>
+
+</body>
+</html>

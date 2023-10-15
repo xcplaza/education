@@ -1,0 +1,114 @@
+@font-face {
+    font-family: airstream;
+    src: url("fonts/Airstream-webfont.svg") format('svg');
+    src: url("fonts/Airstream-webfont.woff") format('woff');
+}
+
+@font-face {
+    font-family: lakeshor;
+    src: url("fonts/LAKESHOR-webfont.svg") format('svg');
+    src: url("fonts/LAKESHOR-webfont.woff") format('woff');
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    background-color: azure;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.logo {
+    display: block;
+    text-align: center;
+    background-color: #375e4a;
+    font-family: lakeshor;
+    text-transform: uppercase;
+    font-size: 1.5em;
+}
+
+h1 {
+    margin-text: 10px;
+    margin-bottom: 20px;
+    color: azure;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-grow: 1;
+}
+
+.detail-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 2vh;
+}
+
+.details-image {
+    width: 60vw;
+    height: 40vw;
+    border-radius: 5%;
+}
+
+.details-title {
+    display: block;
+    background-color: beige;
+    opacity: .5;
+    padding: 5px 5px;
+    font-family: airstream;
+    font-size: 2em;
+    font-style: italic;
+    position: absolute;
+    bottom: 3.5vh;
+    left: 1vw;
+}
+
+.details-frame {
+    position: relative;
+}
+
+.thumbnails-list {
+    display: flex;
+    flex-wrap: wrap;
+    /*overflow-y: scroll;*/
+    max-height: 40vh;
+    list-style: none;
+    justify-content: space-around;
+    margin-top: 3vh;
+}
+
+.thumbnails-item {
+    border: 2px solid #115f69;
+    margin-top: 2vh;
+    max-height: 10vh;
+    border-radius: 10%;
+    overflow: hidden;
+}
+
+.thumbnails-item:hover {
+    transform: scale(1.5);
+}
+
+.thumbnails-image {
+    display: block;
+    width: 17vw;
+    height: 10vw;
+}
+
+.thumbnails-title {
+    display: block;
+    text-align: center;
+    background-color: beige;
+}
+
+.thumbnails-anchor {
+    text-decoration: none;
+    color: darkgreen;
+}
