@@ -4,38 +4,38 @@
     <meta charset="UTF-8">
     <title>Star Wars</title>
     <link rel="icon" href="style/images/favicon.png">
-    <link rel="stylesheet" href="style/slyle.css">
+    <link rel="stylesheet" href="style/bootstrap.min.css">
+    <link rel="stylesheet" href="style/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poller+One&display=swap" rel="stylesheet">
+
 </head>
-<body>
-<header>
+<body class="container-fluid">
+<header class="rounded-top-4">
     <nav>
-        <ul>
-            <li>Home</li>
-            <li>About me</li>
-            <li>Star wars</li>
-            <li>Contact</li>
+        <ul class="nav fixed-top mt-1 ms-5">
+            <li class="nav-item btn btn-danger border border-light rounded-pill common-button mx-1">Home</li>
+            <li class="nav-item btn btn-danger border border-light rounded-pill common-button mx-1">About me</li>
+            <li class="nav-item btn btn-danger border border-light rounded-pill common-button mx-1">Star wars</li>
+            <li class="nav-item btn btn-danger border border-light rounded-pill common-button mx-1">Contact</li>
         </ul>
     </nav>
-    <h1>Luke Skywalker</h1>
+    <h1 class="text-center fs-1 py-5">Luke Skywalker</h1>
 </header>
-<main>
-    <section class="left">
-        <img src="style/images/main.jpg" alt="Hero">
+<main class="clearfix">
+    <section class="float-start w-25 my-1 mx-3">
+        <img src="style/images/main.jpg" alt="Hero" class="w-100">
     </section>
-    <section class="right">
-        <h3>friends</h3>
-        <div>
-            <img src="style/images/friend1.jpg" alt="friends">
-            <img src="style/images/friend2.jpg" alt="friends">
-            <img src="style/images/friend3.jpg" alt="friends">
-            <img src="style/images/friend4.jpg" alt="friends">
-            <img src="style/images/friend5.jpg" alt="friends">
-            <img src="style/images/friend6.jpg" alt="friends">
-            <img src="style/images/friend7.jpg" alt="friends" class="bottom-left">
-            <img src="style/images/friend8.jpg" alt="friends">
-            <img src="style/images/friend9.jpg" alt="friends" class="bottom-right">
-        </div>
+    <section class="float-end w-50 row border border-light rounded-bottom-3 mx-1">
+        <h3 class="col-12 text-center text-uppercase">friends</h3>
+        <img src="style/images/friend1.jpg" alt="friends" class="col-4 p-1 shadow-none">
+        <img src="style/images/friend2.jpg" alt="friends" class="col-4 p-1 shadow-none">
+        <img src="style/images/friend3.jpg" alt="friends" class="col-4 p-1 shadow-none">
+        <img src="style/images/friend4.jpg" alt="friends" class="col-4 p-1 shadow-none">
+        <img src="style/images/friend5.jpg" alt="friends" class="col-4 p-1q shadow-none">
+        <img src="style/images/friend6.jpg" alt="friends" class="col-4 p-1 shadow-none">
+        <img src="style/images/friend7.jpg" alt="friends" class="bottom-left col-4 p-1 shadow-none">
+        <img src="style/images/friend8.jpg" alt="friends" class="col-4 p-1 shadow-none">
+        <img src="style/images/friend9.jpg" alt="friends" class="bottom-right col-4 p-1 shadow-none">
     </section>
     <p class="farGalaxy">
         Title: The Empire Strikes Back episode: 5 release_date: 1980-05-17 opening crawl: It is a dark time for the
@@ -46,8 +46,8 @@
         reaches of space....
     </p>
 </main>
-<footer>
-    <div class="button">
+<footer class="rounded-bottom-4">
+    <div class="nav-item btn btn-danger border border-light rounded-pill common-button mx-1 position-relative button">
         <p>Send me an <span class="email">email</span></p>
     </div>
 </footer>
