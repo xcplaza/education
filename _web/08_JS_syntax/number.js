@@ -22,7 +22,7 @@ console.log(d.valueOf())    // don't use!!!
 // casting to number
 console.log('casting =============================');
 console.log(typeof +true);
-console.log(typeof + '111')
+console.log(typeof +'111')
 
 // 2
 console.log('2 =============================');
