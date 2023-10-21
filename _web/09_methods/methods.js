@@ -1,19 +1,60 @@
-let array=[1,2,3,4,5,6];
-console.log(array.push(32,44))//добавляет и возвращает длину
-let array1=[90,91];
-array.push(array1);//добавляет массив в массив
-array.push(...array1);//добавляет элементы в конец массива
-array.unshift(-1, 100)//вставляет в начало
-array.splice(5, 0, 50,60,70) // добавляет куда хочешщь
-//spread operator
+let array = [1,2,3,10,11,12];
+console.log(array.length)
+
+//add
+console.log(array.push(32,44));
+console.log(array);
+
+let array1 = [90, 91];
+array.push(...array1);
+console.log(array);
+
+console.log(array.unshift(-1, 1000));
+console.log(array);
+
+console.log(array.splice(5, 0, 50, 60, 70));
+// console.log(array.splice(5, 2));
+// console.log(array.splice(5, 3, 50, 60, 70));
+console.log(array);
+
+//spread operator (...)
+let array2 = array;
+array2[0] = 20;
+console.log(array);
+
+let array3 = [...array];
+array3[0] = -100;
+console.log(array);
+
 //remove
-array.pop();//удаляет последний элемент и его возвращщает
-array.shift();
+console.log(array.pop());
+console.log(array.shift());
+console.log(array.splice(5, 2));
+array.splice(5, 100);
+console.log(array);
 
-array.slice(2,5)//возвращает новые массив - кусок большого массива
-array4=array.concat(1,2, array)// соеднияет всё вместе
+let array4 = array.slice(1, 4);
+console.log(array4);
+array4[1] = 100;
+console.log(array);
 
-array.indexOf(4)// ищет элемент. если не находит - возвращает -1
-array.indexOf(4,5)// щет элементy начиная с 5го. если не находит - возвращает -1
-array4.includes(-1) //если есть - дает тру, если нет - фолс
-let str = array4.join(" ") //слепит в строку между элементами пробел
+array4 = array.concat(array1, array3, 1, 2);
+console.log(array4);
+
+//search
+console.log(array4.indexOf(1));
+console.log(array4.lastIndexOf(1));
+console.log(array4.indexOf(1, 5));
+console.log(array4.lastIndexOf(1, 5));
+console.log(array4.indexOf(-1));
+console.log(array4.lastIndexOf(-1));
+
+console.log(array4.includes(1000));
+console.log(array4.includes(-1));
+console.log(array4.includes(1000, 20));
+
+array4.reverse();
+console.log(array4);
+
+let str = array4.join(" ");
+console.log(str);
