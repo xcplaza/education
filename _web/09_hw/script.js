@@ -96,7 +96,7 @@ function isPalindrome(str) {
     return lowerCaseStr === reversedStr;
 }
 
-console.log(isPalindrome('Abba'));
+console.log(isPalindrome('Abba Abba'));
 
 //7. function reverseString(str)
 // Function takes a string and returns a new string, which will be the reverse of the incoming string.
