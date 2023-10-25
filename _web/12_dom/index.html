@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--    <script src="bom.js" defer></script>-->
+    <script src="dom.js" defer></script>
+    <style>
+        .header {
+            background-color: coral;
+            color: whitesmoke;
+        }
+
+        .active {
+            border: 1px solid black;
+            font-style: italic;
+        }
+
+        #container {
+            width: 200px;
+            height: 200px;
+            background-color: coral;
+            position: relative;
+        }
+
+        #box {
+            width: 50px;
+            height: 50px;
+            background-color: greenyellow;
+            position: absolute;
+        }
+    </style>
+</head>
+
+<body>
+<div id="container">
+    <div id="box"></div>
+</div>
+<div id="div1">
+    <p class="p1">First text</p>
+    <p id="p2">Second text</p>
+    <p>Third text</p>
+    <p>Some text</p>
+
+</div>
+<p id="outer">Outer text</p>
+</body>
+</html>
