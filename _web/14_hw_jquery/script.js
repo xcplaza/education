@@ -29,6 +29,7 @@ group = {
     }
 };
 group.showList();
+
 // 2 solution
 console.log("=========== 2");
 group = {
@@ -42,6 +43,7 @@ group = {
     }
 };
 group.showList();
+
 // 3 solution
 console.log("=========== 3");
 group = {
@@ -57,13 +59,14 @@ group = {
     }
 };
 group.showList();
+
 // 4 solution
 console.log("=========== 4");
 group = {
     title: 'Karmiel',
     students: ["Alina", "Hana"],
     showList: function () {
-        const self = this; // store the this value in a separate variable
+        const self = this; // store the value in a separate variable
         const show = function (name) {
             console.log(`${self.title}: ${name}`); // use self instead of this
         };
