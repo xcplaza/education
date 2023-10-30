@@ -52,3 +52,14 @@ function displayUser(user) {
 
 // getId(getUser, displayUser);
 getId().then(getUser).then(displayUser).catch(() => alert('error'));
+
+function willBeAnswer() {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            let isAngry = Math.random() > 0.5;
+            isAngry ? reject(new Error('I am Angry')) : resolve({answer: 'You are lucky'});
+        }, 1000);
+    })
+}
+
+willBeAnswer().then(res => console.log(res)).catch(error => console.log(error.message));
