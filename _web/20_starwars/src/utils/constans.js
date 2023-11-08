@@ -19,3 +19,5 @@ export const title = 'Title: The Empire Strikes Back episode: 5 release_date: 19
     '        fighters led by Luke Skywalker has established a new secret base on the remote ice world of Hoth.\n' +
     '        The evil lord Darth Vader, obsessed with finding young Skywalker, has dispatched thousands of remote\n' +
     '        probes into the far reaches of space....'
+
+export const baseURL = 'https://sw-info-api.herokuapp.com/v1';
