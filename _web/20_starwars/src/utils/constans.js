@@ -21,3 +21,4 @@ export const title = 'Title: The Empire Strikes Back episode: 5 release_date: 19
     '        probes into the far reaches of space....'
 
 export const baseURL = 'https://sw-info-api.herokuapp.com/v1';
+export const period = 1000 * 60 * 60 * 24 * 10; // 10 days

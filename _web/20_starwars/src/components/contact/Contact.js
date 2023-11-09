@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {baseURL} from "../../utils/constans";
+import {baseURL, period} from "../../utils/constans";
 import style from './contact.module.css';
 import data from "bootstrap/js/src/dom/data";
 
@@ -10,18 +10,30 @@ class Contact extends Component {
     }
 
     componentDidMount() {
-        fetch(`${baseURL}/planets`)
-            .then(r => r.json())
-            // .then(data => this.setState({planets: data}))
-            .then(data => data.map(item => item.name))
-            .then(names => this.setState({planets: names}))
+        let planetFromStorage = JSON.parse(sessionStorage.getItem('planetKey'));
+        if (!planetFromStorage || (new Date() - planetFromStorage.time) > period) {
+            fetch(`${baseURL}/planets`)
+                .then(r => r.json())
+                // .then(data => this.setState({planets: data}))
+                .then(data => data.map(item => item.name))
+                .then(names => {
+                        this.setState({planets: names})
+                        let planetsData = {
+                            names,
+                            time: new Date()
+                        }
+                        sessionStorage.setItem('planetKey', JSON.stringify(planetsData));
+                    }
+                )
+
+        } else {
+            this.setState({planets: planetFromStorage.names});
+        }
     }
 
     render() {
         return (
-
-
-            <div className={style.container}>
+            <div className="container">
                 {/*<div>*/}
                 <form>
                     <label htmlFor="fname">First Name</label>
