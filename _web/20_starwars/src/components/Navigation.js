@@ -2,11 +2,11 @@ import React from 'react';
 import NavItem from "./NavItem";
 import {navItemsArray} from "../utils/constans";
 
-const Navigation = ({changePage}) => {
+const Navigation = () => {
     return (
         <nav>
             <ul className="nav fixed-top mt-1 ms-5">
-                {navItemsArray.map(item => <NavItem key={item} text={item} changePage={changePage}/>)}
+                {navItemsArray.map(item => <NavItem key={item} text={item}/>)}
             </ul>
         </nav>
     );
