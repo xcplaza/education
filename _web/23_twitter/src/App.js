@@ -11,7 +11,7 @@ class App extends Component {
         this.state = {
             user: {
                 avatar: require('./avatar.jpg'),
-                name: 'Pussy cat'
+                name: 'Animal cat'
             },
             stats: {
                 followers: 10,
