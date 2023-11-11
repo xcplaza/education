@@ -39,14 +39,17 @@ const UserAvatar = () => {
 export default UserAvatar;
 
 
-
-
-//import React from 'react';
+// import React, {useState} from 'react';
 // import {TwitterContext} from "../utils/TwitterContext";
 //
 // const UserAvatar = () => {
+//
+//     const handleClick = () => {
+//
+//     }
+//
 //     return <TwitterContext.Consumer>
-//         {value => <img className={'user-avatar'} src={value.user.avatar} alt={value.user.name}/>}
+//         {value => <img className={'user-avatar'} src={value.user.avatar} alt={value.user.name} onClick={handleClick}/>}
 //     </TwitterContext.Consumer>
 // };
 //
