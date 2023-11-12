@@ -1,22 +1,19 @@
-import React, {Component} from 'react';
+import React, {useEffect, useState} from 'react';
 import {baseURL} from "../utils/constans";
 
-class FarGalaxy extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            isLoading: true,
-            filmTitle: null,
-            filmData: null
-        }
-    }
+const FarGalaxy = () => {
+    const [data, setData] = useState({
+        isLoading: true,
+        filmTitle: null,
+        filmData: null
+    });
 
-    componentDidMount() {
+    useEffect(() => {
         const filmTitleFromStorage = sessionStorage.getItem('filmTitle');
         const filmDataFromStorage = sessionStorage.getItem('filmData');
 
         if (filmDataFromStorage && filmTitleFromStorage) {
-            this.setState({
+            setData({
                 isLoading: false,
                 filmTitle: filmTitleFromStorage,
                 filmData: filmDataFromStorage
@@ -26,7 +23,7 @@ class FarGalaxy extends Component {
             fetch(`${baseURL}/films/${episode}`)
                 .then(r => r.json())
                 .then(data => {
-                    this.setState({
+                    setData({
                         isLoading: false,
                         filmTitle: data.title,
                         filmData: data.opening_crawl
@@ -35,19 +32,22 @@ class FarGalaxy extends Component {
                     sessionStorage.setItem('filmTitle', data.title);
                 })
         }
-    }
+        // return console.log('unmount'); - after unmount useEffect
+    }, []);
 
-    render() {
-        if (this.state.isLoading)
-            return <p className={'farGalaxy'}>Loading..........</p>
-        else
-            return (
-                <div>
-                    <h1 style={{textTransform: 'uppercase', textAllign: 'center', color: 'darkgoldenrod'}}>{this.state.filmTitle}</h1>
-                    <p className={'farGalaxy'}>{this.state.filmData}</p>
-                </div>
-            );
-    }
+    if (data.isLoading)
+        return <p className={'farGalaxy'}>Loading..........</p>
+    else
+        return (
+            <div>
+                <h1 style={{
+                    textTransform: 'uppercase',
+                    textAllign: 'center',
+                    color: 'darkgoldenrod'
+                }}>{data.filmTitle}</h1>
+                <p className={'farGalaxy'}>{data.filmData}</p>
+            </div>
+        );
 }
 
 export default FarGalaxy;

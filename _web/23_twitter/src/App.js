@@ -20,13 +20,23 @@ class App extends Component {
         }
     }
 
+    changeAvatar = (newAvatar) => {
+        this.setState({user: {avatar: newAvatar, name: this.state.user.name}});
+    }
+
     render() {
         return (
             <div className={'app'}>
-                <TwitterContext.Provider value={{user: this.state.user, stats: this.state.stats}}>
+                <TwitterContext.Provider value={
+                    {
+                        user: this.state.user,
+                        stats: this.state.stats,
+                        changeAvatar: this.changeAvatar
+                    }
+                }>
                     <Nav/>
                     <Body/>
-                `</TwitterContext.Provider>
+                    </TwitterContext.Provider>
             </div>
         );
     }

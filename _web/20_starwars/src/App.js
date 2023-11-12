@@ -2,35 +2,25 @@ import './App.css';
 import Header from "./components/Header";
 import Main from "./components/Main";
 import Footer from "./components/footer/Footer";
-import {Component} from "react";
+import {useState} from "react";
 import {navItemsArray} from "./utils/constans";
 import {SWContext} from "./utils/context";
 
-class App extends Component {
+const App = () => {
+    const [page, setPage] = useState(navItemsArray[0]);
 
-    constructor(props) {
-        super(props);
-        this.state = {ActivePage: navItemsArray["Home"]};
-    }
+    const changePage = page => setPage(page);
 
-    changePage = page => this.setState({ActivePage: page});
+    return (
+        <div className="container-fluid">
+            <SWContext.Provider value={{page, changePage}}>
+                <Header/>
+                <Main/>
+            </SWContext.Provider>
+            <Footer/>
+        </div>
+    );
 
-    render() {
-        return (
-            <div className="container-fluid">
-                <SWContext.Provider value={
-                    {
-                        page: this.state.ActivePage,
-                        changePage: this.changePage
-                    }
-                }>
-                    <Header/>
-                    <Main/>
-                </SWContext.Provider>
-                <Footer/>
-            </div>
-        );
-    }
 }
 
 export default App;
