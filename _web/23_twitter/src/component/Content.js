@@ -1,6 +1,7 @@
 import React from 'react';
 
-const Content = () => {
+const Content = () =>
+{
     return (
         <div className={'content'}>
             This is content

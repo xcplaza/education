@@ -1,26 +1,30 @@
 import './App.css';
-
 import React, {useState} from 'react';
-import Body from "./component/Body";
-import Nav from "./component/Nav";
 import {TwitterContext} from "./utils/TwitterContext";
-import userAvatar from "./component/UserAvatar";
+import Nav from "./component/Nav";
+import Body from "./component/Body";
 
-const App = () => {
-    const [user, setUser] = useState({
-        avatar: require('./avatar.jpg'),
-        name: 'Animal cats'
-    });
+const App = () =>
+{
+    const [user, setUser] = useState(
+        {
+            avatar: 'https://oir.mobi/uploads/posts/2021-04/1619701495_42-oir_mobi-p-sonnii-kotik-zhivotnie-krasivo-foto-43.jpg',
+            name: 'Pussy cat'
+        });
 
-    const [stats, setStats] = useState({
-        followers: 10,
-        following: 3
-    });
+    const [stats, setStats] = useState(
+        {
+            followers: 10,
+            following: 1
+        });
 
     const changeAvatar = url => setUser({avatar: url || user.avatar, name: user.name});
+
     // const changeName = name => setUser(user => ({...user, name: name || user.name}));
-    const changeName = name => setUser({avatar: user.avatar, name: name || user.name});
-    const changeState = (statsType, sum) => setStats(stats => {
+    const changeName = name => setUser({avatar: user.avatar, name: (name || user.name)});
+
+    const changeStats = (statsType, sum) => setStats(stats =>
+    {
         let res = stats[statsType] + sum;
         res = res < 0 ? 0 : res;
         return {...stats, [statsType]: res};
@@ -28,13 +32,12 @@ const App = () => {
 
     return (
         <div className={'app'}>
-            <TwitterContext.Provider value={{user, stats, changeName, changeState, changeAvatar}}>
+            <TwitterContext.Provider value={{user, stats, changeAvatar, changeName, changeStats}}>
                 <Nav/>
                 <Body/>
             </TwitterContext.Provider>
         </div>
     );
-
 }
 
 export default App;

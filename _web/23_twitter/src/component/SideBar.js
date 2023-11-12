@@ -1,7 +1,8 @@
 import React from 'react';
 import UserStats from "./UserStats";
 
-const SideBar = () => {
+const SideBar = () =>
+{
     return (
         <div className={'sidebar'}>
             <UserStats/>

@@ -1,7 +1,8 @@
 import React from 'react';
 import UserAvatar from "./UserAvatar";
 
-const Nav = () => {
+const Nav = () =>
+{
     return (
         <div className={'nav'}>
             <UserAvatar size={'small'}/>
