@@ -1,45 +1,40 @@
 import './App.css';
 
-import React, {Component} from 'react';
+import React, {useState} from 'react';
 import Body from "./component/Body";
 import Nav from "./component/Nav";
 import {TwitterContext} from "./utils/TwitterContext";
+import userAvatar from "./component/UserAvatar";
 
-class App extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            user: {
-                avatar: require('./avatar.jpg'),
-                name: 'Animal cat'
-            },
-            stats: {
-                followers: 10,
-                following: 3
-            }
-        }
-    }
+const App = () => {
+    const [user, setUser] = useState({
+        avatar: require('./avatar.jpg'),
+        name: 'Animal cats'
+    });
 
-    changeAvatar = (newAvatar) => {
-        this.setState({user: {avatar: newAvatar, name: this.state.user.name}});
-    }
+    const [stats, setStats] = useState({
+        followers: 10,
+        following: 3
+    });
 
-    render() {
-        return (
-            <div className={'app'}>
-                <TwitterContext.Provider value={
-                    {
-                        user: this.state.user,
-                        stats: this.state.stats,
-                        changeAvatar: this.changeAvatar
-                    }
-                }>
-                    <Nav/>
-                    <Body/>
-                    </TwitterContext.Provider>
-            </div>
-        );
-    }
+    const changeAvatar = url => setUser({avatar: url || user.avatar, name: user.name});
+    // const changeName = name => setUser(user => ({...user, name: name || user.name}));
+    const changeName = name => setUser({avatar: user.avatar, name: name || user.name});
+    const changeState = (statsType, sum) => setStats(stats => {
+        let res = stats[statsType] + sum;
+        res = res < 0 ? 0 : res;
+        return {...stats, [statsType]: res};
+    })
+
+    return (
+        <div className={'app'}>
+            <TwitterContext.Provider value={{user, stats, changeName, changeState, changeAvatar}}>
+                <Nav/>
+                <Body/>
+            </TwitterContext.Provider>
+        </div>
+    );
+
 }
 
 export default App;

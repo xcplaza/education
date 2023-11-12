@@ -4,7 +4,7 @@ import UserAvatar from "./UserAvatar";
 const Nav = () => {
     return (
         <div className={'nav'}>
-            <UserAvatar/>
+            <UserAvatar size={'small'}/>
         </div>
     );
 };
