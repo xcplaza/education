@@ -1,0 +1,36 @@
+.App
+{
+    font-family: 'Cinzel Decorative', cursive;
+}
+
+h1, h4, h3 
+{
+    text-transform: uppercase;
+    text-align: center;
+
+}
+
+h1 
+{
+    color: gold;
+    font-weight: bold;
+    font-size: 6em;
+}
+
+h4
+{
+    color: whitesmoke;
+    font-size: 3em;
+}
+
+h3 
+{
+    color: firebrick;
+    font-size: 5em;
+}
+
+input 
+{
+    text-align: center;
+    background-color: antiquewhite;
+}

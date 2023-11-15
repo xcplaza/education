@@ -4,10 +4,29 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="82461fad-576a-43c6-9127-454b9c58c570" name="Changes" comment="create">
-      <change afterPath="$PROJECT_DIR$/../26_starwars_router6/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../26_starwars_router6/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../26_starwars_router6/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+    <list default="true" id="82461fad-576a-43c6-9127-454b9c58c570" name="Changes" comment="reupload 21 starwars">
+      <change afterPath="$PROJECT_DIR$/../untitled/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../untitled/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../untitled/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../untitled/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../untitled/package-lock.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../untitled/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../untitled/public/favicon.ico" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../untitled/public/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../untitled/public/logo192.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../untitled/public/logo512.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../untitled/public/manifest.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../untitled/public/robots.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../untitled/src/App.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../untitled/src/App.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../untitled/src/App.test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../untitled/src/index.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../untitled/src/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../untitled/src/logo.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../untitled/src/reportWebVitals.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../untitled/src/setupTests.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../24_starwars/.idea/shelf/Uncommitted_changes_before_Update_at_14_11_2023,_17_35_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../24_starwars/.idea/shelf/Uncommitted_changes_before_Update_at_14_11_2023,_17_35_[Changes]1/shelved.patch" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -112,6 +131,7 @@
       <workItem from="1699976788952" duration="94000" />
       <workItem from="1699976942967" duration="470000" />
       <workItem from="1699988079341" duration="55000" />
+      <workItem from="1699992492671" duration="2812000" />
     </task>
     <task id="LOCAL-00001" summary="create">
       <option name="closed" value="true" />
@@ -129,7 +149,15 @@
       <option name="project" value="LOCAL" />
       <updated>1699977054029</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="reupload 21 starwars">
+      <option name="closed" value="true" />
+      <created>1699993259067</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1699993259067</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -152,6 +180,7 @@
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
     <MESSAGE value="create" />
-    <option name="LAST_COMMIT_MESSAGE" value="create" />
+    <MESSAGE value="reupload 21 starwars" />
+    <option name="LAST_COMMIT_MESSAGE" value="reupload 21 starwars" />
   </component>
 </project>
