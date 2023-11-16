@@ -1,15 +1,20 @@
-import React, {useContext} from 'react';
-import {TwitterContext} from "../utils/TwitterContext";
+import React from 'react';
+import {useDispatch, useSelector} from "react-redux";
+import {changeAvatarAction, changeNameAction} from "../redux/actions/userActions";
 
-const UserAvatar = (props) =>
-{
-    const value = useContext(TwitterContext);
-    return <img className={`user-avatar ${props.size}`} src={value.user.avatar} alt={value.user.name}
-                onClick={() => value.changeAvatar(prompt('Enter new avatar url'))}
-                onContextMenu={event =>
-                {
+const UserAvatar = (props) => {
+    const user = useSelector(state => state.user);
+    const dispatcher = useDispatch();
+
+    return <img className={`user-avatar ${props.size}`} src={user.avatar} alt={user.name}
+                onClick={() => {
+                    let avatar = prompt('Enter new avatar url')
+                    dispatcher(changeAvatarAction(avatar));
+                }}
+                onContextMenu={event => {
                     event.preventDefault();
-                    value.changeName(prompt('Enter new nickname'));
+                    let name = prompt('Enter new nickname')
+                    dispatcher(changeNameAction(name));
                 }}/>;
 };
 

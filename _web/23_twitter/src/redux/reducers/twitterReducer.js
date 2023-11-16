@@ -9,6 +9,7 @@ export const twitterReducer = (state, action) => {
             return {...state, user};
         case CHANGE_AVATAR:
             user = {...state.user, avatar: action.payload || state.user.avatar};
+            return {...state, user};
         case CHANGE_STATS:
             let res = state.stats[action.payload.statsType] + action.payload.sum;
             let stats = {...state.stats, [action.payload.statsType]: res < 0 ? 0 : res};

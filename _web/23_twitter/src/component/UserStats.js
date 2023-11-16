@@ -1,27 +1,38 @@
-import React, {useContext} from 'react';
+import React, {useState} from 'react';
 import UserAvatar from "./UserAvatar";
-import {TwitterContext} from "../utils/TwitterContext";
+import {useDispatch, useSelector} from "react-redux";
+import {changeStatsAction} from "../redux/actions/statAction";
 
 const UserStats = () =>
 {
-    const value = useContext(TwitterContext);
+    // const value = useContext(TwitterContext);
+    const {user, stats} = useSelector(state => state);
+    // OR
+    // const user = useSelector(state => state.user);
+    // const stats = useSelector(state => state.stats);
+    
+    const dispatch = useDispatch();
 
     return (<div className={'user-stats'}>
         <div>
             <UserAvatar/>
-            {value.user.name}
+            {user.name}
         </div>
         <div className='stats'>
-            <div onClick={() => value.changeStats('followers', 1)} onContextMenu={(e) =>
-            {
-                e.preventDefault();
-                value.changeStats('followers', -1);
-            }}>Followers: {value.stats.followers}</div>
-            <div onClick={() => value.changeStats('following', 1)} onContextMenu={(e) =>
-            {
-                e.preventDefault();
-                value.changeStats('following', -1);
-            }}>Following: {value.stats.following}</div>
+            <div onClick={() => dispatch(changeStatsAction('followers', 1))}
+                 onContextMenu={e =>
+                 {
+                     e.preventDefault();
+                     dispatch(changeStatsAction('followers', -1));
+                 }}>Followers: {stats.followers}
+            </div>
+            <div onClick={() => dispatch(changeStatsAction('following', 1))}
+                 onContextMenu={(e) =>
+                 {
+                     e.preventDefault();
+                     dispatch(changeStatsAction('following', -1));
+                 }}>Following: {stats.following}
+            </div>
         </div>
     </div>);
 };
