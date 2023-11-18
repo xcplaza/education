@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="91433c84-a117-499d-88eb-d3b9c7f9c0ee" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../21_starwars_navigation/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../21_starwars_navigation/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../24_starwars_nav/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../24_starwars_nav/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="91433c84-a117-499d-88eb-d3b9c7f9c0ee" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -54,6 +50,7 @@
       <workItem from="1699977211473" duration="44000" />
       <workItem from="1699977257078" duration="278000" />
       <workItem from="1699990654621" duration="492000" />
+      <workItem from="1700243497873" duration="128000" />
     </task>
     <servers />
   </component>
