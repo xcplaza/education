@@ -1,8 +1,8 @@
 // Game.js
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import Result from './Result';
 
-const Game = ({ playerName, playerCards, computerCards }) => {
+const Game = ({playerName, playerCards, computerCards}) => {
     const [score, setScore] = useState(0);
     const [round, setRound] = useState(0);
     const [gameOver, setGameOver] = useState(false);
@@ -57,8 +57,10 @@ const Game = ({ playerName, playerCards, computerCards }) => {
                     <div className={'img'}>
                         {playerCards && computerCards && (
                             <>
-                                <img className={'playerDeck'} src={process.env.PUBLIC_URL + playerCards[round].src} alt={`Player Card ${round}`} />
-                                <img className={'playerDeck'} src={process.env.PUBLIC_URL + computerCards[round].src} alt={`Computer Card ${round}`} />
+                                <img className={'playerDeck'} src={process.env.PUBLIC_URL + playerCards[round].src}
+                                     alt={`Player Card ${round}`}/>
+                                <img className={'playerDeck'} src={process.env.PUBLIC_URL + computerCards[round].src}
+                                     alt={`Computer Card ${round}`}/>
                             </>
                         )}
                     </div>

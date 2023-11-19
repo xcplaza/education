@@ -3,7 +3,6 @@ import React, {useState} from 'react';
 import {cards} from "../constants";
 import Game from "./Game";
 
-
 export const Start = () => {
     const [playerName, setPlayerName] = useState('');
     const [gameStarted, setGameStarted] = useState(false);
