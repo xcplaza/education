@@ -1,4 +1,3 @@
-// Start.js
 import React, {useState} from 'react';
 import {cards} from "../constants";
 import Game from "./Game";

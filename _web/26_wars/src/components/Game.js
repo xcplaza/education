@@ -1,4 +1,3 @@
-// Game.js
 import React, {useState} from 'react';
 import Result from './Result';
 
@@ -16,12 +15,9 @@ const Game = ({playerName, playerCards, computerCards}) => {
 
             if (playerCardValue > computerCardValue) {
                 setScore(score + 1);
-                // alert('You win this round!');
             } else if (playerCardValue < computerCardValue) {
                 setLosses(losses + 1);
-                // alert('Computer wins this round!');
             } else {
-                // alert("It's a tie!");
             }
 
             setRound(round + 1);
