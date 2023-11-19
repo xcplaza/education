@@ -1,31 +1,21 @@
-//rcc
-import React, {Component} from 'react';
+import React, {Component, useState} from 'react';
+import {useDispatch} from "react-redux";
+import {getWeatherAction, putWeatherAction} from "../redux/weatherAction";
 
-class FormControl extends Component
-{
-    constructor(props)
-    {
-        super(props);
-        this.state = {city: ''};
+const FormControl = () => {
+    const [city, setCity] = useState('');
+    const dispatch = useDispatch();
+    const handleClickGetWeather = e => {
+        dispatch(getWeatherAction(city))
+        setCity('');
     }
-
-    handleChangeCity = e => this.setState({city: e.target.value})
-
-    handleClickGetWeather = e =>
-    {
-        this.props.getWeather(this.state.city);
-        this.setState({city: ''});
-    }
-    render()
-    {
-        return (
-            <div>
-                <input type={'text'} name={'city'} placeholder={'Enter your city'} value={this.state.city}
-                    onChange={this.handleChangeCity}/>
-                <button onClick={this.handleClickGetWeather}>Get weather</button>
-            </div>
-        );
-    }
+    return (
+        <div>
+            <input type={'text'} name={'city'} placeholder={'Enter your city'} value={city}
+                   onChange={(event) => setCity(event.target.value)}/>
+            <button onClick={handleClickGetWeather}>Get weather</button>
+        </div>
+    );
 }
 
 export default FormControl;

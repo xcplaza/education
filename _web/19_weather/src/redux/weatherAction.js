@@ -16,7 +16,7 @@ export const putMessageAction = message => ({
 export const getWeatherAction = city => {
     return dispatch => {
         dispatch(putMessageAction('Loading...'));
-        fetch(`${base_url}?q=${city}&appid=${api_key}`)
+        fetch(`${base_url}?q=${city}&appid=${api_key}&units=metric`)
             .then(response => response.json())
             .then(data => ({
                 country: data.sys.country,
