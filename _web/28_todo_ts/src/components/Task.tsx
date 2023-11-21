@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {useRef, useState} from 'react';
 
 interface Props {
     deleteTask: (index: number) => void;
@@ -7,54 +7,44 @@ interface Props {
     children: string;
 }
 
-interface State {
-    isEdit: boolean;
-}
+// const Task: React.FunctionComponent<Props> = ({deleteTask, updateTask, index, children}) =>
+// OR
+// const Task: React.FC<Props> = ({deleteTask, updateTask, index, children}) =>
+// OR
+const Task = ({deleteTask, updateTask, index, children}: Props) => {
+    const newText = useRef<HTMLTextAreaElement>(null);
+    const [isEdit, setIsEdit] = useState<boolean>(true);
 
-class Task extends Component<Props, State> {
-    private newText = React.createRef<HTMLTextAreaElement>();
+    const handleClickEdit = () => setIsEdit(true);
+    const handleClickRemove = () => deleteTask(index);
 
-    constructor(props: Props) {
-        super(props);
-        this.state = {isEdit: true};
-    }
-
-    handleClickEdit = () => this.setState({isEdit: true});
-
-    handleClickRemove = () => this.props.deleteTask(this.props.index);
-
-    handleClickSave = () => {
-        const value = this.newText.current!.value;
+    const handleClickSave = () => {
+        const value = newText.current!.value;
         // const value = (this.newText.current as HTMLTextAreaElement).value;
         // @ts-ignore
         // const value = this.newText.current.value;
-        this.props.updateTask(this.props.index, value);
-        this.setState({isEdit: false});
+        updateTask(index, value);
+        setIsEdit(false);
     }
-
-    renderNorm = () => {
+    const renderNorm = () => {
         return (
             <div className={'box'}>
                 {/*<div>{this.props.task}</div>*/}
-                <div>{this.props.children}</div>
-                <button className={'btn light'} onClick={this.handleClickEdit}>Edit</button>
-                <button className={'btn red'} onClick={this.handleClickRemove}>Remove</button>
+                <div>{children}</div>
+                <button className={'btn light'} onClick={handleClickEdit}>Edit</button>
+                <button className={'btn red'} onClick={handleClickRemove}>Remove</button>
             </div>
         );
     }
-
-    renderEdit = () => {
+    const renderEdit = () => {
         return (
             <div className={'box'}>
-                <textarea ref={this.newText} defaultValue={this.props.children}></textarea>
-                <button className={'btn success'} onClick={this.handleClickSave}>Save</button>
+                <textarea ref={newText} defaultValue={children}></textarea>
+                <button className={'btn success'} onClick={handleClickSave}>Save</button>
             </div>
         )
     }
-
-    render() {
-        return this.state.isEdit ? this.renderEdit() : this.renderNorm();
-    }
+    return isEdit ? renderEdit() : renderNorm();
 }
 
 export default Task;
