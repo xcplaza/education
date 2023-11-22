@@ -13,7 +13,7 @@ interface Props {
 // OR
 const Task = ({deleteTask, updateTask, index, children}: Props) => {
     const newText = useRef<HTMLTextAreaElement>(null);
-    const [isEdit, setIsEdit] = useState<boolean>(true);
+    const [isEdit, setIsEdit] = useState<boolean>(false);
 
     const handleClickEdit = () => setIsEdit(true);
     const handleClickRemove = () => deleteTask(index);
