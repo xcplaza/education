@@ -1,0 +1,10 @@
+@import url('https://fonts.googleapis.com/css?family=Cinzel+Decorative:400,700');
+
+body 
+{
+    margin: 0;
+    padding: 0;
+    background-image: url("https://vignette.wikia.nocookie.net/gameofthrones/images/e/e2/Iron_Bank_History_%26_Lore_01.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
