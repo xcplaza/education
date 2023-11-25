@@ -17,7 +17,7 @@ const AuthComponent = ({disabledTodo}: Props) => {
                     .then(data => {
                         setUid(data);
                         disabledTodo(data == undefined);
-                        alert('Login success');
+                        // alert('Login success');
                     })
                     .catch(() => alert('Wrong user!'))
             })

@@ -4,61 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="91433c84-a117-499d-88eb-d3b9c7f9c0ee" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../29_starwars_ts/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../29_starwars_ts/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../29_starwars_ts/package-lock.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../29_starwars_ts/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../29_starwars_ts/public/favicon.ico" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../29_starwars_ts/public/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../29_starwars_ts/public/logo192.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../29_starwars_ts/public/logo512.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../29_starwars_ts/public/manifest.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../29_starwars_ts/public/robots.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../29_starwars_ts/src/App.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../29_starwars_ts/src/App.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../29_starwars_ts/src/components/ErrorPage.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../29_starwars_ts/src/components/FarGalaxy.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../29_starwars_ts/src/components/Friend.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../29_starwars_ts/src/components/Friends.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../29_starwars_ts/src/components/Header.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../29_starwars_ts/src/components/Hero.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../29_starwars_ts/src/components/Home.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../29_starwars_ts/src/components/Main.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../29_starwars_ts/src/components/NavItem.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../29_starwars_ts/src/components/Navigation.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../29_starwars_ts/src/components/StarWars.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../29_starwars_ts/src/components/about_me/AboutMe.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../29_starwars_ts/src/components/about_me/about_me.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../29_starwars_ts/src/components/contact/Contact.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../29_starwars_ts/src/components/contact/contact.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../29_starwars_ts/src/components/footer/Footer.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../29_starwars_ts/src/components/footer/footer.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../29_starwars_ts/src/images/2022-02-13_133534.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../29_starwars_ts/src/images/cursor_st_1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../29_starwars_ts/src/images/friend1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../29_starwars_ts/src/images/friend2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../29_starwars_ts/src/images/friend3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../29_starwars_ts/src/images/friend4.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../29_starwars_ts/src/images/friend5.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../29_starwars_ts/src/images/friend6.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../29_starwars_ts/src/images/friend7.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../29_starwars_ts/src/images/friend8.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../29_starwars_ts/src/images/friend9.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../29_starwars_ts/src/images/main.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../29_starwars_ts/src/images/sky.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../29_starwars_ts/src/index.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../29_starwars_ts/src/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../29_starwars_ts/src/logo.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../29_starwars_ts/src/react-app-env.d.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../29_starwars_ts/src/reportWebVitals.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../29_starwars_ts/src/setupTests.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../29_starwars_ts/src/utils/constants.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../29_starwars_ts/src/utils/contex.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../29_starwars_ts/src/utils/types.d.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../29_starwars_ts/tsconfig.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="91433c84-a117-499d-88eb-d3b9c7f9c0ee" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -106,6 +52,7 @@
       <workItem from="1699990654621" duration="492000" />
       <workItem from="1700243497873" duration="128000" />
       <workItem from="1700555922448" duration="1541000" />
+      <workItem from="1700669760621" duration="84000" />
     </task>
     <servers />
   </component>
