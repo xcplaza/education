@@ -3,7 +3,6 @@ package telran.microservices.probes;
 import java.util.*;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import dto.Probe;
 import entities.ListProbeValues;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;

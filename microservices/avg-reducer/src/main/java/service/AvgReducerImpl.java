@@ -1,6 +1,5 @@
 package service;
 
-import dto.Probe;
 import entities.ListProbeValues;
 import lombok.RequiredArgsConstructor;
 
