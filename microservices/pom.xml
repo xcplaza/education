@@ -15,6 +15,7 @@
     <description>microservices</description>
     <modules>
         <module>avg-reducer</module>
+        <module>email-data-provider</module>
     </modules>
     <packaging>pom</packaging>
     <properties>

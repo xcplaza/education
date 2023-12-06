@@ -1,5 +1,4 @@
 package dto;
 
-public record EmailData(String emailAddress, String name) {
-
+public record EmailData(String[] emailAddress, String[] name) {
 }
