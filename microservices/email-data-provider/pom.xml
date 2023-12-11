@@ -1,30 +1,24 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>telran.microservices</groupId>
-        <artifactId>microservices</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <artifactId>probes-microservices</artifactId>
+        <version>0.0.1</version>
     </parent>
 
-    <groupId>karmiel</groupId>
+    <groupId>telran.probes</groupId>
     <artifactId>email-data-provider</artifactId>
-    <packaging>jar</packaging>
-
-    <name>email-data-provider</name>
-    <url>http://maven.apache.org</url>
 
     <properties>
+        <maven.compiler.source>20</maven.compiler.source>
+        <maven.compiler.target>20</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>3.8.1</version>
-            <scope>test</scope>
-        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -33,5 +27,15 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>telran.probes</groupId>
+            <artifactId>api</artifactId>
+            <version>0.0.1</version>
+        </dependency>
     </dependencies>
+
 </project>
