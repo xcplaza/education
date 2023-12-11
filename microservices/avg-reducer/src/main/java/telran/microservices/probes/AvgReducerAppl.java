@@ -2,7 +2,6 @@ package telran.microservices.probes;
 
 import java.util.function.Consumer;
 
-import dto.Probe;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -11,6 +10,7 @@ import org.springframework.context.annotation.Bean;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import telran.microservices.probes.dto.Probe;
 import telran.microservices.probes.service.AvgReducer;
 
 @SpringBootApplication

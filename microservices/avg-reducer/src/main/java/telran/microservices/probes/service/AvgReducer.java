@@ -1,9 +1,7 @@
 package telran.microservices.probes.service;
 
-import dto.Probe;
+import telran.microservices.probes.dto.Probe;
 
 public interface AvgReducer {
-    Integer avgReduce(Probe probe);
-
     Integer avgReduce(Probe probe);
 }

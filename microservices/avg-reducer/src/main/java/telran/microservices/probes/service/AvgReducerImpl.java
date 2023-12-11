@@ -1,12 +1,12 @@
 package telran.microservices.probes.service;
 
-import dto.Probe;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
+import telran.microservices.probes.dto.Probe;
 import telran.microservices.probes.entities.ListProbeValues;
 import telran.microservices.probes.repo.ListProbeRepo;
 import java.util.*;
